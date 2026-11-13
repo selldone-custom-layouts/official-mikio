@@ -70,3 +70,32 @@ html {
   border-radius: 6px;
   background: var(--bk-s2);
 }
+
+/* The footer is black in both modes (Noir's was a light band): the kit's Theme
+   row and Selldone's legal-row parts take the bar's own words and lines. */
+.nx .nts-in .ts-row {
+  --ts-ink: var(--bk-bar-ink);
+  --ts-muted: var(--bk-bar-muted);
+  --ts-line: var(--bk-bar-line);
+  --ts-ring: var(--bk-bar-ink);
+  --ts-font: var(--bk-f-body);
+}
+.nx .nts-in .ts-row__label {
+  font: 700 11.5px/1.4 var(--bk-f-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bk-bar-muted);
+}
+.nx .ftr-bot .nx-gdpr,
+.nx .ftr-bot .nx-gdpr .v-btn,
+.nx .ftr-bot .nx-gdpr span,
+.nx .ftr-bot .nx-made,
+.nx .ftr-bot .nx-made a,
+.nx .ftr-bot .nx-made .v-btn {
+  color: var(--bk-bar-muted) !important;
+}
+.nx .ftr-bot .nx-gdpr:hover,
+.nx .ftr-bot .nx-gdpr .v-btn:hover,
+.nx .ftr-bot .nx-made a:hover {
+  color: var(--bk-bar-ink) !important;
+}

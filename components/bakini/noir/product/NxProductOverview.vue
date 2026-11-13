@@ -45,8 +45,8 @@
         <img v-if="photo" :key="photo.src" :alt="photo.alt" :src="photo.src" class="cut" decoding="async" loading="eager" />
         <span v-if="pv.off > 0" class="badge">−{{ pv.off }}%</span>
         <template v-if="photos.length > 1">
-          <button :aria-label="t('mikio.pd.prevPhoto', 'Previous photo')" class="arr pd2-prev" type="button" @click="step(-1)"><nx-icon name="left" /></button>
-          <button :aria-label="t('mikio.pd.nextPhoto', 'Next photo')" class="arr pd2-next" type="button" @click="step(1)"><nx-icon name="right" /></button>
+          <button :aria-label="t('bakini.mk.pd.prevPhoto', 'Previous photo')" class="arr pd2-prev" type="button" @click="step(-1)"><nx-icon name="left" /></button>
+          <button :aria-label="t('bakini.mk.pd.nextPhoto', 'Next photo')" class="arr pd2-next" type="button" @click="step(1)"><nx-icon name="right" /></button>
         </template>
       </div>
     </div>
@@ -55,8 +55,8 @@
       <router-link v-if="cat" :to="catTo(cat)" class="pd2-coll"><bdi>{{ catName }}</bdi></router-link>
       <h1 class="pd2-h">{{ $product.title }}</h1>
       <p class="pd2-rv">
-        <nx-icon name="star" /><template v-if="$product.rate_count > 0">{{ t("mikio.pd.rated", "Rated {rate} of 5 · {n} reviews", { rate: Number($product.rate).toFixed(1), n: $product.rate_count }) }}</template
-        ><template v-else>{{ t("mikio.pd.noReviews", "No reviews yet") }}</template>
+        <nx-icon name="star" /><template v-if="$product.rate_count > 0">{{ t("bakini.mk.pd.rated", "Rated {rate} of 5 · {n} reviews", { rate: Number($product.rate).toFixed(1), n: $product.rate_count }) }}</template
+        ><template v-else>{{ t("bakini.mk.pd.noReviews", "No reviews yet") }}</template>
       </p>
       <p v-if="why" class="pd2-d">{{ why }}</p>
 
@@ -80,13 +80,13 @@
         {{ t("bakini.n.pd.unitLine", "per {unit} · sold individually", { unit }) }} ·
         <span v-if="stock <= 0" class="pc-low">{{ t("bakini.n.pd.soldOut", "Sold out") }}</span
         ><span v-else-if="stock <= 5" class="pc-low">{{ t("bakini.n.pd.onlyLeft", "Only {n} left", { n: stock }) }}</span
-        ><span v-else class="pd2-stock">{{ t("mikio.pd.inStock", "In stock") }}</span>
+        ><span v-else class="pd2-stock">{{ t("bakini.mk.pd.inStock", "In stock") }}</span>
       </p>
       <p v-if="!has_original_warranty" class="pd2-unit">{{ $t("product_info.fake") }}</p>
 
       <!-- Choose your piece: the collection's other pieces -->
       <div v-if="siblings.length > 1" class="pd2-ch">
-        <p class="pd2-ch-h">{{ t("mikio.pd.choose", "Choose your {unit}:", { unit }) }}</p>
+        <p class="pd2-ch-h">{{ t("bakini.mk.pd.choose", "Choose your {unit}:", { unit }) }}</p>
         <div class="pd2-ch-row">
           <ul ref="sibs" class="pd2-ch-list" @scroll.passive="sibUpdate">
             <li v-for="s in siblings" :key="s.id">
@@ -97,8 +97,8 @@
               </router-link>
             </li>
           </ul>
-          <button :aria-label="t('mikio.pd.sibBack', 'Scroll the {name} back', { name: catName.toLowerCase() })" :disabled="sibStart" class="arr sm" data-dir="-1" type="button" @click="sibPage(-1)"><nx-icon name="left" /></button>
-          <button :aria-label="t('mikio.pd.sibOn', 'Scroll the {name} on', { name: catName.toLowerCase() })" :disabled="sibEnd" class="arr sm" data-dir="1" type="button" @click="sibPage(1)"><nx-icon name="right" /></button>
+          <button :aria-label="t('bakini.mk.pd.sibBack', 'Scroll the {name} back', { name: catName.toLowerCase() })" :disabled="sibStart" class="arr sm" data-dir="-1" type="button" @click="sibPage(-1)"><nx-icon name="left" /></button>
+          <button :aria-label="t('bakini.mk.pd.sibOn', 'Scroll the {name} on', { name: catName.toLowerCase() })" :disabled="sibEnd" class="arr sm" data-dir="1" type="button" @click="sibPage(1)"><nx-icon name="right" /></button>
         </div>
       </div>
 
@@ -193,7 +193,7 @@
           </div>
         </details>
         <details v-for="g in groups" :key="g.group" class="pd-row">
-          <summary><span>{{ g.group || t("mikio.pd.details", "Details") }}</span><nx-icon cls="pm" name="down" /></summary>
+          <summary><span>{{ g.group || t("bakini.mk.pd.details", "Details") }}</span><nx-icon cls="pm" name="down" /></summary>
           <div class="pd-row-b">
             <dl class="pd-dl">
               <div v-for="r in g.rows" :key="r[0]">
@@ -206,7 +206,7 @@
       </div>
 
       <div class="pd2-acts">
-        <button class="tool" type="button" @click="compareNow"><nx-icon name="compare" />{{ cat ? t("mikio.pd.compareOf", "Compare {name}", { name: catName.toLowerCase() }) : t("bakini.n.pd.compare", "Compare") }}</button>
+        <button class="tool" type="button" @click="compareNow"><nx-icon name="compare" />{{ cat ? t("bakini.mk.pd.compareOf", "Compare {name}", { name: catName.toLowerCase() }) : t("bakini.n.pd.compare", "Compare") }}</button>
         <button class="tool" type="button" @click="copyLink">
           <nx-icon :name="copied ? 'check' : 'link'" />{{ copied ? t("bakini.n.pd.copied", "Link copied") : t("bakini.n.pd.copy", "Copy link") }}
         </button>

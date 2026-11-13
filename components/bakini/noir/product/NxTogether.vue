@@ -10,7 +10,7 @@
     <div class="wrap">
       <div class="bt2">
         <div class="bt2-hd">
-          <h2 class="h2">{{ t("mikio.pd.togetherH", "Goes well with") }}</h2>
+          <h2 class="h2">{{ t("bakini.mk.pd.togetherH", "Goes well with") }}</h2>
           <p class="lead">{{ lede }}</p>
         </div>
         <div class="bt2-items">

@@ -47,7 +47,7 @@
           <h1 class="lh-h">{{ t("bakini.n.ls.search", "Search") }}</h1>
           <form class="srch-f sh-f" role="search" @submit.prevent="submitSearch">
             <nx-icon name="search" />
-            <input :aria-label="t('mikio.hdr.searchLabel', 'Search the shop')" :value="q" autocomplete="off" enterkeyhint="search" type="search" @input="q = $event.target.value" />
+            <input :aria-label="t('bakini.mk.hdr.searchLabel', 'Search the shop')" :value="q" autocomplete="off" enterkeyhint="search" type="search" @input="q = $event.target.value" />
             <button class="btn sm" type="submit">{{ t("bakini.n.ls.search", "Search") }}</button>
           </form>
           <p v-if="base.length" class="sh-sum">{{ t("bakini.n.ls.resultsFor", "Results for") }}{{ " " }}<b>“{{ search }}”</b></p>
@@ -55,9 +55,9 @@
       </section>
       <section v-else class="sh">
         <div class="wrap sh-in">
-          <p class="kick">{{ t("mikio.ls.noCodes", "No codes · no timers") }}</p>
+          <p v-if="kind === 'deals'" class="kick">{{ t("bakini.mk.ls.noCodes", "No codes · no timers") }}</p>
           <h1 class="lh-h">{{ allHead }}</h1>
-          <p class="lh-p">{{ kind === "deals" ? t("mikio.ls.dealsLine", "The saving is already in every price. Biggest dollar saving first.") : t("mikio.ls.allLine", "Every collection in one place, sold one by one.") }}</p>
+          <p class="lh-p">{{ kind === "deals" ? t("bakini.mk.ls.dealsLine", "The saving is already in every price. Biggest dollar saving first.") : t("bakini.mk.ls.allLine", "Every collection in one place, sold one by one.") }}</p>
         </div>
       </section>
 
@@ -66,14 +66,14 @@
         <div class="wrap sh-empty">
           <div class="empty">
             <span class="ec"><nx-icon name="search" /></span>
-            <h3>{{ t("mikio.ls.noMatchT", "Nothing matches “{q}”", { q: search }) }}</h3>
+            <h3>{{ t("bakini.mk.ls.noMatchT", "Nothing matches “{q}”", { q: search }) }}</h3>
             <p>{{ noMatchLine }}</p>
             <div class="acts">
               <router-link v-for="c in noir.cats" :key="c.id" :to="catTo(c)" class="chip"><bdi>{{ catTitle(c) }}</bdi></router-link>
             </div>
           </div>
         </div>
-        <nx-row id="sr-best" :items="loved" :sub="t('mikio.home.bestSub', 'The pieces ordered most often.')" :title="t('mikio.home.bestH', 'Best sellers')" />
+        <nx-row id="sr-best" :items="loved" :sub="t('bakini.mk.home.bestSub', 'The pieces ordered most often.')" :title="t('bakini.mk.home.bestH', 'Best sellers')" />
         <mk-bands more />
       </template>
 
@@ -99,12 +99,12 @@
             </div>
           </div>
         </div>
-        <div v-if="kind !== 'category' && tabCats.length > 1" :aria-label="t('mikio.ls.collections', 'Collections')" class="wrap lt-tabs" role="group">
+        <div v-if="kind !== 'category' && tabCats.length > 1" :aria-label="t('bakini.mk.ls.collections', 'Collections')" class="wrap lt-tabs" role="group">
           <button :aria-pressed="tab === 'all' ? 'true' : 'false'" class="chip" type="button" @click="setTab('all')">{{ t("bakini.n.ls.all", "All") }}</button>
           <button v-for="c in tabCats" :key="c.id" :aria-pressed="tab === c.id ? 'true' : 'false'" class="chip" type="button" @click="setTab(c.id)"><bdi>{{ catTitle(c) }}</bdi></button>
         </div>
         <div v-if="active.length" class="wrap lt-active">
-          <button v-for="a in active" :key="a.id" :aria-label="t('mikio.ls.removeFilter', 'Remove filter {name}', { name: a.label })" class="chip on" type="button" @click="a.clear()">{{ a.label }}<nx-icon name="close" /></button>
+          <button v-for="a in active" :key="a.id" :aria-label="t('bakini.mk.ls.removeFilter', 'Remove filter {name}', { name: a.label })" class="chip on" type="button" @click="a.clear()">{{ a.label }}<nx-icon name="close" /></button>
         </div>
         <div aria-live="polite" class="wrap upd-slot">
           <span v-if="busy" class="updating"><span class="spin"></span>{{ t("bakini.n.ls.updating", "Updating results…") }}</span>
@@ -117,8 +117,8 @@
               <template v-for="(p, i) in shown" :key="p.id + '-' + drawn">
                 <li v-if="band && i === bandAt" class="lg-tile">
                   <p class="kick">{{ facts.gateway.name }}</p>
-                  <p class="lg-tile-h">{{ facts.gateway.cod ? t("mikio.ls.bandCod", "Pick a window. Pay when it arrives.") : t("mikio.ls.bandPay", "Pick a window. Pay your way.") }}</p>
-                  <a class="btn sm" href="#how" @click.prevent="toHow">{{ t("mikio.ls.howWorks", "How it works") }}</a>
+                  <p class="lg-tile-h">{{ facts.gateway.cod ? t("bakini.mk.ls.bandCod", "Pick a window. Pay when it arrives.") : t("bakini.mk.ls.bandPay", "Pick a window. Pay your way.") }}</p>
+                  <a class="btn sm" href="#how" @click.prevent="toHow">{{ t("bakini.mk.ls.howWorks", "How it works") }}</a>
                 </li>
                 <nx-card :class="{ 'fade-up': animate && i < 12 }" :product="p" :style="animate && i < 12 ? { animationDelay: i * 25 + 'ms' } : null" look tag="li" />
               </template>
@@ -129,8 +129,8 @@
           </ul>
           <div v-if="ready && !shown.length" class="empty">
             <span class="ec"><nx-icon name="search" /></span>
-            <h3>{{ t("mikio.ls.noneT", "Nothing matches these filters") }}</h3>
-            <p>{{ t("mikio.ls.noneP", "Loosen the price range or clear a filter to see more pieces.") }}</p>
+            <h3>{{ t("bakini.mk.ls.noneT", "Nothing matches these filters") }}</h3>
+            <p>{{ t("bakini.mk.ls.noneP", "Loosen the price range or clear a filter to see more pieces.") }}</p>
             <div class="acts"><button class="btn" type="button" @click="reset">{{ t("bakini.n.ls.resetFilters", "Reset filters") }}</button></div>
           </div>
         </div>
@@ -145,7 +145,7 @@
         <aside id="fpanel" :aria-label="t('bakini.n.ls.filters', 'Filters')" :class="['panel', 'fpanel', { open: isOpen('fpanel') }]" aria-modal="true" role="dialog">
           <div class="pn-hd">
             <h2 class="pn-t">{{ t("bakini.n.ls.filter", "Filter") }}</h2>
-            <button :aria-label="t('mikio.ls.closeFilters', 'Close filters')" class="ibtn x" type="button" @click="closePanel"><nx-icon name="close" /></button>
+            <button :aria-label="t('bakini.mk.ls.closeFilters', 'Close filters')" class="ibtn x" type="button" @click="closePanel"><nx-icon name="close" /></button>
           </div>
           <div class="fp-in">
             <div v-if="hi > lo" class="fg fg-price">
@@ -186,7 +186,7 @@
           </div>
           <div class="fp-foot">
             <button class="btn ghost sm" type="button" @click="reset">{{ t("bakini.n.ls.reset", "Reset") }}</button>
-            <button class="btn sm" type="button" @click="closePanel">{{ t("mikio.ls.showResults", "Show results") }}</button>
+            <button class="btn sm" type="button" @click="closePanel">{{ t("bakini.mk.ls.showResults", "Show results") }}</button>
           </div>
         </aside>
       </div>
@@ -237,6 +237,7 @@ export default {
     moreOpen: {},
     layer,
     cols: 5,
+    sort0: "featured",
   }),
 
   computed: {
@@ -389,23 +390,23 @@ export default {
       const offs = this.base.map((p) => this.pv(p).off);
       const every = offs.every((o) => o > 0 && o === offs[0]);
       const max = Math.max(...offs);
-      return [t("mikio.home.fromCap", "From {price}", { price: money(from) }), every ? t("mikio.home.off", "{off}% off", { off: offs[0] }) : max > 0 ? t("mikio.hdr.offUpTo", "Up to {off}% off", { off: max }) : ""].filter(Boolean).join(" · ");
+      return [t("bakini.mk.home.fromCap", "From {price}", { price: money(from) }), every ? t("bakini.mk.home.off", "{off}% off", { off: offs[0] }) : max > 0 ? t("bakini.mk.hdr.offUpTo", "Up to {off}% off", { off: max }) : ""].filter(Boolean).join(" · ");
     },
     crumb() {
       if (this.kind === "category") return catTitle(this.cat) || this.categoryName;
       if (this.kind === "search") return t("bakini.n.ls.search", "Search");
-      return t("mikio.hdr.shopAll", "Shop all");
+      return t("bakini.mk.hdr.shopAll", "Shop all");
     },
     allHead() {
+      if (this.kind === "all") return t("bakini.mk.hdr.shopAll", "Shop all");
       const offs = this.noir.products.map((p) => this.pv(p).off);
       const every = offs.length > 0 && offs.every((o) => o > 0 && o === offs[0]);
-      if (every) return t("mikio.hdr.offEvery", "{off}% off every piece", { off: offs[0] });
-      return this.maxOff ? t("mikio.hdr.offUpTo", "Up to {off}% off", { off: this.maxOff }) : t("mikio.hdr.shopAll", "Shop all");
+      if (every) return t("bakini.mk.hdr.offEvery", "{off}% off every piece", { off: offs[0] });
+      return this.maxOff ? t("bakini.mk.hdr.offUpTo", "Up to {off}% off", { off: this.maxOff }) : t("bakini.mk.hdr.shopAll", "Shop all");
     },
     /* the dark band: after the first full row, only on the plain (unfiltered) list */
     plain() {
-      const defSort = this.deals ? "saving" : "featured";
-      return this.sort === defSort && this.tab === "all" && !this.offer && !Object.keys(this.f).some((k) => this.f[k].length) && this.min <= this.lo && this.max >= this.hi;
+      return this.sort === this.sort0 && this.tab === "all" && !this.offer && !Object.keys(this.f).some((k) => this.f[k].length) && this.min <= this.lo && this.max >= this.hi;
     },
     band() {
       return this.kind !== "search" && !!this.facts.gateway && this.plain && this.shown.length > this.cols;
@@ -450,6 +451,7 @@ export default {
   created() {
     loadNoir();
     this.sort = this.deals ? "saving" : { most_sales: "best", newest: "new", cheapest: "low", most_expensive: "high" }[this.initialSort] || "featured";
+    this.sort0 = this.sort;
   },
 
   mounted() {

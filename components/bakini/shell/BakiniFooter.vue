@@ -32,7 +32,7 @@
               <router-link :to="catTo(c)"><bdi>{{ catTitle(c) }}</bdi></router-link>
             </li>
             <li>
-              <router-link :to="dealsTo">{{ t("mikio.hdr.shopAll", "Shop all") }}</router-link>
+              <router-link :to="allTo">{{ t("bakini.mk.hdr.shopAll", "Shop all") }}</router-link>
             </li>
           </ul>
         </div>
@@ -40,7 +40,7 @@
           <h2 class="f-h">{{ t("bakini.n.ftr.help", "Help") }}</h2>
           <ul>
             <li><router-link :to="faqTo">{{ t("bakini.n.ftr.faq", "FAQ") }}</router-link></li>
-            <li><router-link :to="{ name: r.SHOP_CONTACT_US }">{{ t("mikio.hdr.contact", "Contact us") }}</router-link></li>
+            <li><router-link :to="{ name: r.SHOP_CONTACT_US }">{{ t("bakini.mk.hdr.contact", "Contact us") }}</router-link></li>
             <li><router-link :to="{ name: 'KalioAccountHome' }">{{ t("bakini.n.ftr.account", "Your account") }}</router-link></li>
             <li><router-link :to="{ name: r.SHOP_PROFILE_PAGE_PRIVACY }">{{ t("bakini.n.ftr.privacy", "Privacy") }}</router-link></li>
             <li><router-link :to="{ name: r.SHOP_PROFILE_PAGE_TERMS }">{{ t("bakini.n.ftr.terms", "Terms of Use") }}</router-link></li>
@@ -87,7 +87,7 @@ import { themeState } from "../../theme-switcher/theme-switcher";
 import SStorefrontSocialButtons from "@selldone/components-vue/storefront/social/SStorefrontSocialButtons.vue";
 import SFooterSectionGdpr from "@selldone/components-vue/storefront/footer/section/gdpr/SFooterSectionGdpr.vue";
 import SFooterSectionSelldone from "@selldone/components-vue/storefront/footer/section/selldone/SFooterSectionSelldone.vue";
-import { dealsRoute } from "../../kalio/kalio-catalog";
+import { catalogueRoute, dealsRoute } from "../../kalio/kalio-catalog";
 import { catTitle, catTo, loadNoir, noir, shopFacts } from "../noir/noir";
 import { currentCurrency, currentLanguage, languages, regionState } from "../../region-switcher/region";
 import { t } from "../../kalio/i18n/kalio-i18n";
@@ -118,6 +118,9 @@ export default {
     },
     dealsTo() {
       return dealsRoute();
+    },
+    allTo() {
+      return catalogueRoute({ sort: "newest" });
     },
     faqTo() {
       return this.$router.hasRoute("ShopFAQ") ? { name: "ShopFAQ" } : { name: this.r.SHOP_CONTACT_US };

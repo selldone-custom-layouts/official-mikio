@@ -53,31 +53,31 @@ export const BAKINI_THEME: ThemeSwitcherConfig = {
   palettes: [
     pal(
       "cherry",
-      () => t("mikio.palette.cherry", "Cherry"),
+      () => t("bakini.mk.palette.cherry", "Cherry"),
       { primary: "#b3261e", deep: "#9a0003", soft: "#ffebe8", onPrimary: "#ffffff", text: "#b3261e" },
       { primary: "#c73b30", deep: "#b52920", soft: "#4b1e19", onPrimary: "#ffffff", text: "#ff9082" },
     ),
     pal(
       "caramel",
-      () => t("mikio.palette.caramel", "Caramel"),
+      () => t("bakini.mk.palette.caramel", "Caramel"),
       { primary: "#a1581d", deep: "#894500", soft: "#ffece0", onPrimary: "#ffffff", text: "#a1581d" },
       { primary: "#a35a1f", deep: "#934b08", soft: "#482304", onPrimary: "#ffffff", text: "#ec9d65" },
     ),
     pal(
       "pistachio",
-      () => t("mikio.palette.pistachio", "Pistachio"),
+      () => t("bakini.mk.palette.pistachio", "Pistachio"),
       { primary: "#4c762a", deep: "#386212", soft: "#e7f6de", onPrimary: "#ffffff", text: "#4c762a" },
       { primary: "#4f7a2e", deep: "#416b1e", soft: "#1f350d", onPrimary: "#ffffff", text: "#8dbc6e" },
     ),
     pal(
       "blueberry",
-      () => t("mikio.palette.blueberry", "Blueberry"),
+      () => t("bakini.mk.palette.blueberry", "Blueberry"),
       { primary: "#2f56a6", deep: "#1c4190", soft: "#e9f1ff", onPrimary: "#ffffff", text: "#2f56a6" },
       { primary: "#436bbe", deep: "#355cad", soft: "#1a2c51", onPrimary: "#ffffff", text: "#85afff" },
     ),
     pal(
       "licorice",
-      () => t("mikio.palette.licorice", "Licorice"),
+      () => t("bakini.mk.palette.licorice", "Licorice"),
       { primary: "#2b2b2b", deep: "#1a1a1a", soft: "#f0f0f0", onPrimary: "#ffffff", text: "#2b2b2b" },
       { primary: "#6d6d6d", deep: "#5f5f5f", soft: "#2e2e2e", onPrimary: "#ffffff", text: "#aeaeae" },
     ),

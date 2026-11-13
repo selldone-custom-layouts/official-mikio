@@ -100,3 +100,10 @@ h2.serif:is(.nx,.nx *) { font-weight: var(--bk-h-wt); text-transform: var(--bk-h
 /* the page index: name over its line */
 .pidx-a:is(.nx,.nx *) { display: grid; grid-template-columns: minmax(0, 1fr); }
 .pidx-a:is(.nx,.nx *) span { overflow-wrap: anywhere; }
+/* centred heads with a search field: the column never grows past the page (the field's own width) */
+.sh-in:is(.nx,.nx *), .nf-copy:is(.nx,.nx *) { grid-template-columns: minmax(0, 1fr); }
+.srch-f:is(.nx,.nx *) input { width: 100%; }
+/* sheet headings keep clear of the ✕ even in extended caps */
+.sh-h:is(.nx,.nx *) { padding-right: 56px; }
+/* long full-width buttons wrap in extended caps instead of running past the sheet */
+.btn.lg:is(.nx,.nx *), .btn.block:is(.nx,.nx *) { white-space: normal; text-align: center; line-height: 1.15; padding-block: 10px; }

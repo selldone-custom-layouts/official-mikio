@@ -54,7 +54,7 @@
       <section v-if="articleBody" class="sec tight">
         <div class="wrap">
           <div class="sec-hd">
-            <h2 class="h2">{{ t("mikio.pd.aboutThis", "About this {unit}", { unit }) }}</h2>
+            <h2 class="h2">{{ t("bakini.mk.pd.aboutThis", "About this {unit}", { unit }) }}</h2>
           </div>
           <div class="nx-pd-article" v-html="articleBody"></div>
         </div>
@@ -75,10 +75,10 @@
         v-if="more.length"
         id="pd-more"
         :items="more"
-        :more-label="t('mikio.pd.shopAllOf', 'Shop all {name}', { name: catTitle(cat).toLowerCase() })"
+        :more-label="t('bakini.mk.pd.shopAllOf', 'Shop all {name}', { name: catTitle(cat).toLowerCase() })"
         :more-to="catTo(cat)"
-        :sub="t('mikio.pd.moreSub', 'The rest of the collection, best sellers first.')"
-        :title="t('mikio.pd.moreOf', 'More {name}', { name: catTitle(cat).toLowerCase() })"
+        :sub="t('bakini.mk.pd.moreSub', 'The rest of the collection, best sellers first.')"
+        :title="t('bakini.mk.pd.moreOf', 'More {name}', { name: catTitle(cat).toLowerCase() })"
       />
       <mk-bands :except="cat ? cat.id : null" more />
     </template>

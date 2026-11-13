@@ -20,8 +20,10 @@ fs.mkdirSync(OUT, { recursive: true });
     page.on("pageerror", (e) => errs.push(String(e).slice(0, 300)));
     page.on("console", (m) => { if (m.type() === "error") errs.push("console: " + m.text().slice(0, 300)); });
     try {
-      await page.goto(base + p, { waitUntil: "domcontentloaded", timeout: 180000 });
+      /* a cold /product/ or collection address can get Selldone's SEO page in a headless browser: open the home, then go there in the app */
+      await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 180000 });
       await page.waitForSelector(".ftr", { timeout: 180000 });
+      if (p !== "/") { await page.evaluate((to) => { const el = [...document.querySelectorAll("*")].find((e) => e.__vue_app__); el.__vue_app__.config.globalProperties.$router.push(to).catch(() => {}); }, p); await page.waitForTimeout(3500); }
       await page.waitForTimeout(2500);
       await page.evaluate(async () => { for (let y = 0; y < document.documentElement.scrollHeight; y += 600) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); } window.scrollTo(0, 0); });
       await page.waitForTimeout(1500);

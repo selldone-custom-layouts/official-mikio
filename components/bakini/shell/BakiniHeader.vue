@@ -32,7 +32,7 @@
           <template v-for="(m, i) in annMsgs" :key="i"
             ><span v-if="i" :class="['ann-dot', 'd' + i]" aria-hidden="true"></span><span :class="'am' + i">{{ m }}</span></template
           >
-          <router-link :to="dealsTo" class="ann-go">{{ t("mikio.hdr.shopNow", "Shop now") }}</router-link>
+          <router-link :to="dealsTo" class="ann-go">{{ t("bakini.mk.hdr.shopNow", "Shop now") }}</router-link>
         </p>
         <button
           v-if="regionOn"
@@ -69,22 +69,22 @@
           <template v-if="facts.address">
             <button
               :aria-expanded="is('dd-visit') ? 'true' : 'false'"
-              :aria-label="t('mikio.hdr.visitAria', 'Visit the counter')"
+              :aria-label="t('bakini.mk.hdr.visitAria', 'Visit the counter')"
               aria-controls="dd-visit"
               class="ibtn visit"
               type="button"
               @click="toggle('dd-visit', $event)"
             >
-              <nx-icon name="pin" /><span class="vl">{{ t("mikio.hdr.visit", "Visit us") }}</span>
+              <nx-icon name="pin" /><span class="vl">{{ t("bakini.mk.hdr.visit", "Visit us") }}</span>
             </button>
-            <div id="dd-visit" :class="['dd', 'pop', 'visit-pop', { open: is('dd-visit') }]" role="dialog" :aria-label="t('mikio.hdr.visitAria', 'Visit the counter')">
+            <div id="dd-visit" :class="['dd', 'pop', 'visit-pop', { open: is('dd-visit') }]" role="dialog" :aria-label="t('bakini.mk.hdr.visitAria', 'Visit the counter')">
               <p class="pop-k"><bdi>{{ facts.pickup ? facts.pickup.title : facts.title }}</bdi></p>
               <p class="pop-t"><bdi>{{ street }}</bdi><br /><bdi>{{ cityLine }}</bdi></p>
               <ul class="pop-l">
                 <li v-if="openLine"><nx-icon name="clock" /><span>{{ openLine }}</span></li>
                 <li v-if="facts.phone"><nx-icon name="phone" /><a :href="tel" dir="ltr">{{ facts.phone }}</a></li>
               </ul>
-              <a v-if="mapUrl" :href="mapUrl" class="btn sm" rel="noopener" target="_blank">{{ t("mikio.hdr.directions", "Get directions") }}</a>
+              <a v-if="mapUrl" :href="mapUrl" class="btn sm" rel="noopener" target="_blank">{{ t("bakini.mk.hdr.directions", "Get directions") }}</a>
             </div>
           </template>
         </div>
@@ -93,7 +93,7 @@
           <button :aria-expanded="is('srch') ? 'true' : 'false'" :aria-label="t('bakini.n.hdr.search', 'Search')" aria-controls="srch" class="ibtn" type="button" @click="toggle('srch', $event)">
             <nx-icon name="search" />
           </button>
-          <button :aria-label="user ? t('mikio.hdr.accountOf', 'Account: {name}', { name: firstName }) : t('bakini.n.hdr.signIn', 'Sign in')" class="ibtn acct" type="button" @click="account">
+          <button :aria-label="user ? t('bakini.mk.hdr.accountOf', 'Account: {name}', { name: firstName }) : t('bakini.n.hdr.signIn', 'Sign in')" class="ibtn acct" type="button" @click="account">
             <nx-icon name="user" />
           </button>
           <button
@@ -108,7 +108,7 @@
           </button>
         </div>
       </div>
-      <nav :aria-label="t('mikio.hdr.main', 'Main')" class="nav">
+      <nav :aria-label="t('bakini.mk.hdr.main', 'Main')" class="nav">
         <ul>
           <li class="has-dd" @mouseenter="hoverShop">
             <button :aria-expanded="is('dd-shop') ? 'true' : 'false'" aria-controls="dd-shop" class="nav-a" type="button" @click="clickShop($event)">
@@ -132,15 +132,15 @@
             </router-link>
           </li>
           <li>
-            <router-link :to="dealsTo">
-              <span class="mg-th all"><img v-for="src in allImgs" :key="src" :src="src" alt="" class="cut" loading="lazy" /></span><span class="mg-t">{{ t("mikio.hdr.shopAll", "Shop all") }}</span>
+            <router-link :to="allTo">
+              <span class="mg-th all"><img v-for="src in allImgs" :key="src" :src="src" alt="" class="cut" loading="lazy" /></span><span class="mg-t">{{ t("bakini.mk.hdr.shopAll", "Shop all") }}</span>
             </router-link>
           </li>
         </ul>
         <div class="mg-strip">
           <a v-if="mapUrl && facts.pickup" :href="mapUrl" class="mg-a" rel="noopener" target="_blank">{{ pickupLine }}</a>
-          <router-link v-else :to="aboutTo" class="mg-a">{{ t("mikio.hdr.aboutUs", "About us") }}</router-link>
-          <router-link :to="dealsTo" class="mg-b"><span>{{ offLine }}</span><span class="mg-go">{{ t("mikio.hdr.shopNow", "Shop now") }}</span></router-link>
+          <router-link v-else :to="aboutTo" class="mg-a">{{ t("bakini.mk.hdr.aboutUs", "About us") }}</router-link>
+          <router-link :to="dealsTo" class="mg-b"><span>{{ offLine }}</span><span class="mg-go">{{ t("bakini.mk.hdr.shopNow", "Shop now") }}</span></router-link>
         </div>
       </div>
       <!-- Search: suggestions while typing (the live catalogue); Enter opens every result. -->
@@ -150,7 +150,7 @@
             <nx-icon name="search" />
             <input
               ref="q"
-              :aria-label="t('mikio.hdr.searchLabel', 'Search the shop')"
+              :aria-label="t('bakini.mk.hdr.searchLabel', 'Search the shop')"
               :placeholder="t('bakini.n.hdr.searchPh', 'Search {examples}…', { examples: searchExamples })"
               :value="q"
               autocomplete="off"
@@ -160,7 +160,7 @@
               @keydown.down.prevent="move(1)"
               @keydown.up.prevent="move(-1)"
             />
-            <button :aria-label="t('mikio.hdr.closeSearch', 'Close search')" class="ibtn x" type="button" @click="closeLayer()"><nx-icon name="close" /></button>
+            <button :aria-label="t('bakini.mk.hdr.closeSearch', 'Close search')" class="ibtn x" type="button" @click="closeLayer()"><nx-icon name="close" /></button>
           </form>
           <div class="srch-out">
             <p v-if="!query" class="srch-hint">
@@ -200,7 +200,7 @@
           </div>
           <ul class="mn-big">
             <li>
-              <router-link :to="dealsTo"><span class="th all"><nx-icon name="bag" /></span><span>{{ t("mikio.hdr.shopAll", "Shop all") }}</span></router-link>
+              <router-link :to="allTo"><span class="th all"><nx-icon name="bag" /></span><span>{{ t("bakini.mk.hdr.shopAll", "Shop all") }}</span></router-link>
             </li>
             <li v-for="c in menuFirst" :key="c.id">
               <router-link :to="catTo(c)"><span class="th"><img v-if="topImg(c)" :src="topImg(c)" alt="" class="cut" loading="lazy" /></span><span><bdi>{{ catTitle(c) }}</bdi></span></router-link>
@@ -218,10 +218,10 @@
           </ul>
           <ul class="mn-small">
             <li><router-link :to="blogTo">{{ t("bakini.n.hdr.journal", "Journal") }}</router-link></li>
-            <li><router-link :to="faqTo">{{ t("mikio.hdr.faq", "FAQ") }}</router-link></li>
-            <li><router-link :to="contactTo">{{ t("mikio.hdr.contact", "Contact us") }}</router-link></li>
-            <li><router-link :to="aboutTo">{{ t("mikio.hdr.aboutUs", "About us") }}</router-link></li>
-            <li v-if="user"><router-link :to="accountTo">{{ t("mikio.hdr.yourAccount", "Your account") }}</router-link></li>
+            <li><router-link :to="faqTo">{{ t("bakini.mk.hdr.faq", "FAQ") }}</router-link></li>
+            <li><router-link :to="contactTo">{{ t("bakini.mk.hdr.contact", "Contact us") }}</router-link></li>
+            <li><router-link :to="aboutTo">{{ t("bakini.mk.hdr.aboutUs", "About us") }}</router-link></li>
+            <li v-if="user"><router-link :to="accountTo">{{ t("bakini.mk.hdr.yourAccount", "Your account") }}</router-link></li>
             <li v-else><button class="mn-link" type="button" @click="signIn">{{ t("bakini.n.hdr.signIn", "Sign in") }}</button></li>
           </ul>
           <button v-if="regionOn" :key="regionKey" aria-controls="langsheet" class="mn-reg rs-row" type="button" @click="openLayer('langsheet', $event.currentTarget)">
@@ -372,8 +372,8 @@ export default {
     openLine() {
       const f = this.facts;
       if (!f.days.length && !f.hours) return "";
-      if (f.everyDay) return f.hours ? t("mikio.hdr.openEvery", "Open every day {hours}", { hours: f.hours }) : t("mikio.hdr.openEveryNoHours", "Open every day");
-      return f.hours ? t("mikio.hdr.openDaysHours", "Open {days}, {hours}", { days: f.days.join(", "), hours: f.hours }) : t("mikio.hdr.openDays", "Open {days}", { days: f.days.join(", ") });
+      if (f.everyDay) return f.hours ? t("bakini.mk.hdr.openEvery", "Open every day {hours}", { hours: f.hours }) : t("bakini.mk.hdr.openEveryNoHours", "Open every day");
+      return f.hours ? t("bakini.mk.hdr.openDaysHours", "Open {days}, {hours}", { days: f.days.join(", "), hours: f.hours }) : t("bakini.mk.hdr.openDays", "Open {days}", { days: f.days.join(", ") });
     },
     tel() {
       return "tel:" + String(this.facts.phone || "").replace(/[^\d+]/g, "");
@@ -383,7 +383,7 @@ export default {
       return l ? "https://www.google.com/maps/search/?api=1&query=" + l.lat + "%2C" + l.lng : "";
     },
     pickupLine() {
-      return [t("mikio.hdr.pickupAt", "Pickup at {place}", { place: this.street }), this.openLine].filter(Boolean).join(" · ");
+      return [t("bakini.mk.hdr.pickupAt", "Pickup at {place}", { place: this.street }), this.openLine].filter(Boolean).join(" · ");
     },
     /* "25% off every piece", or "Up to 25% off", from the live catalogue; "" without offers. */
     offLine() {
@@ -391,11 +391,11 @@ export default {
       if (!offs.length) return "";
       const max = Math.max(...offs);
       const every = offs.length === this.noir.products.length && Math.min(...offs) === max;
-      return every ? t("mikio.hdr.offEvery", "{off}% off every piece", { off: max }) : t("mikio.hdr.offUpTo", "Up to {off}% off", { off: max });
+      return every ? t("bakini.mk.hdr.offEvery", "{off}% off every piece", { off: max }) : t("bakini.mk.hdr.offUpTo", "Up to {off}% off", { off: max });
     },
     annMsgs() {
       const f = this.facts;
-      const free = f.shipping && f.shipping.freeOver ? t("mikio.hdr.freeOver", "Free shipping over {amount}", { amount: money(f.shipping.freeOver, true) }) : "";
+      const free = f.shipping && f.shipping.freeOver ? t("bakini.mk.hdr.freeOver", "Free shipping over {amount}", { amount: money(f.shipping.freeOver, true) }) : "";
       return [this.offLine, free, f.gateway ? f.gateway.name : ""].filter(Boolean);
     },
     /* the collections by pieces sold, each with its products best-selling first */
@@ -486,6 +486,10 @@ export default {
     },
     dealsTo() {
       return dealsRoute();
+    },
+    /* every piece, newest first ("Shop all"); the offers stay on dealsTo */
+    allTo() {
+      return catalogueRoute({ sort: "newest" });
     },
     lovedTo() {
       return catalogueRoute({ sort: "most_sales" });

@@ -18,15 +18,16 @@ export const BRAND: { name: string | null; mark: string } = {
 
 /** The mark as an SVG data URL: the title's first letter on the Noir stage. */
 export function markFor(title: string): string {
-  const letter = (String(title || "").trim().charAt(0) || "·").toLowerCase();
+  /* Mikio Ticker: the first letter in heavy caps, white on black, with the wordmark's tilted cherry sprinkle. */
+  const letter = (String(title || "").trim().charAt(0) || "·").toUpperCase();
   const esc = letter.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string);
   const svg =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">' +
-    '<rect width="64" height="64" rx="16" fill="#120c10"/>' +
-    '<text x="29" y="45" text-anchor="middle" font-family="Instrument Serif, Iowan Old Style, Georgia, serif" font-style="italic" font-size="44" fill="#f4ede6">' +
+    '<rect width="64" height="64" rx="14" fill="#111111"/>' +
+    '<text x="28" y="46" text-anchor="middle" font-family="Archivo, Arial Black, Arial, sans-serif" font-weight="900" font-size="40" fill="#ffffff">' +
     esc +
     "</text>" +
-    '<circle cx="47" cy="42" r="4" fill="#d4a373"/>' +
+    '<rect x="44" y="12" width="7" height="17" rx="3.5" fill="#b3261e" transform="rotate(28 47.5 20.5)"/>' +
     "</svg>";
   return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
 }

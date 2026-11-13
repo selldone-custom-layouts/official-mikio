@@ -25,7 +25,7 @@
 <template>
   <div class="nx mk-home">
     <!-- 1. the facts strip -->
-    <section v-if="facts1.length" :aria-label="t('mikio.home.aboutShop', 'About {shop}', { shop: shopName })" :class="['tick', { still: still1 }]">
+    <section v-if="facts1.length" :aria-label="t('bakini.mk.home.aboutShop', 'About {shop}', { shop: shopName })" :class="['tick', { still: still1 }]">
       <div class="tk-view">
         <div class="tk-track">
           <ul v-for="k in 2" :key="k" :aria-hidden="k === 2 ? 'true' : undefined" class="tk-list">
@@ -33,20 +33,20 @@
           </ul>
         </div>
       </div>
-      <button :aria-label="still1 ? t('mikio.home.tickPlay', 'Play the moving text') : t('mikio.home.tickPause', 'Pause the moving text')" :aria-pressed="still1 ? 'true' : 'false'" class="tk-btn" type="button" @click="still1 = !still1">
+      <button :aria-label="still1 ? t('bakini.mk.home.tickPlay', 'Play the moving text') : t('bakini.mk.home.tickPause', 'Pause the moving text')" :aria-pressed="still1 ? 'true' : 'false'" class="tk-btn" type="button" @click="still1 = !still1">
         <nx-icon :name="still1 ? 'play' : 'pause'" />
       </button>
     </section>
 
     <!-- 2. the slider -->
-    <section v-if="top.length" :aria-label="t('mikio.home.thisWeek', 'This week at {shop}', { shop: shopName })" aria-roledescription="carousel" class="hero" @focusin="heroFocus" @focusout="heroBlur" @mouseenter="hold(true)" @mouseleave="heroLeave">
+    <section v-if="top.length" :aria-label="t('bakini.mk.home.thisWeek', 'This week at {shop}', { shop: shopName })" aria-roledescription="carousel" class="hero" @focusin="heroFocus" @focusout="heroBlur" @mouseenter="hold(true)" @mouseleave="heroLeave">
       <div class="wrap">
         <div id="stage" ref="stage" :class="['hero-stage', { run: running }]" @touchend="swipeEnd" @touchstart.passive="swipeStart">
           <div
             v-for="(r, i) in top"
             :key="r.c.id"
             :aria-hidden="i === cur ? undefined : 'true'"
-            :aria-label="t('mikio.home.slideOf', '{n} of {total}: {name}', { n: i + 1, total: top.length, name: catTitle(r.c) })"
+            :aria-label="t('bakini.mk.home.slideOf', '{n} of {total}: {name}', { n: i + 1, total: top.length, name: catTitle(r.c) })"
             :class="['slide', { flip: i % 2 === 1, on: i === cur }]"
             aria-roledescription="slide"
             role="group"
@@ -55,7 +55,7 @@
               <p class="kick">{{ fromLine(r) }}</p>
               <component :is="i === 0 ? 'h1' : 'h2'" class="sl-h"><bdi>{{ catTitle(r.c) }}</bdi></component>
               <p v-if="r.c.description" class="sl-p">{{ r.c.description }}</p>
-              <router-link :tabindex="i === cur ? undefined : -1" :to="catTo(r.c)" class="btn">{{ t("mikio.home.shopColl", "Shop {name}", { name: catTitle(r.c).toLowerCase() }) }}</router-link>
+              <router-link :tabindex="i === cur ? undefined : -1" :to="catTo(r.c)" class="btn">{{ t("bakini.mk.home.shopColl", "Shop {name}", { name: catTitle(r.c).toLowerCase() }) }}</router-link>
             </div>
             <div class="sl-ph">
               <mk-photo :alt="catTitle(r.c)" :file="heroFiles(r.c)[0]" :products="r.ps.slice(0, 3)" />
@@ -64,16 +64,16 @@
           </div>
         </div>
         <div v-if="top.length > 1" class="hero-ctl">
-          <button :aria-label="t('mikio.home.prev', 'Previous slide')" class="arr" type="button" @click="go(cur - 1)"><nx-icon name="left" /></button>
+          <button :aria-label="t('bakini.mk.home.prev', 'Previous slide')" class="arr" type="button" @click="go(cur - 1)"><nx-icon name="left" /></button>
           <div class="tabs">
-            <button v-for="(r, i) in top" :key="r.c.id" :aria-current="i === cur ? 'true' : undefined" :aria-label="t('mikio.home.slideTab', 'Slide {n}: {name}', { n: i + 1, name: catTitle(r.c) })" class="tab" type="button" @click="go(i)">
+            <button v-for="(r, i) in top" :key="r.c.id" :aria-current="i === cur ? 'true' : undefined" :aria-label="t('bakini.mk.home.slideTab', 'Slide {n}: {name}', { n: i + 1, name: catTitle(r.c) })" class="tab" type="button" @click="go(i)">
               <span :key="i === cur ? tick : 'x'" class="tab-f"></span>
             </button>
           </div>
-          <button :aria-label="playing ? t('mikio.home.pause', 'Pause the slides') : t('mikio.home.play', 'Play the slides')" :aria-pressed="playing ? 'false' : 'true'" class="arr play" type="button" @click="setPlay(!playing)">
+          <button :aria-label="playing ? t('bakini.mk.home.pause', 'Pause the slides') : t('bakini.mk.home.play', 'Play the slides')" :aria-pressed="playing ? 'false' : 'true'" class="arr play" type="button" @click="setPlay(!playing)">
             <nx-icon :name="playing ? 'pause' : 'play'" />
           </button>
-          <button :aria-label="t('mikio.home.next', 'Next slide')" class="arr" type="button" @click="go(cur + 1)"><nx-icon name="right" /></button>
+          <button :aria-label="t('bakini.mk.home.next', 'Next slide')" class="arr" type="button" @click="go(cur + 1)"><nx-icon name="right" /></button>
         </div>
       </div>
     </section>
@@ -81,13 +81,13 @@
     <!-- 3. the collections -->
     <section v-if="ranked.length" aria-labelledby="ch-h" class="chips">
       <div class="wrap">
-        <h2 id="ch-h" class="h2 sm">{{ t("mikio.home.byColl", "Shop by collection") }}</h2>
+        <h2 id="ch-h" class="h2 sm">{{ t("bakini.mk.home.byColl", "Shop by collection") }}</h2>
         <ul class="ch-list">
           <li v-for="c in cats" :key="c.id">
             <router-link :to="catTo(c)">
               <span class="ch-c"><img v-if="tileImg(c)" :src="tileImg(c)" alt="" class="cut" loading="lazy" /></span>
               <span class="ch-t"><bdi>{{ catTitle(c) }}</bdi></span>
-              <span v-if="fromOf(c) != null" class="ch-f">{{ t("mikio.home.from", "from {price}", { price: money(fromOf(c)) }) }}</span>
+              <span v-if="fromOf(c) != null" class="ch-f">{{ t("bakini.mk.home.from", "from {price}", { price: money(fromOf(c)) }) }}</span>
             </router-link>
           </li>
         </ul>
@@ -95,15 +95,15 @@
     </section>
 
     <!-- 4. just added -->
-    <nx-row v-if="newest.length" id="new" :sub="t('mikio.home.newSub', 'The newest pieces from every collection.')" :title="t('mikio.home.newH', 'Just added')" :items="newest.slice(0, 10)" />
+    <nx-row v-if="newest.length" id="new" :sub="t('bakini.mk.home.newSub', 'The newest pieces from every collection.')" :title="t('bakini.mk.home.newH', 'Just added')" :items="newest.slice(0, 10)" />
 
     <!-- 5. one piece at a time -->
     <section v-if="duoProducts.length" aria-labelledby="duo-h" class="duo">
       <div class="wrap duo-in">
         <div class="duo-copy">
-          <h2 id="duo-h" class="h2">{{ t("mikio.home.duoH", "One piece at a time") }}</h2>
+          <h2 id="duo-h" class="h2">{{ t("bakini.mk.home.duoH", "One piece at a time") }}</h2>
           <p class="lead">{{ duoLine }}</p>
-          <router-link :to="dealsTo" class="btn">{{ t("mikio.home.duoBtn", "Shop all pieces") }}</router-link>
+          <router-link :to="allTo" class="btn">{{ t("bakini.mk.home.duoBtn", "Shop all pieces") }}</router-link>
         </div>
         <div class="duo-ph">
           <mk-photo :products="duoProducts.slice(0, 3)" file="mikio-duo-box.webp" />
@@ -117,7 +117,7 @@
       <div class="wrap">
         <div class="sec-hd">
           <h2 id="wy-h" class="h2">{{ waysTitle }}</h2>
-          <p v-if="facts.gateway" class="lead">{{ t("mikio.home.waysSub", "Choose at checkout. Every way is {pay}.", { pay: facts.gateway.name.toLowerCase() }) }}</p>
+          <p v-if="facts.gateway" class="lead">{{ t("bakini.mk.home.waysSub", "Choose at checkout. Every way is {pay}.", { pay: facts.gateway.name.toLowerCase() }) }}</p>
         </div>
         <ul class="wy-list">
           <li v-for="w in ways" :key="w.way.id">
@@ -135,7 +135,7 @@
     <!-- 7. good to know -->
     <section v-if="why.length" aria-labelledby="why-h" class="why">
       <div class="wrap">
-        <h2 id="why-h" class="h2">{{ t("mikio.home.whyH", "Good to know") }}</h2>
+        <h2 id="why-h" class="h2">{{ t("bakini.mk.home.whyH", "Good to know") }}</h2>
         <ul class="why-list">
           <li v-for="it in why" :key="it.key">
             <svg aria-hidden="true" class="why-i" focusable="false" viewBox="0 0 48 48" v-html="ART[it.key]"></svg>
@@ -147,7 +147,7 @@
     </section>
 
     <!-- 8. the collections strip -->
-    <section v-if="cats.length" :aria-label="t('mikio.home.collections', 'Collections')" :class="['tick', { still: still2 }]">
+    <section v-if="cats.length" :aria-label="t('bakini.mk.home.collections', 'Collections')" :class="['tick', { still: still2 }]">
       <div class="tk-view">
         <div class="tk-track">
           <ul v-for="k in 2" :key="k" :aria-hidden="k === 2 ? 'true' : undefined" class="tk-list">
@@ -157,23 +157,23 @@
           </ul>
         </div>
       </div>
-      <button :aria-label="still2 ? t('mikio.home.tickPlay', 'Play the moving text') : t('mikio.home.tickPause', 'Pause the moving text')" :aria-pressed="still2 ? 'true' : 'false'" class="tk-btn" type="button" @click="still2 = !still2">
+      <button :aria-label="still2 ? t('bakini.mk.home.tickPlay', 'Play the moving text') : t('bakini.mk.home.tickPause', 'Pause the moving text')" :aria-pressed="still2 ? 'true' : 'false'" class="tk-btn" type="button" @click="still2 = !still2">
         <nx-icon :name="still2 ? 'play' : 'pause'" />
       </button>
     </section>
 
     <!-- 9. best sellers -->
-    <nx-row v-if="best.length" id="best" :sub="t('mikio.home.bestSub', 'The pieces ordered most often.')" :title="t('mikio.home.bestH', 'Best sellers')" :items="best.slice(0, 10)" />
+    <nx-row v-if="best.length" id="best" :sub="t('bakini.mk.home.bestSub', 'The pieces ordered most often.')" :title="t('bakini.mk.home.bestH', 'Best sellers')" :items="best.slice(0, 10)" />
 
     <!-- 10. the two newest journal posts -->
-    <section v-if="posts.length" :aria-label="t('mikio.home.fromJournal', 'From the journal')" class="zig">
+    <section v-if="posts.length" :aria-label="t('bakini.mk.home.fromJournal', 'From the journal')" class="zig">
       <div v-for="(b, i) in posts.slice(0, 2)" :key="b.id" :class="['wrap', 'zg', { flip: i % 2 === 1 }]">
         <router-link :to="postTo(b)" aria-hidden="true" class="zg-ph" tabindex="-1"><img v-if="cover(b)" :src="cover(b)" alt="" decoding="async" loading="lazy" /></router-link>
         <div class="zg-copy">
           <p v-if="b.created_at" class="kick"><time :datetime="b.created_at">{{ fmtDate(b.created_at) }}</time></p>
           <h2 class="h2">{{ b.title }}</h2>
           <p v-if="b.description" class="lead">{{ b.description }}</p>
-          <router-link :to="postTo(b)" class="btn">{{ t("mikio.home.readGuide", "Read the guide") }}</router-link>
+          <router-link :to="postTo(b)" class="btn">{{ t("bakini.mk.home.readGuide", "Read the guide") }}</router-link>
         </div>
       </div>
     </section>
@@ -181,7 +181,7 @@
     <!-- 11. up close -->
     <section v-if="notes.length === 3" aria-labelledby="nt-h" class="notes">
       <div class="wrap nt-in">
-        <h2 id="nt-h" class="h2">{{ t("mikio.home.closeH", "Up close") }}</h2>
+        <h2 id="nt-h" class="h2">{{ t("bakini.mk.home.closeH", "Up close") }}</h2>
         <router-link v-for="(n, i) in notes" :key="n.p.id" :class="['note', 'n' + i]" :to="productTo(n.p)">
           <span class="nt-k"><span class="nt-th"><img :src="thumb(n.p)" alt="" class="cut" loading="lazy" /></span>{{ n.p.title }}</span>
           <span class="nt-q"><b>{{ n.pro[0] }}.</b> {{ n.pro[1] }}</span>
@@ -201,7 +201,7 @@
             <li v-if="facts.phone"><nx-icon name="phone" /><a :href="tel" dir="ltr">{{ facts.phone }}</a></li>
             <li v-if="facts.email"><nx-icon name="mail" /><a :href="'mailto:' + facts.email">{{ facts.email }}</a></li>
           </ul>
-          <router-link :to="aboutTo" class="btn">{{ t("mikio.hdr.aboutUs", "About us") }}</router-link>
+          <router-link :to="aboutTo" class="btn">{{ t("bakini.mk.hdr.aboutUs", "About us") }}</router-link>
         </div>
       </div>
     </section>
@@ -210,8 +210,8 @@
     <section v-if="feed.length" aria-labelledby="jr-h" class="jr">
       <div class="wrap">
         <div class="sec-hd">
-          <h2 id="jr-h" class="h2">{{ t("mikio.home.fromJournal", "From the journal") }}</h2>
-          <p class="lead">{{ t("mikio.home.journalSub", "Guides to the collections, and plain answers about ordering.") }}</p>
+          <h2 id="jr-h" class="h2">{{ t("bakini.mk.home.fromJournal", "From the journal") }}</h2>
+          <p class="lead">{{ t("bakini.mk.home.journalSub", "Guides to the collections, and plain answers about ordering.") }}</p>
         </div>
         <ul class="jr-list">
           <li v-for="b in feed" :key="b.id">
@@ -223,7 +223,7 @@
           </li>
         </ul>
         <div class="jr-more">
-          <router-link :to="blogTo" class="btn ghost">{{ t("mikio.home.allPosts", "All journal posts") }}</router-link>
+          <router-link :to="blogTo" class="btn ghost">{{ t("bakini.mk.home.allPosts", "All journal posts") }}</router-link>
         </div>
       </div>
     </section>
@@ -236,7 +236,7 @@ import NxRow from "../bakini/noir/NxRow.vue";
 import MkPhoto from "./MkPhoto.vue";
 import { heroFiles } from "./mikio-photos";
 import { bySells, catImage, catTitle, catTo, fmtDate, loadNoir, money, noir, priceView, productImage, productTo, prosOf, shopFacts } from "../bakini/noir/noir";
-import { dealsRoute, percentOff } from "../kalio/kalio-catalog";
+import { catalogueRoute, dealsRoute, percentOff } from "../kalio/kalio-catalog";
 import { journalPage, journalRoute, postRoute } from "../kalio/pages/kalio-journal";
 import { ShopOptionsHelper } from "@selldone/core-js/helper/shop/ShopOptionsHelper";
 import { currentCurrency } from "../region-switcher/region";
@@ -316,13 +316,13 @@ export default {
       if (!this.offs.length) return "";
       const max = Math.max(...this.offs);
       const every = this.offs.length === this.noir.products.length && Math.min(...this.offs) === max;
-      return every ? t("mikio.home.off", "{off}% off", { off: max }) : t("mikio.hdr.offUpTo", "Up to {off}% off", { off: max });
+      return every ? t("bakini.mk.home.off", "{off}% off", { off: max }) : t("bakini.mk.hdr.offUpTo", "Up to {off}% off", { off: max });
     },
     offLong() {
       if (!this.offs.length) return "";
       const max = Math.max(...this.offs);
       const every = this.offs.length === this.noir.products.length && Math.min(...this.offs) === max;
-      return every ? t("mikio.hdr.offEvery", "{off}% off every piece", { off: max }) : t("mikio.hdr.offUpTo", "Up to {off}% off", { off: max });
+      return every ? t("bakini.mk.hdr.offEvery", "{off}% off every piece", { off: max }) : t("bakini.mk.hdr.offUpTo", "Up to {off}% off", { off: max });
     },
     street() {
       return String(this.facts.address || "").split(",")[0].trim();
@@ -330,8 +330,8 @@ export default {
     openLine() {
       const f = this.facts;
       if (!f.days.length && !f.hours) return "";
-      if (f.everyDay) return f.hours ? t("mikio.hdr.openEvery", "Open every day {hours}", { hours: f.hours }) : t("mikio.hdr.openEveryNoHours", "Open every day");
-      return f.hours ? t("mikio.hdr.openDaysHours", "Open {days}, {hours}", { days: f.days.join(", "), hours: f.hours }) : t("mikio.hdr.openDays", "Open {days}", { days: f.days.join(", ") });
+      if (f.everyDay) return f.hours ? t("bakini.mk.hdr.openEvery", "Open every day {hours}", { hours: f.hours }) : t("bakini.mk.hdr.openEveryNoHours", "Open every day");
+      return f.hours ? t("bakini.mk.hdr.openDaysHours", "Open {days}, {hours}", { days: f.days.join(", "), hours: f.hours }) : t("bakini.mk.hdr.openDays", "Open {days}", { days: f.days.join(", ") });
     },
     tel() {
       return "tel:" + String(this.facts.phone || "").replace(/[^\d+]/g, "");
@@ -339,12 +339,12 @@ export default {
     /* the moving strip: only what the shop's data says */
     facts1() {
       const f = this.facts;
-      const out = [t("mikio.home.byPiece", "Sold by the piece")];
+      const out = [t("bakini.mk.home.byPiece", "Sold by the piece")];
       if (this.offLong) out.push(this.offLong);
       if (this.openLine) out.push(this.openLine);
-      if (f.pickup && this.street) out.push(t("mikio.hdr.pickupAt", "Pickup at {place}", { place: this.street }));
-      if (f.courier) out.push(f.courier.distance ? t("mikio.home.courierKm", "Courier within {km} km", { km: f.courier.distance }) : f.courier.title);
-      if (f.shipping) out.push(t("mikio.home.shipsWorld", "Ships worldwide"));
+      if (f.pickup && this.street) out.push(t("bakini.mk.hdr.pickupAt", "Pickup at {place}", { place: this.street }));
+      if (f.courier) out.push(f.courier.distance ? t("bakini.mk.home.courierKm", "Courier within {km} km", { km: f.courier.distance }) : f.courier.title);
+      if (f.shipping) out.push(t("bakini.mk.home.shipsWorld", "Ships worldwide"));
       if (f.gateway) out.push(f.gateway.name);
       return out;
     },
@@ -355,7 +355,7 @@ export default {
       return this.ranked.map((r) => r.ps[0]).concat(this.ranked.map((r) => r.ps[1])).filter(Boolean).slice(0, 6);
     },
     duoLine() {
-      return t("mikio.home.duoP", "Every piece is sold on its own: {names}. Add one of each, or six of one.", { names: listOf(this.collNames) });
+      return t("bakini.mk.home.duoP", "Every piece is sold on its own: {names}. Add one of each, or six of one.", { names: listOf(this.collNames) });
     },
     /* the shop's delivery ways as photo tiles: courier, pickup, shipping (whichever it has) */
     ways() {
@@ -365,25 +365,25 @@ export default {
       const out = [];
       if (f.courier) out.push({ way: f.courier, file: "mikio-way-courier.webp", products: pick(0), note: this.courierNote(f.courier) });
       if (f.pickup) out.push({ way: f.pickup, file: "mikio-way-pickup.webp", products: pick(1), note: f.pickupNote ? f.pickupNote.replace(/(\d)\s*-\s*(\d)/g, "$1–$2") : "" });
-      if (f.shipping) out.push({ way: f.shipping, file: "mikio-way-shipping.webp", products: pick(2), note: t("mikio.home.shipNote", "Packed by the bakery and sent anywhere.") });
+      if (f.shipping) out.push({ way: f.shipping, file: "mikio-way-shipping.webp", products: pick(2), note: t("bakini.mk.home.shipNote", "Packed by the bakery and sent anywhere.") });
       return out.map((w) => ({ ...w, to: this.faqTo }));
     },
     waysTitle() {
       const n = this.ways.length;
-      return n === 3 ? t("mikio.home.ways3", "Three ways to get it") : n === 2 ? t("mikio.home.ways2", "Two ways to get it") : t("mikio.home.ways1", "How to get it");
+      return n === 3 ? t("bakini.mk.home.ways3", "Three ways to get it") : n === 2 ? t("bakini.mk.home.ways2", "Two ways to get it") : t("bakini.mk.home.ways1", "How to get it");
     },
     why() {
       const f = this.facts;
       const out = [];
-      if (f.gateway && f.gateway.cod) out.push({ key: "cash", title: t("mikio.home.whyCash", "Pay on delivery"), text: t("mikio.home.whyCashP", "Pay in cash when your order reaches you. No card is needed at checkout.") });
-      if (this.guest) out.push({ key: "guest", title: t("mikio.home.whyGuest", "No account needed"), text: t("mikio.home.whyGuestP", "Check out as a guest with your name, phone and address.") });
+      if (f.gateway && f.gateway.cod) out.push({ key: "cash", title: t("bakini.mk.home.whyCash", "Pay on delivery"), text: t("bakini.mk.home.whyCashP", "Pay in cash when your order reaches you. No card is needed at checkout.") });
+      if (this.guest) out.push({ key: "guest", title: t("bakini.mk.home.whyGuest", "No account needed"), text: t("bakini.mk.home.whyGuestP", "Check out as a guest with your name, phone and address.") });
       const wins = (f.courier?.windows || []).map((w) => String(w).toLowerCase());
       const slots = wins.filter((w) => w !== "instant");
       if (slots.length)
         out.push({
           key: "window",
-          title: t("mikio.home.whyWindow", "Pick a window"),
-          text: wins.includes("instant") ? t("mikio.home.whyWindowNow", "The courier comes in the {list}, or right away, every day.", { list: orOf(slots) }) : t("mikio.home.whyWindowP", "The courier comes in the {list}, every day.", { list: orOf(slots) }),
+          title: t("bakini.mk.home.whyWindow", "Pick a window"),
+          text: wins.includes("instant") ? t("bakini.mk.home.whyWindowNow", "The courier comes in the {list}, or right away, every day.", { list: orOf(slots) }) : t("bakini.mk.home.whyWindowP", "The courier comes in the {list}, every day.", { list: orOf(slots) }),
         });
       return out;
     },
@@ -407,11 +407,11 @@ export default {
       return out;
     },
     storyTitle() {
-      return this.facts.city ? t("mikio.home.helloFrom", "Hello from {city}.", { city: this.facts.city }) : t("mikio.home.hello", "Hello from the counter.");
+      return this.facts.city ? t("bakini.mk.home.helloFrom", "Hello from {city}.", { city: this.facts.city }) : t("bakini.mk.home.hello", "Hello from the counter.");
     },
     storyLine() {
-      const at = this.facts.address ? t("mikio.home.storyAt", "{shop} is a pâtisserie counter at {address}.", { shop: this.shopName, address: this.facts.address }) : "";
-      const sells = this.collNames.length ? t("mikio.home.storySells", "It sells {names}, every one of them by the piece.", { names: listOf(this.collNames) }) : "";
+      const at = this.facts.address ? t("bakini.mk.home.storyAt", "{shop} is a pâtisserie counter at {address}.", { shop: this.shopName, address: this.facts.address }) : "";
+      const sells = this.collNames.length ? t("bakini.mk.home.storySells", "It sells {names}, every one of them by the piece.", { names: listOf(this.collNames) }) : "";
       return [at, sells].filter(Boolean).join(" ");
     },
     feed() {
@@ -426,6 +426,9 @@ export default {
     },
     dealsTo() {
       return dealsRoute();
+    },
+    allTo() {
+      return catalogueRoute({ sort: "newest" });
     },
     blogTo() {
       return journalRoute();
@@ -510,18 +513,18 @@ export default {
     fromLine(r) {
       const from = this.fromOf(r.c);
       const parts = [];
-      if (from != null) parts.push(t("mikio.home.fromCap", "From {price}", { price: money(from) }));
+      if (from != null) parts.push(t("bakini.mk.home.fromCap", "From {price}", { price: money(from) }));
       if (this.offShort) parts.push(this.offShort);
       return parts.join(" · ");
     },
     courierNote(w) {
       const wins = (w.windows || []).map((x) => String(x).toLowerCase());
-      const where = w.distance ? t("mikio.home.withinKm", "Within {km} km of the bakery", { km: w.distance }) : "";
-      const when = wins.length ? t("mikio.home.inWindows", "in the {list}", { list: orOf(wins.filter((x) => x !== "instant")) }) + (wins.includes("instant") ? t("mikio.home.orNow", ", or right away") : "") : "";
+      const where = w.distance ? t("bakini.mk.home.withinKm", "Within {km} km of the bakery", { km: w.distance }) : "";
+      const when = wins.length ? t("bakini.mk.home.inWindows", "in the {list}", { list: orOf(wins.filter((x) => x !== "instant")) }) + (wins.includes("instant") ? t("bakini.mk.home.orNow", ", or right away") : "") : "";
       return [where, when].filter(Boolean).join(", ");
     },
     feeText(w) {
-      if (w.fee > 0) return money(w.fee) + (w.freeOver ? " · " + t("mikio.home.freeOver", "free over {amount}", { amount: money(w.freeOver, true) }) : "");
+      if (w.fee > 0) return money(w.fee) + (w.freeOver ? " · " + t("bakini.mk.home.freeOver", "free over {amount}", { amount: money(w.freeOver, true) }) : "");
       return t("bakini.n.co.free", "Free");
     },
     /* the slider */

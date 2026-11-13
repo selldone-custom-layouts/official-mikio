@@ -43,6 +43,7 @@ The repo started from **Bakini Noir 1.0.5** (`bakini-layout`, `git clone`, histo
 
 | Version | Date | Layout | Deploy | What |
 | --- | --- | --- | --- | --- |
+| 1.0.0 | 13 Nov 2026 | **37** | 636 | The whole A port: Mikio's header, footer, home, card, rail, collection and product pages, Noir's buy flow, account and pages in Ticker's dress; 354 files. Verified on the server (`extracting:false`, `error:null`, js and css sha256 match `dist/app`; release `layouts/37/releases/01M7BF2DCSDZ7TXSJA4T56XBS5/app`). Pinned on domain **1250** (mikio.selldone.shop) only, `api.shops.domains.layout.set {mode:"private", layout_id:37, layout_version:"1.0.0"}`; the shop default and domain 1247 stay on Bakini Noir 1.0.5 (checked in each address's `"saved"` block) |
 
 ## Notes for the next person
 

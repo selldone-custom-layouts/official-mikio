@@ -88,9 +88,9 @@
 
     <section v-if="f.address" class="sec tight">
       <div class="wrap">
-        <div class="visit">
-          <div class="visit-map"><nx-map :line="[street, f.hours].filter(Boolean).join(' · ')" :location="f.location" :title="name" /></div>
-          <div class="visit-txt">
+        <div class="vst">
+          <div class="vst-map"><nx-map :line="[street, f.hours].filter(Boolean).join(' · ')" :location="f.location" :title="name" /></div>
+          <div class="vst-txt">
             <p class="eyebrow">{{ t("bakini.n.rd.findUs", "Find us") }}</p>
             <h2 class="serif">{{ t("bakini.n.rd.comeH", "Come to") }} <em>{{ t("bakini.n.rd.comeHem", "the counter.") }}</em></h2>
             <div class="ilines">
@@ -113,7 +113,7 @@
                 </div>
               </div>
             </div>
-            <div class="visit-acts">
+            <div class="vst-acts">
               <router-link :to="contactTo" class="btn">{{ t("bakini.n.rd.contact", "Contact") }}</router-link>
             </div>
           </div>

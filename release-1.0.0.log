@@ -1,0 +1,443 @@
+  "version": "1.0.0",
+
+> selldone@0.2026.05.20 build-production
+> vite build
+
+Build base URL: ./
+
+███████╗███████╗██╗     ██╗     ██████╗  ██████╗ ███╗   ██╗███████╗
+██╔════╝██╔════╝██║     ██║     ██╔══██╗██╔═══██╗████╗  ██║██╔════╝
+███████╗█████╗  ██║     ██║     ██║  ██║██║   ██║██╔██╗ ██║█████╗  
+╚════██║██╔══╝  ██║     ██║     ██║  ██║██║   ██║██║╚██╗██║██╔══╝  
+███████║███████╗███████╗███████╗██████╔╝╚██████╔╝██║ ╚████║███████╗
+╚══════╝╚══════╝╚══════╝╚══════╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+
+▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+⬤ Vue Build Selldone® Business OS™ Storefront Project ⬤ 
+The #1 operating system for fast-growing companies.
+▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃    Configuration     ┃       Value          ┃
+┣━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━┫
+┃ ENVIRONMENT          ┃ production           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━┛
+
+[36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
+transforming...
+
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+[33m[plugin vite:esbuild] modules/components/backoffice/product/edit/info/BProductEditInfoIcon.vue?vue&type=script&lang.ts: [33mDuplicate key "Radio" in object literal[33m
+539 |      ],
+540 |    ],
+541 |    Radio: [
+    |    ^
+542 |      ["path", { d: "M16.247 7.761a6 6 0 0 1 0 8.478" }],
+543 |      ["path", { d: "M19.075 4.933a10 10 0 0 1 0 14.134" }],
+[39m
+[32m✓[39m 4816 modules transformed.
+rendering chunks...
+[33m[plugin vite:reporter] 
+(!) D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/social/SStorefrontSocialButtons.vue is dynamically imported by D:/Kalio Sample Shop Claude/mikio-layout/StorefrontApp.vue?vue&type=script&lang.ts but also statically imported by D:/Kalio Sample Shop Claude/mikio-layout/components/bakini/shell/BakiniFooter.vue, D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/footer/section/SFooterSection.vue?vue&type=script&lang.ts, D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/menu/side/SShopNavigationDrawer.vue?vue&type=script&lang.ts, D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/product/section/extra-buttons/SProductSectionExtraButtons.vue?vue&type=script&lang.ts, dynamic import will not move module into another chunk.
+[39m
+[33m[plugin vite:reporter] 
+(!) D:/Kalio Sample Shop Claude/mikio-layout/modules/components/backoffice/page/input/BPageInput.vue is dynamically imported by D:/Kalio Sample Shop Claude/mikio-layout/modules/pagebuilder/components/x/embed/page/XEmbedPage.vue?vue&type=script&lang.ts but also statically imported by D:/Kalio Sample Shop Claude/mikio-layout/modules/pagebuilder/styler/embed/SStylerEmbedPage.vue?vue&type=script&lang.ts, dynamic import will not move module into another chunk.
+[39m
+[33m[plugin vite:reporter] 
+(!) D:/Kalio Sample Shop Claude/mikio-layout/modules/pagebuilder/page/viewer/LPageViewer.vue is dynamically imported by D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/menu/header/SStorefrontTopMenu.vue?vue&type=script&lang.ts, D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/popup/SStorefrontPopup.vue?vue&type=script&lang.ts, D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/product/landing/SProductLanding.vue?vue&type=script&lang.ts, D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/products/listing/SProductsListing.vue?vue&type=script&lang.ts, D:/Kalio Sample Shop Claude/mikio-layout/modules/pagebuilder/components/x/embed/page/XEmbedPage.vue?vue&type=script&lang.ts but also statically imported by D:/Kalio Sample Shop Claude/mikio-layout/modules/pagebuilder/LandingRender.vue?vue&type=script&lang.ts, dynamic import will not move module into another chunk.
+[39m
+[33m[plugin vite:reporter] 
+(!) D:/Kalio Sample Shop Claude/mikio-layout/modules/components/ui/lottie/ULottie.vue is dynamically imported by D:/Kalio Sample Shop Claude/mikio-layout/modules/components/components-mandetory.ts, D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/campaign/banner/SCampaignBanner.vue?vue&type=script&lang.ts, D:/Kalio Sample Shop Claude/mikio-layout/modules/components/ui/loading/ellipsis/ULoadingEllipsis.vue?vue&type=script&lang.ts, D:/Kalio Sample Shop Claude/mikio-layout/modules/pagebuilder/components/x/lottie/XLottie.vue?vue&type=script&lang.ts but also statically imported by D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/login/SShopLogin.vue?vue&type=script&lang.ts, D:/Kalio Sample Shop Claude/mikio-layout/modules/components/storefront/lottery/wheel-of-fortune/SStorefrontLotteryWheelOfFortune.vue?vue&type=script&lang.ts, dynamic import will not move module into another chunk.
+[39m
+[33m[plugin vite:reporter] 
+(!) D:/Kalio Sample Shop Claude/mikio-layout/lang/en.ts is dynamically imported by D:/Kalio Sample Shop Claude/mikio-layout/lang/i18n_shop.ts but also statically imported by D:/Kalio Sample Shop Claude/mikio-layout/lang/i18n_shop.ts, dynamic import will not move module into another chunk.
+[39m
+computing gzip size...
+[2mdist/[22m[32mindex.html                                                         [39m[1m[2m    4.13 kB[22m[1m[22m[2m │ gzip:     1.50 kB[22m
+[2mdist/[22m[32mapp/assets/fa-v4compatibility.CErXDOsT.woff2                       [39m[1m[2m    4.17 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/012-lake.D8zGoN36.svg                                   [39m[1m[2m   17.00 kB[22m[1m[22m[2m │ gzip:     4.15 kB[22m
+[2mdist/[22m[32mapp/assets/017-construction.Dei_TA-Z.svg                           [39m[1m[2m   17.18 kB[22m[1m[22m[2m │ gzip:     4.04 kB[22m
+[2mdist/[22m[32mapp/assets/test.DLPvJ_MD.svg                                       [39m[1m[2m   17.58 kB[22m[1m[22m[2m │ gzip:     5.01 kB[22m
+[2mdist/[22m[32mapp/assets/001-waterfall.DNzoLaDk.svg                              [39m[1m[2m   17.61 kB[22m[1m[22m[2m │ gzip:     4.25 kB[22m
+[2mdist/[22m[32mapp/assets/005-lighthouse.Bg6mzaz0.svg                             [39m[1m[2m   18.62 kB[22m[1m[22m[2m │ gzip:     4.21 kB[22m
+[2mdist/[22m[32mapp/assets/027-aurora-borealis.9wyYpvSa.svg                        [39m[1m[2m   19.00 kB[22m[1m[22m[2m │ gzip:     5.64 kB[22m
+[2mdist/[22m[32mapp/assets/fa-regular-400.DRN8N0d1.woff2                           [39m[1m[2m   19.51 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/virtual.CY_qxZ84.svg                                    [39m[1m[2m   20.15 kB[22m[1m[22m[2m │ gzip:     4.71 kB[22m
+[2mdist/[22m[32mapp/assets/008-forest.DTVXn6qc.svg                                 [39m[1m[2m   20.48 kB[22m[1m[22m[2m │ gzip:     5.90 kB[22m
+[2mdist/[22m[32mapp/assets/circle-blue.DEcR82v_.svg                                [39m[1m[2m   21.14 kB[22m[1m[22m[2m │ gzip:     5.12 kB[22m
+[2mdist/[22m[32mapp/assets/fix.UBghxSHi.svg                                        [39m[1m[2m   21.18 kB[22m[1m[22m[2m │ gzip:     4.85 kB[22m
+[2mdist/[22m[32mapp/assets/used.mfNNdxZD.svg                                       [39m[1m[2m   21.41 kB[22m[1m[22m[2m │ gzip:     5.47 kB[22m
+[2mdist/[22m[32mapp/assets/cod-payment.CL743ctF.svg                                [39m[1m[2m   21.57 kB[22m[1m[22m[2m │ gzip:     2.80 kB[22m
+[2mdist/[22m[32mapp/assets/used-good.heWM2EmM.svg                                  [39m[1m[2m   21.67 kB[22m[1m[22m[2m │ gzip:     5.66 kB[22m
+[2mdist/[22m[32mapp/assets/used-fair.aO8J5x9j.svg                                  [39m[1m[2m   21.68 kB[22m[1m[22m[2m │ gzip:     5.67 kB[22m
+[2mdist/[22m[32mapp/assets/used-like-new.La5aigYk.svg                              [39m[1m[2m   21.97 kB[22m[1m[22m[2m │ gzip:     5.69 kB[22m
+[2mdist/[22m[32mapp/assets/forsa.CxIRPfEj.png                                      [39m[1m[2m   22.24 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/013-park.C_z_bJ73.svg                                   [39m[1m[2m   22.46 kB[22m[1m[22m[2m │ gzip:     6.02 kB[22m
+[2mdist/[22m[32mapp/assets/026-sakura.BTSd6qFF.svg                                 [39m[1m[2m   23.91 kB[22m[1m[22m[2m │ gzip:     6.97 kB[22m
+[2mdist/[22m[32mapp/assets/011-pine-tree.Pbwt_HzX.svg                              [39m[1m[2m   24.03 kB[22m[1m[22m[2m │ gzip:     7.72 kB[22m
+[2mdist/[22m[32mapp/assets/014-buildings.DEbJdeQt.svg                              [39m[1m[2m   24.95 kB[22m[1m[22m[2m │ gzip:     4.28 kB[22m
+[2mdist/[22m[32mapp/assets/IRANSansWeb-FaNum-_Medium.prpwRvkU.woff2                [39m[1m[2m   25.60 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/021-windmill.BO6l6TB7.svg                               [39m[1m[2m   25.82 kB[22m[1m[22m[2m │ gzip:     5.67 kB[22m
+[2mdist/[22m[32mapp/assets/016-buildings.BaVb9lrw.svg                              [39m[1m[2m   26.41 kB[22m[1m[22m[2m │ gzip:     4.74 kB[22m
+[2mdist/[22m[32mapp/assets/025-fountain.Chp3yQ2K.svg                               [39m[1m[2m   27.03 kB[22m[1m[22m[2m │ gzip:     6.86 kB[22m
+[2mdist/[22m[32mapp/assets/IRANSansWeb-FaNum-_Black.DmC2Enxd.woff2                 [39m[1m[2m   27.22 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/ci-logo.BRXY3y_A.png                                    [39m[1m[2m   27.69 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/yellow-brushstroke.C2iTjS0p.webp                        [39m[1m[2m   28.15 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/IRANSansWeb-FaNum-_Bold.BxX8b-19.woff2                  [39m[1m[2m   28.39 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/bid.DE0SmLjU.svg                                        [39m[1m[2m   29.15 kB[22m[1m[22m[2m │ gzip:     6.42 kB[22m
+[2mdist/[22m[32mapp/assets/IRANSansWeb-FaNum.D6ezUcLA.woff2                        [39m[1m[2m   29.28 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/IRANSansWeb-FaNum-_UltraLight.DRThYolg.woff2            [39m[1m[2m   29.89 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/IRANSansWeb-FaNum-_Light.D4L-oemt.woff2                 [39m[1m[2m   29.91 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/023-industry.DhiKGbxc.svg                               [39m[1m[2m   30.04 kB[22m[1m[22m[2m │ gzip:     7.78 kB[22m
+[2mdist/[22m[32mapp/assets/009-camping.BY4N_FM3.svg                                [39m[1m[2m   30.14 kB[22m[1m[22m[2m │ gzip:    10.08 kB[22m
+[2mdist/[22m[32mapp/assets/020-autumn.BNTOjY84.svg                                 [39m[1m[2m   30.65 kB[22m[1m[22m[2m │ gzip:     9.19 kB[22m
+[2mdist/[22m[32mapp/assets/col-image.Dof7hS-x.jpg                                  [39m[1m[2m   31.29 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/returned-orders-empty.gRsqxis3.png                      [39m[1m[2m   32.53 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/new.DkkzozFa.svg                                        [39m[1m[2m   32.60 kB[22m[1m[22m[2m │ gzip:     8.25 kB[22m
+[2mdist/[22m[32mapp/assets/agreement.BYw_tR6r.svg                                  [39m[1m[2m   35.83 kB[22m[1m[22m[2m │ gzip:     7.52 kB[22m
+[2mdist/[22m[32mapp/assets/refurbished.D1fBPyoC.svg                                [39m[1m[2m   37.26 kB[22m[1m[22m[2m │ gzip:     8.94 kB[22m
+[2mdist/[22m[32mapp/assets/pattern-empty-fortune.Ddv2KUPS.jpg                      [39m[1m[2m   38.55 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/030-cottage.lj3_gdKG.svg                                [39m[1m[2m   38.75 kB[22m[1m[22m[2m │ gzip:     8.06 kB[22m
+[2mdist/[22m[32mapp/assets/estimation.DRQO6Ms9.svg                                 [39m[1m[2m   39.39 kB[22m[1m[22m[2m │ gzip:     8.17 kB[22m
+[2mdist/[22m[32mapp/assets/pos-basket.D6Tj9em9.png                                 [39m[1m[2m   39.65 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/010-beach.aNQxn3d7.svg                                  [39m[1m[2m   42.41 kB[22m[1m[22m[2m │ gzip:    11.04 kB[22m
+[2mdist/[22m[32mapp/assets/019-forest.DMLpR7PS.svg                                 [39m[1m[2m   49.02 kB[22m[1m[22m[2m │ gzip:    15.35 kB[22m
+[2mdist/[22m[32mapp/assets/018-flowers.BmWQ4nD2.svg                                [39m[1m[2m   59.75 kB[22m[1m[22m[2m │ gzip:    12.90 kB[22m
+[2mdist/[22m[32mapp/assets/payment-check.CHlEDtC8.png                              [39m[1m[2m   84.04 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/fa-brands-400.Bs6tcqqs.woff2                            [39m[1m[2m  115.42 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/variants_mode_select.YiX7J7Xz.png                       [39m[1m[2m  116.61 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/fa-solid-900.IAB4Droh.woff2                             [39m[1m[2m  119.49 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/noise.DMba44c-.png                                      [39m[1m[2m  126.38 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/col-images.DbLwlLlu.png                                 [39m[1m[2m  127.93 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/MaterialIcons-Regular.kAwBdRge.woff2                    [39m[1m[2m  128.35 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/dynamic-image-placeholder.WxPYGqOa.png                  [39m[1m[2m  175.90 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/variant_mode_smart.qZYpIAIZ.png                         [39m[1m[2m  183.61 kB[22m[1m[22m
+[2mdist/[22m[32mapp/assets/image-placeholder.D5KryjPD.png                          [39m[1m[2m  350.07 kB[22m[1m[22m
+[2mdist/[22m[35mapp/shop.css                                                       [39m[1m[2m2,148.89 kB[22m[1m[22m[2m │ gzip:   337.75 kB[22m
+[2mdist/[22m[36mapp/js/AccountMixin.BPPXadOg.js                                    [39m[1m[2m    0.13 kB[22m[1m[22m[2m │ gzip:     0.13 kB[22m
+[2mdist/[22m[36mapp/js/ClubMixin.BCW4POy6.js                                       [39m[1m[2m    0.13 kB[22m[1m[22m[2m │ gzip:     0.14 kB[22m
+[2mdist/[22m[36mapp/js/ImageMixin.BiXDf2qG.js                                      [39m[1m[2m    0.14 kB[22m[1m[22m[2m │ gzip:     0.14 kB[22m
+[2mdist/[22m[36mapp/shop.js                                                        [39m[1m[2m    0.22 kB[22m[1m[22m[2m │ gzip:     0.20 kB[22m
+[2mdist/[22m[36mapp/js/MapMixin.DZRw0QJI.js                                        [39m[1m[2m    0.23 kB[22m[1m[22m[2m │ gzip:     0.21 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageInfo.cepdUeLJ.js                              [39m[1m[2m    0.37 kB[22m[1m[22m[2m │ gzip:     0.28 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageOfficialTerms.BAIyjjhl.js                     [39m[1m[2m    0.37 kB[22m[1m[22m[2m │ gzip:     0.28 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageOfficialPrivacy.n4FNTwt7.js                   [39m[1m[2m    0.37 kB[22m[1m[22m[2m │ gzip:     0.28 kB[22m
+[2mdist/[22m[36mapp/js/NxSampleTag.ChQ6gCBs.js                                     [39m[1m[2m    0.42 kB[22m[1m[22m[2m │ gzip:     0.32 kB[22m
+[2mdist/[22m[36mapp/js/UTextValueDashed.8xgIM0jp.js                                [39m[1m[2m    0.44 kB[22m[1m[22m[2m │ gzip:     0.32 kB[22m
+[2mdist/[22m[36mapp/js/rtl.C_wJBYy8.js                                             [39m[1m[2m    0.46 kB[22m[1m[22m[2m │ gzip:     0.22 kB[22m
+[2mdist/[22m[36mapp/js/user.BDm4_wsX.js                                            [39m[1m[2m    0.47 kB[22m[1m[22m[2m │ gzip:     0.29 kB[22m
+[2mdist/[22m[36mapp/js/UStamp.ClZSD-gf.js                                          [39m[1m[2m    0.48 kB[22m[1m[22m[2m │ gzip:     0.32 kB[22m
+[2mdist/[22m[36mapp/js/TransactionStatus.DIqX0X_B.js                               [39m[1m[2m    0.53 kB[22m[1m[22m[2m │ gzip:     0.23 kB[22m
+[2mdist/[22m[36mapp/js/UMapImage.xdaioNXy.js                                       [39m[1m[2m    0.78 kB[22m[1m[22m[2m │ gzip:     0.50 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserOrdersPos.iGKa18wl.js                     [39m[1m[2m    0.80 kB[22m[1m[22m[2m │ gzip:     0.50 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserOrdersAvocado.DFs24qwG.js                 [39m[1m[2m    0.81 kB[22m[1m[22m[2m │ gzip:     0.51 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserOrdersFile.C71IRGD3.js                    [39m[1m[2m    0.83 kB[22m[1m[22m[2m │ gzip:     0.52 kB[22m
+[2mdist/[22m[36mapp/js/RouteMixin.C7sYnUtW.js                                      [39m[1m[2m    0.83 kB[22m[1m[22m[2m │ gzip:     0.43 kB[22m
+[2mdist/[22m[36mapp/js/NxCrumbs.BkE_c9Qf.js                                        [39m[1m[2m    0.84 kB[22m[1m[22m[2m │ gzip:     0.54 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserOrdersService.DWAkW_wi.js                 [39m[1m[2m    0.84 kB[22m[1m[22m[2m │ gzip:     0.52 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserOrdersSubscription.CBV7ir-s.js            [39m[1m[2m    0.85 kB[22m[1m[22m[2m │ gzip:     0.53 kB[22m
+[2mdist/[22m[36mapp/js/CommunityStatisticViewSkeleton.Bvi1Q_J_.js                  [39m[1m[2m    0.86 kB[22m[1m[22m[2m │ gzip:     0.48 kB[22m
+[2mdist/[22m[36mapp/js/UTextValueBox.CBsFrqgO.js                                   [39m[1m[2m    0.97 kB[22m[1m[22m[2m │ gzip:     0.59 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserOrdersVirtual.BIEz3HbT.js                 [39m[1m[2m    0.98 kB[22m[1m[22m[2m │ gzip:     0.60 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageLoginRedirect.CaARedh7.js                     [39m[1m[2m    1.00 kB[22m[1m[22m[2m │ gzip:     0.61 kB[22m
+[2mdist/[22m[36mapp/js/CircleImage.BnkM6g4H.js                                     [39m[1m[2m    1.14 kB[22m[1m[22m[2m │ gzip:     0.63 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageOfficial._j0pz0z7.js                          [39m[1m[2m    1.23 kB[22m[1m[22m[2m │ gzip:     0.64 kB[22m
+[2mdist/[22m[36mapp/js/filepond-plugin-image-resize.esm.zzie_iQ-.js                [39m[1m[2m    1.27 kB[22m[1m[22m[2m │ gzip:     0.73 kB[22m
+[2mdist/[22m[36mapp/js/noir-account.D_GG6I3a.js                                    [39m[1m[2m    1.30 kB[22m[1m[22m[2m │ gzip:     0.64 kB[22m
+[2mdist/[22m[36mapp/js/UVariantSelector.DJL3g7rD.js                                [39m[1m[2m    1.40 kB[22m[1m[22m[2m │ gzip:     0.73 kB[22m
+[2mdist/[22m[36mapp/js/KalioCompareButton.BSjwDEJE.js                              [39m[1m[2m    1.41 kB[22m[1m[22m[2m │ gzip:     0.79 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageListingItem.lqM92Kum.js                       [39m[1m[2m    1.42 kB[22m[1m[22m[2m │ gzip:     0.80 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserOrders.CyVmuYzs.js                        [39m[1m[2m    1.44 kB[22m[1m[22m[2m │ gzip:     0.76 kB[22m
+[2mdist/[22m[36mapp/js/SPwaVersionCheck.DKsZ_vR2.js                                [39m[1m[2m    1.50 kB[22m[1m[22m[2m │ gzip:     0.87 kB[22m
+[2mdist/[22m[36mapp/js/SCookieConsent.Dsm028rm.js                                  [39m[1m[2m    1.52 kB[22m[1m[22m[2m │ gzip:     0.84 kB[22m
+[2mdist/[22m[36mapp/js/NxMap.Bf-10tCG.js                                           [39m[1m[2m    1.58 kB[22m[1m[22m[2m │ gzip:     0.93 kB[22m
+[2mdist/[22m[36mapp/js/OrderMixin._Ao2mAgV.js                                      [39m[1m[2m    1.58 kB[22m[1m[22m[2m │ gzip:     0.57 kB[22m
+[2mdist/[22m[36mapp/js/SFullscreenViewAnimator.bl1pqMP0.js                         [39m[1m[2m    1.62 kB[22m[1m[22m[2m │ gzip:     0.87 kB[22m
+[2mdist/[22m[36mapp/js/URatingBar.BNg_uCdh.js                                      [39m[1m[2m    1.76 kB[22m[1m[22m[2m │ gzip:     0.91 kB[22m
+[2mdist/[22m[36mapp/js/filepond-plugin-file-validate-type.esm.D-GGJklL.js          [39m[1m[2m    1.80 kB[22m[1m[22m[2m │ gzip:     0.99 kB[22m
+[2mdist/[22m[36mapp/js/NxEmpty.D4jB1LBH.js                                         [39m[1m[2m    1.81 kB[22m[1m[22m[2m │ gzip:     0.94 kB[22m
+[2mdist/[22m[36mapp/js/SStorefrontApplicationLogin.BzyMpd45.js                     [39m[1m[2m    1.87 kB[22m[1m[22m[2m │ gzip:     0.85 kB[22m
+[2mdist/[22m[36mapp/js/gift-w.6z9zo7wR.js                                          [39m[1m[2m    1.90 kB[22m[1m[22m[2m │ gzip:     0.86 kB[22m
+[2mdist/[22m[36mapp/js/filepond-plugin-file-validate-size.esm.CNUTeW4-.js          [39m[1m[2m    1.94 kB[22m[1m[22m[2m │ gzip:     0.73 kB[22m
+[2mdist/[22m[36mapp/js/KalioOrderKinds.NSBXUFjb.js                                 [39m[1m[2m    2.01 kB[22m[1m[22m[2m │ gzip:     1.06 kB[22m
+[2mdist/[22m[36mapp/js/UTabsRounded.C-nUtnE6.js                                    [39m[1m[2m    2.04 kB[22m[1m[22m[2m │ gzip:     1.05 kB[22m
+[2mdist/[22m[36mapp/js/ProductsDenseImagesCircles.CkNOEhCY.js                      [39m[1m[2m    2.05 kB[22m[1m[22m[2m │ gzip:     1.01 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageAvocadoOrder.CMAODUen.js                      [39m[1m[2m    2.09 kB[22m[1m[22m[2m │ gzip:     1.17 kB[22m
+[2mdist/[22m[36mapp/js/UMapDialog.CcicnrTq.js                                      [39m[1m[2m    2.28 kB[22m[1m[22m[2m │ gzip:     1.09 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserWallets.ojaYQViK.js                       [39m[1m[2m    2.35 kB[22m[1m[22m[2m │ gzip:     1.19 kB[22m
+[2mdist/[22m[36mapp/js/SCampaignBanner.CL7s2FW4.js                                 [39m[1m[2m    2.48 kB[22m[1m[22m[2m │ gzip:     1.13 kB[22m
+[2mdist/[22m[36mapp/js/SHyperCartItems.Wo_flmnp.js                                 [39m[1m[2m    2.49 kB[22m[1m[22m[2m │ gzip:     1.30 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPagePosOrder.BMgdUqGq.js                          [39m[1m[2m    2.54 kB[22m[1m[22m[2m │ gzip:     1.36 kB[22m
+[2mdist/[22m[36mapp/js/SGiftcardAdd.dwhJmfzr.js                                    [39m[1m[2m    2.59 kB[22m[1m[22m[2m │ gzip:     1.16 kB[22m
+[2mdist/[22m[36mapp/js/kalio-compare.DAnV80Qu.js                                   [39m[1m[2m    2.64 kB[22m[1m[22m[2m │ gzip:     1.28 kB[22m
+[2mdist/[22m[36mapp/js/NxCard.Dd4uQgAU.js                                          [39m[1m[2m    2.66 kB[22m[1m[22m[2m │ gzip:     1.32 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageAvocadoOrderDashboard.BC2tl4zP.js             [39m[1m[2m    2.76 kB[22m[1m[22m[2m │ gzip:     1.34 kB[22m
+[2mdist/[22m[36mapp/js/UTextCopyBox.Ch7rgiDc.js                                    [39m[1m[2m    2.78 kB[22m[1m[22m[2m │ gzip:     1.29 kB[22m
+[2mdist/[22m[36mapp/js/NxRow.JKwHTpBA.js                                           [39m[1m[2m    2.82 kB[22m[1m[22m[2m │ gzip:     1.38 kB[22m
+[2mdist/[22m[36mapp/js/SStorefrontCampaignNotification.BRV22PcN.js                 [39m[1m[2m    2.89 kB[22m[1m[22m[2m │ gzip:     1.26 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageError404.CQ1K4yoj.js                          [39m[1m[2m    2.92 kB[22m[1m[22m[2m │ gzip:     1.45 kB[22m
+[2mdist/[22m[36mapp/js/CommunityFeedPage.CaGuNaV9.js                               [39m[1m[2m    3.05 kB[22m[1m[22m[2m │ gzip:     1.59 kB[22m
+[2mdist/[22m[36mapp/js/logo-mini-dark.BWTP6rH3.js                                  [39m[1m[2m    3.12 kB[22m[1m[22m[2m │ gzip:     1.13 kB[22m
+[2mdist/[22m[36mapp/js/CImageView.DpDKIGVr.js                                      [39m[1m[2m    3.21 kB[22m[1m[22m[2m │ gzip:     1.49 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageBasketOrderSubscriptionDashboard.C1YPXjMj.js  [39m[1m[2m    3.23 kB[22m[1m[22m[2m │ gzip:     1.47 kB[22m
+[2mdist/[22m[36mapp/js/UNotificationSide.DsDGApcR.js                               [39m[1m[2m    3.29 kB[22m[1m[22m[2m │ gzip:     1.38 kB[22m
+[2mdist/[22m[36mapp/js/SShopShareOrderButton.BdgdMOx3.js                           [39m[1m[2m    3.29 kB[22m[1m[22m[2m │ gzip:     1.48 kB[22m
+[2mdist/[22m[36mapp/js/SStorefrontPopup.wXM7pEm0.js                                [39m[1m[2m    3.39 kB[22m[1m[22m[2m │ gzip:     1.43 kB[22m
+[2mdist/[22m[36mapp/js/SShopProductFilesList.DHPNUOch.js                           [39m[1m[2m    3.43 kB[22m[1m[22m[2m │ gzip:     1.67 kB[22m
+[2mdist/[22m[36mapp/js/UBreadcrumb.BuTq6hAF.js                                     [39m[1m[2m    3.49 kB[22m[1m[22m[2m │ gzip:     1.59 kB[22m
+[2mdist/[22m[36mapp/js/USmartToggle.Dh5ZEs7z.js                                    [39m[1m[2m    3.58 kB[22m[1m[22m[2m │ gzip:     1.46 kB[22m
+[2mdist/[22m[36mapp/js/CommunityMyCommentsPage.DTgA1oRp.js                         [39m[1m[2m    3.65 kB[22m[1m[22m[2m │ gzip:     1.65 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserWishlist.Bc5VINiu.js                      [39m[1m[2m    3.72 kB[22m[1m[22m[2m │ gzip:     1.67 kB[22m
+[2mdist/[22m[36mapp/js/UPriceInput.BirwfBFD.js                                     [39m[1m[2m    3.80 kB[22m[1m[22m[2m │ gzip:     1.49 kB[22m
+[2mdist/[22m[36mapp/js/SStorefrontListingCompareBar.DMweFwQG.js                    [39m[1m[2m    3.88 kB[22m[1m[22m[2m │ gzip:     1.69 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageFaq.B2LL89ov.js                               [39m[1m[2m    3.88 kB[22m[1m[22m[2m │ gzip:     1.82 kB[22m
+[2mdist/[22m[36mapp/js/UTimeProgressBar.BnQ_CX-q.js                                [39m[1m[2m    4.17 kB[22m[1m[22m[2m │ gzip:     1.30 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserComments.788W604N.js                      [39m[1m[2m    4.17 kB[22m[1m[22m[2m │ gzip:     1.87 kB[22m
+[2mdist/[22m[36mapp/js/SShopCustomerOrderWithdraw.CajDZeOu.js                      [39m[1m[2m    4.31 kB[22m[1m[22m[2m │ gzip:     1.80 kB[22m
+[2mdist/[22m[36mapp/js/UMapGeoButton.V6_-zhQM.js                                   [39m[1m[2m    4.34 kB[22m[1m[22m[2m │ gzip:     1.77 kB[22m
+[2mdist/[22m[36mapp/js/SOrderDeliveryStatusStepper.CnQQA1-Z.js                     [39m[1m[2m    4.41 kB[22m[1m[22m[2m │ gzip:     1.80 kB[22m
+[2mdist/[22m[36mapp/js/SCountrySelect.StLipN3J.js                                  [39m[1m[2m    4.49 kB[22m[1m[22m[2m │ gzip:     1.67 kB[22m
+[2mdist/[22m[36mapp/js/UCurrencyInput.G2zQYiy_.js                                  [39m[1m[2m    4.54 kB[22m[1m[22m[2m │ gzip:     1.63 kB[22m
+[2mdist/[22m[36mapp/js/UMapViewPin.BDlhYRDi.js                                     [39m[1m[2m    4.72 kB[22m[1m[22m[2m │ gzip:     1.87 kB[22m
+[2mdist/[22m[36mapp/js/VariantItemMini.s-DUn9bj.js                                 [39m[1m[2m    4.78 kB[22m[1m[22m[2m │ gzip:     1.77 kB[22m
+[2mdist/[22m[36mapp/js/SDataIteratorToolbar.CousRtWg.js                            [39m[1m[2m    4.78 kB[22m[1m[22m[2m │ gzip:     1.64 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageBasketOrderFileDashboard.Cuse6a_9.js          [39m[1m[2m    4.83 kB[22m[1m[22m[2m │ gzip:     2.00 kB[22m
+[2mdist/[22m[36mapp/js/SStorefrontRetrieveShareOrder.CRd2fBJs.js                   [39m[1m[2m    4.86 kB[22m[1m[22m[2m │ gzip:     2.04 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageHyperOrder.Dtl27GtN.js                        [39m[1m[2m    5.15 kB[22m[1m[22m[2m │ gzip:     2.23 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageBasketOrder.DFcHvPOV.js                       [39m[1m[2m    5.29 kB[22m[1m[22m[2m │ gzip:     2.19 kB[22m
+[2mdist/[22m[36mapp/js/UMapAddressInput.DOnmRz40.js                                [39m[1m[2m    5.30 kB[22m[1m[22m[2m │ gzip:     2.05 kB[22m
+[2mdist/[22m[36mapp/js/SOrderChatWidget.C2NIv0di.js                                [39m[1m[2m    5.36 kB[22m[1m[22m[2m │ gzip:     2.16 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageBasketOrderVirtualDashboard.Czpr_tIB.js       [39m[1m[2m    5.87 kB[22m[1m[22m[2m │ gzip:     2.40 kB[22m
+[2mdist/[22m[36mapp/js/SOrderChatMessage.C56f3Ujt.js                               [39m[1m[2m    5.89 kB[22m[1m[22m[2m │ gzip:     1.96 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageBlogsList.CtT6KVe6.js                         [39m[1m[2m    5.89 kB[22m[1m[22m[2m │ gzip:     2.38 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontUserAddresses.BJn6Veih.js                         [39m[1m[2m    5.92 kB[22m[1m[22m[2m │ gzip:     2.57 kB[22m
+[2mdist/[22m[36mapp/js/countdown-badge.qdwWdAvS.js                                 [39m[1m[2m    6.08 kB[22m[1m[22m[2m │ gzip:     2.34 kB[22m
+[2mdist/[22m[36mapp/js/SOrderStatusView.D0-1qHCD.js                                [39m[1m[2m    6.21 kB[22m[1m[22m[2m │ gzip:     2.52 kB[22m
+[2mdist/[22m[36mapp/js/SProductSectionValuation.BRlV6L1d.js                        [39m[1m[2m    6.25 kB[22m[1m[22m[2m │ gzip:     2.13 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserReturns.DNa_W5M7.js                       [39m[1m[2m    6.43 kB[22m[1m[22m[2m │ gzip:     2.57 kB[22m
+[2mdist/[22m[36mapp/js/SShopRowCustomerPendingPayment.DUftZ3BW.js                  [39m[1m[2m    6.68 kB[22m[1m[22m[2m │ gzip:     2.53 kB[22m
+[2mdist/[22m[36mapp/js/NxLegal.DWTHdJnU.js                                         [39m[1m[2m    6.83 kB[22m[1m[22m[2m │ gzip:     2.59 kB[22m
+[2mdist/[22m[36mapp/js/KalioOrderChat.BeCVpzne.js                                  [39m[1m[2m    6.95 kB[22m[1m[22m[2m │ gzip:     2.96 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserGiftcards.DimXCP6z.js                     [39m[1m[2m    7.00 kB[22m[1m[22m[2m │ gzip:     2.82 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageOfficialContactUs.CsulVeeR.js                 [39m[1m[2m    7.01 kB[22m[1m[22m[2m │ gzip:     2.76 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUser.kUpUJuxe.js                              [39m[1m[2m    7.57 kB[22m[1m[22m[2m │ gzip:     2.85 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageListingCompare.DsajDHQo.js                    [39m[1m[2m    7.73 kB[22m[1m[22m[2m │ gzip:     2.97 kB[22m
+[2mdist/[22m[36mapp/js/UButtonShareGroup.DCIFam7_.js                               [39m[1m[2m    8.16 kB[22m[1m[22m[2m │ gzip:     2.91 kB[22m
+[2mdist/[22m[36mapp/js/TimeSeries.BrPZB_BS.js                                      [39m[1m[2m    8.22 kB[22m[1m[22m[2m │ gzip:     2.59 kB[22m
+[2mdist/[22m[36mapp/js/MkBands.BeOeV0c-.js                                         [39m[1m[2m    8.29 kB[22m[1m[22m[2m │ gzip:     3.45 kB[22m
+[2mdist/[22m[36mapp/js/SShopAvocadoCustomerOrderItems.DWi0GAVD.js                  [39m[1m[2m    8.57 kB[22m[1m[22m[2m │ gzip:     3.11 kB[22m
+[2mdist/[22m[36mapp/js/UHeatmap.CdAp8oAW.js                                        [39m[1m[2m    8.80 kB[22m[1m[22m[2m │ gzip:     2.72 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageAvocadoCart.DRXVzPFF.js                       [39m[1m[2m    8.80 kB[22m[1m[22m[2m │ gzip:     3.12 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageBlogsView.CK_9exLt.js                         [39m[1m[2m    9.17 kB[22m[1m[22m[2m │ gzip:     3.78 kB[22m
+[2mdist/[22m[36mapp/js/rd.DBjSTlxN.js                                              [39m[1m[2m    9.20 kB[22m[1m[22m[2m │ gzip:     3.41 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageOfficialAboutUs.DJxnZNHO.js                   [39m[1m[2m    9.33 kB[22m[1m[22m[2m │ gzip:     3.50 kB[22m
+[2mdist/[22m[36mapp/js/noir-cart.GpVgPNBR.js                                       [39m[1m[2m    9.33 kB[22m[1m[22m[2m │ gzip:     3.29 kB[22m
+[2mdist/[22m[36mapp/js/KalioSignIn.6mGpAXft.js                                     [39m[1m[2m    9.40 kB[22m[1m[22m[2m │ gzip:     3.69 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPagePosOrderDashboard.DKEs5_8t.js                 [39m[1m[2m    9.43 kB[22m[1m[22m[2m │ gzip:     4.08 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageMapProducts.CRt3jc5r.js                       [39m[1m[2m    9.98 kB[22m[1m[22m[2m │ gzip:     4.17 kB[22m
+[2mdist/[22m[36mapp/js/SShopCustomerReceiverInfoWidget.BBRytisO.js                 [39m[1m[2m   10.05 kB[22m[1m[22m[2m │ gzip:     3.53 kB[22m
+[2mdist/[22m[36mapp/js/KalioAccountHome.CPjw5iaU.js                                [39m[1m[2m   10.34 kB[22m[1m[22m[2m │ gzip:     3.92 kB[22m
+[2mdist/[22m[36mapp/js/SShopBillingAddressForm.DZ2nyARw.js                         [39m[1m[2m   10.55 kB[22m[1m[22m[2m │ gzip:     2.95 kB[22m
+[2mdist/[22m[36mapp/js/SDebugger.CIBXxReB.js                                       [39m[1m[2m   10.64 kB[22m[1m[22m[2m │ gzip:     4.23 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageMapVendors.xAL8HwdY.js                        [39m[1m[2m   10.65 kB[22m[1m[22m[2m │ gzip:     4.22 kB[22m
+[2mdist/[22m[36mapp/js/SOrderDeliveryState.CzuNn9rY.js                             [39m[1m[2m   10.99 kB[22m[1m[22m[2m │ gzip:     2.98 kB[22m
+[2mdist/[22m[36mapp/js/SFooterSection.CzI0CcZq.js                                  [39m[1m[2m   11.00 kB[22m[1m[22m[2m │ gzip:     4.14 kB[22m
+[2mdist/[22m[36mapp/js/SStorefrontLotteryWheelOfFortune.CC94SRP3.js                [39m[1m[2m   11.14 kB[22m[1m[22m[2m │ gzip:     4.12 kB[22m
+[2mdist/[22m[36mapp/js/CPostWidget.CELojPHN.js                                     [39m[1m[2m   11.25 kB[22m[1m[22m[2m │ gzip:     4.02 kB[22m
+[2mdist/[22m[36mapp/js/UPaymentStripeSplit.Cf__mn40.js                             [39m[1m[2m   12.17 kB[22m[1m[22m[2m │ gzip:     4.35 kB[22m
+[2mdist/[22m[36mapp/js/CCategoryEdit.DJQ-sbnd.js                                   [39m[1m[2m   12.88 kB[22m[1m[22m[2m │ gzip:     4.02 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserOrdersPhysical.-ewO6jSd.js                [39m[1m[2m   12.89 kB[22m[1m[22m[2m │ gzip:     4.74 kB[22m
+[2mdist/[22m[36mapp/js/CCommentsList.BTHy5LWQ.js                                   [39m[1m[2m   12.91 kB[22m[1m[22m[2m │ gzip:     4.29 kB[22m
+[2mdist/[22m[36mapp/js/film.DhL-jdWF.js                                            [39m[1m[2m   12.97 kB[22m[1m[22m[2m │ gzip:     1.50 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageUserProfile.CBThazDx.js                       [39m[1m[2m   13.69 kB[22m[1m[22m[2m │ gzip:     3.85 kB[22m
+[2mdist/[22m[36mapp/js/SOrderBasketReturn.BjnLxeBD.js                              [39m[1m[2m   13.80 kB[22m[1m[22m[2m │ gzip:     4.62 kB[22m
+[2mdist/[22m[36mapp/js/Screenshot.D3rjIqsN.js                                      [39m[1m[2m   14.25 kB[22m[1m[22m[2m │ gzip:     5.65 kB[22m
+[2mdist/[22m[36mapp/js/URibbon.BBmB6SX6.js                                         [39m[1m[2m   14.38 kB[22m[1m[22m[2m │ gzip:     4.31 kB[22m
+[2mdist/[22m[36mapp/js/coupon.BpZXnVVd.js                                          [39m[1m[2m   14.82 kB[22m[1m[22m[2m │ gzip:     2.69 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageAvocado.BVPBUPbj.js                           [39m[1m[2m   15.35 kB[22m[1m[22m[2m │ gzip:     5.07 kB[22m
+[2mdist/[22m[36mapp/js/SArticleComments.BPQm7rXn.js                                [39m[1m[2m   15.98 kB[22m[1m[22m[2m │ gzip:     4.78 kB[22m
+[2mdist/[22m[36mapp/js/pd.k4OO6Umn.js                                              [39m[1m[2m   17.06 kB[22m[1m[22m[2m │ gzip:     6.01 kB[22m
+[2mdist/[22m[36mapp/js/SShopProductCard.B4u1gbpc.js                                [39m[1m[2m   17.14 kB[22m[1m[22m[2m │ gzip:     5.95 kB[22m
+[2mdist/[22m[36mapp/js/DeliveryTimelineTransportationOrder.BCMd4zMj.js             [39m[1m[2m   17.28 kB[22m[1m[22m[2m │ gzip:     5.61 kB[22m
+[2mdist/[22m[36mapp/js/SImageUploader.CB7v0QSV.js                                  [39m[1m[2m   17.55 kB[22m[1m[22m[2m │ gzip:     5.35 kB[22m
+[2mdist/[22m[36mapp/js/SOrdersList.pe-GOVIH.js                                     [39m[1m[2m   17.65 kB[22m[1m[22m[2m │ gzip:     6.05 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageHyperCart.XGVipb5O.js                         [39m[1m[2m   18.84 kB[22m[1m[22m[2m │ gzip:     6.23 kB[22m
+[2mdist/[22m[36mapp/js/SHeaderSectionUser.f3YA-SZu.js                              [39m[1m[2m   19.67 kB[22m[1m[22m[2m │ gzip:     5.08 kB[22m
+[2mdist/[22m[36mapp/js/SShopCustomerDeliveryInfoWidget.B7JKYFXU.js                 [39m[1m[2m   19.95 kB[22m[1m[22m[2m │ gzip:     5.44 kB[22m
+[2mdist/[22m[36mapp/js/filepond-plugin-image-preview.esm.odzyHiaw.js               [39m[1m[2m   21.09 kB[22m[1m[22m[2m │ gzip:     7.84 kB[22m
+[2mdist/[22m[36mapp/js/SShopBasketItemsList.BKVgM7zm.js                            [39m[1m[2m   21.35 kB[22m[1m[22m[2m │ gzip:     6.13 kB[22m
+[2mdist/[22m[36mapp/js/filepond-plugin-image-transform.esm.CkVbAEI-.js             [39m[1m[2m   22.07 kB[22m[1m[22m[2m │ gzip:     9.28 kB[22m
+[2mdist/[22m[36mapp/js/KalioAddressSheet.rWn2W1zn.js                               [39m[1m[2m   22.11 kB[22m[1m[22m[2m │ gzip:     6.52 kB[22m
+[2mdist/[22m[36mapp/js/CommunityTopicPage.DwrtCdiN.js                              [39m[1m[2m   22.53 kB[22m[1m[22m[2m │ gzip:     6.93 kB[22m
+[2mdist/[22m[36mapp/js/CommunityCategoryPage.C595A8VR.js                           [39m[1m[2m   22.67 kB[22m[1m[22m[2m │ gzip:     7.24 kB[22m
+[2mdist/[22m[36mapp/js/UQrcode.D_YINPRu.js                                         [39m[1m[2m   26.65 kB[22m[1m[22m[2m │ gzip:    10.54 kB[22m
+[2mdist/[22m[36mapp/js/CommunityStatisticView.9bVhIYST.js                          [39m[1m[2m   29.77 kB[22m[1m[22m[2m │ gzip:     8.50 kB[22m
+[2mdist/[22m[36mapp/js/CommunityHomePage.GvJZiKcb.js                               [39m[1m[2m   29.82 kB[22m[1m[22m[2m │ gzip:     8.42 kB[22m
+[2mdist/[22m[36mapp/js/SStorefrontPOSPage.BkhyoMYA.js                              [39m[1m[2m   29.86 kB[22m[1m[22m[2m │ gzip:     9.21 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageInstagram.rZVrvVI7.js                         [39m[1m[2m   40.47 kB[22m[1m[22m[2m │ gzip:    11.97 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageBasketOrderServiceDashboard.Dfv8elnu.js       [39m[1m[2m   40.91 kB[22m[1m[22m[2m │ gzip:    10.06 kB[22m
+[2mdist/[22m[36mapp/js/CLayout.BNxn5ENz.js                                         [39m[1m[2m   42.46 kB[22m[1m[22m[2m │ gzip:    10.37 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageProducts.D7xBWwm8.js                          [39m[1m[2m   42.90 kB[22m[1m[22m[2m │ gzip:    13.81 kB[22m
+[2mdist/[22m[36mapp/js/UProductSpecTable.VLnnnKqu.js                               [39m[1m[2m   43.38 kB[22m[1m[22m[2m │ gzip:    11.77 kB[22m
+[2mdist/[22m[36mapp/js/SShopBuyButton.qK-0hLGd.js                                  [39m[1m[2m   45.56 kB[22m[1m[22m[2m │ gzip:    14.50 kB[22m
+[2mdist/[22m[36mapp/js/SStorefrontListingItemProfile.BMPyminb.js                   [39m[1m[2m   46.45 kB[22m[1m[22m[2m │ gzip:    12.78 kB[22m
+[2mdist/[22m[36mapp/js/SProductsListing.DVtIDC_A.js                                [39m[1m[2m   47.14 kB[22m[1m[22m[2m │ gzip:    13.50 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageListing.CAI8TCnr.js                           [39m[1m[2m   50.58 kB[22m[1m[22m[2m │ gzip:    13.92 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageBasketOrderPhysicalDashboard.DP2HVSNy.js      [39m[1m[2m   50.80 kB[22m[1m[22m[2m │ gzip:    15.10 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageProduct.CQa7aJUW.js                           [39m[1m[2m   52.26 kB[22m[1m[22m[2m │ gzip:    17.19 kB[22m
+[2mdist/[22m[36mapp/js/SContactsPopup.B4bkwDTM.js                                  [39m[1m[2m   57.85 kB[22m[1m[22m[2m │ gzip:    13.33 kB[22m
+[2mdist/[22m[36mapp/js/SShopCustomerOrderPaymentWidget.CxqfO579.js                 [39m[1m[2m   63.12 kB[22m[1m[22m[2m │ gzip:    19.02 kB[22m
+[2mdist/[22m[36mapp/js/CBreadcrumb.D6IOcdFO.js                                     [39m[1m[2m   63.92 kB[22m[1m[22m[2m │ gzip:    18.03 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageComparison.4HGiMW3K.js                        [39m[1m[2m   66.29 kB[22m[1m[22m[2m │ gzip:    19.90 kB[22m
+[2mdist/[22m[36mapp/js/UBarcode.C_siUgzt.js                                        [39m[1m[2m   70.15 kB[22m[1m[22m[2m │ gzip:    15.38 kB[22m
+[2mdist/[22m[36mapp/js/zh.CM-i1sPc.js                                              [39m[1m[2m   74.22 kB[22m[1m[22m[2m │ gzip:    30.87 kB[22m
+[2mdist/[22m[36mapp/js/zh-tw.BAKVIBXE.js                                           [39m[1m[2m   74.49 kB[22m[1m[22m[2m │ gzip:    31.82 kB[22m
+[2mdist/[22m[36mapp/js/ht.2eFZsKL7.js                                              [39m[1m[2m   76.45 kB[22m[1m[22m[2m │ gzip:    29.27 kB[22m
+[2mdist/[22m[36mapp/js/jv.DdTxIzFt.js                                              [39m[1m[2m   79.38 kB[22m[1m[22m[2m │ gzip:    29.72 kB[22m
+[2mdist/[22m[36mapp/js/da.DPcgsyGd.js                                              [39m[1m[2m   79.47 kB[22m[1m[22m[2m │ gzip:    30.40 kB[22m
+[2mdist/[22m[36mapp/js/no.CXz1mEnK.js                                              [39m[1m[2m   79.51 kB[22m[1m[22m[2m │ gzip:    30.40 kB[22m
+[2mdist/[22m[36mapp/js/et.DtIuotYr.js                                              [39m[1m[2m   79.93 kB[22m[1m[22m[2m │ gzip:    30.97 kB[22m
+[2mdist/[22m[36mapp/js/ha.B5zJUtvE.js                                              [39m[1m[2m   80.02 kB[22m[1m[22m[2m │ gzip:    30.06 kB[22m
+[2mdist/[22m[36mapp/js/af.CftH9Za-.js                                              [39m[1m[2m   80.08 kB[22m[1m[22m[2m │ gzip:    30.58 kB[22m
+[2mdist/[22m[36mapp/js/sn.ZF0-hSni.js                                              [39m[1m[2m   80.51 kB[22m[1m[22m[2m │ gzip:    30.50 kB[22m
+[2mdist/[22m[36mapp/js/sw.DWZfRtgb.js                                              [39m[1m[2m   80.53 kB[22m[1m[22m[2m │ gzip:    30.20 kB[22m
+[2mdist/[22m[36mapp/js/su.CneC1002.js                                              [39m[1m[2m   80.75 kB[22m[1m[22m[2m │ gzip:    30.49 kB[22m
+[2mdist/[22m[36mapp/js/bs.DC2IiDVV.js                                              [39m[1m[2m   80.80 kB[22m[1m[22m[2m │ gzip:    31.28 kB[22m
+[2mdist/[22m[36mapp/js/ms.t2xvMVZN.js                                              [39m[1m[2m   81.05 kB[22m[1m[22m[2m │ gzip:    30.00 kB[22m
+[2mdist/[22m[36mapp/js/fy.qMbES6Bq.js                                              [39m[1m[2m   81.06 kB[22m[1m[22m[2m │ gzip:    31.10 kB[22m
+[2mdist/[22m[36mapp/js/sv.b1zZTRq7.js                                              [39m[1m[2m   81.10 kB[22m[1m[22m[2m │ gzip:    30.70 kB[22m
+[2mdist/[22m[36mapp/js/cy.sGpYgZvp.js                                              [39m[1m[2m   81.13 kB[22m[1m[22m[2m │ gzip:    30.95 kB[22m
+[2mdist/[22m[36mapp/js/sl.BnlA8s3L.js                                              [39m[1m[2m   81.20 kB[22m[1m[22m[2m │ gzip:    31.16 kB[22m
+[2mdist/[22m[36mapp/js/rw.Bm4pU0Gw.js                                              [39m[1m[2m   81.27 kB[22m[1m[22m[2m │ gzip:    29.73 kB[22m
+[2mdist/[22m[36mapp/js/StorefrontPageBasketCart.CucSvEga.js                        [39m[1m[2m   81.30 kB[22m[1m[22m[2m │ gzip:    22.37 kB[22m
+[2mdist/[22m[36mapp/js/hr.DTxiHnw7.js                                              [39m[1m[2m   81.38 kB[22m[1m[22m[2m │ gzip:    31.34 kB[22m
+[2mdist/[22m[36mapp/js/id.BwCX5jUp.js                                              [39m[1m[2m   81.55 kB[22m[1m[22m[2m │ gzip:    29.87 kB[22m
+[2mdist/[22m[36mapp/js/fi.BH1Q4nTX.js                                              [39m[1m[2m   81.63 kB[22m[1m[22m[2m │ gzip:    31.20 kB[22m
+[2mdist/[22m[36mapp/js/mi.nYANfGAq.js                                              [39m[1m[2m   81.73 kB[22m[1m[22m[2m │ gzip:    29.44 kB[22m
+[2mdist/[22m[36mapp/js/ny.Bqp_3561.js                                              [39m[1m[2m   82.70 kB[22m[1m[22m[2m │ gzip:    30.10 kB[22m
+[2mdist/[22m[36mapp/js/nl.CkFXoif3.js                                              [39m[1m[2m   82.72 kB[22m[1m[22m[2m │ gzip:    31.29 kB[22m
+[2mdist/[22m[36mapp/js/lb.CQGk69lo.js                                              [39m[1m[2m   82.76 kB[22m[1m[22m[2m │ gzip:    31.19 kB[22m
+[2mdist/[22m[36mapp/js/yo.D1hzK41J.js                                              [39m[1m[2m   82.83 kB[22m[1m[22m[2m │ gzip:    30.62 kB[22m
+[2mdist/[22m[36mapp/js/eu.BtMdnDLg.js                                              [39m[1m[2m   82.88 kB[22m[1m[22m[2m │ gzip:    30.53 kB[22m
+[2mdist/[22m[36mapp/js/tr.DComPc2i.js                                              [39m[1m[2m   83.13 kB[22m[1m[22m[2m │ gzip:    31.68 kB[22m
+[2mdist/[22m[36mapp/js/cs.MavU_0kO.js                                              [39m[1m[2m   83.44 kB[22m[1m[22m[2m │ gzip:    32.54 kB[22m
+[2mdist/[22m[36mapp/js/is.Dr3oFIpu.js                                              [39m[1m[2m   83.44 kB[22m[1m[22m[2m │ gzip:    31.84 kB[22m
+[2mdist/[22m[36mapp/js/xh.BTqzppQZ.js                                              [39m[1m[2m   83.56 kB[22m[1m[22m[2m │ gzip:    31.32 kB[22m
+[2mdist/[22m[36mapp/js/ku.BAY2vQUO.js                                              [39m[1m[2m   83.58 kB[22m[1m[22m[2m │ gzip:    31.82 kB[22m
+[2mdist/[22m[36mapp/js/tk.bIjZuJT4.js                                              [39m[1m[2m   83.61 kB[22m[1m[22m[2m │ gzip:    31.43 kB[22m
+[2mdist/[22m[36mapp/js/gl.DX3YaCxn.js                                              [39m[1m[2m   83.69 kB[22m[1m[22m[2m │ gzip:    30.82 kB[22m
+[2mdist/[22m[36mapp/js/pl.BM6ygL4g.js                                              [39m[1m[2m   83.78 kB[22m[1m[22m[2m │ gzip:    32.44 kB[22m
+[2mdist/[22m[36mapp/js/sk.DU1WS7ua.js                                              [39m[1m[2m   83.89 kB[22m[1m[22m[2m │ gzip:    32.64 kB[22m
+[2mdist/[22m[36mapp/js/co.CU4RoWYu.js                                              [39m[1m[2m   83.98 kB[22m[1m[22m[2m │ gzip:    30.93 kB[22m
+[2mdist/[22m[36mapp/js/mt.BDl4bB1f.js                                              [39m[1m[2m   84.02 kB[22m[1m[22m[2m │ gzip:    31.78 kB[22m
+[2mdist/[22m[36mapp/js/pt.DCaNXUIS.js                                              [39m[1m[2m   84.04 kB[22m[1m[22m[2m │ gzip:    31.06 kB[22m
+[2mdist/[22m[36mapp/js/ko.CrLy9hDH.js                                              [39m[1m[2m   84.05 kB[22m[1m[22m[2m │ gzip:    32.18 kB[22m
+[2mdist/[22m[36mapp/js/st.CU48ZOjK.js                                              [39m[1m[2m   84.24 kB[22m[1m[22m[2m │ gzip:    30.69 kB[22m
+[2mdist/[22m[36mapp/js/so.DYTDVX9h.js                                              [39m[1m[2m   84.33 kB[22m[1m[22m[2m │ gzip:    31.54 kB[22m
+[2mdist/[22m[36mapp/js/it.DUhgJbfL.js                                              [39m[1m[2m   84.40 kB[22m[1m[22m[2m │ gzip:    30.85 kB[22m
+[2mdist/[22m[36mapp/js/ca.6fb4xXRp.js                                              [39m[1m[2m   84.63 kB[22m[1m[22m[2m │ gzip:    31.23 kB[22m
+[2mdist/[22m[36mapp/js/ig.CBnrd2OO.js                                              [39m[1m[2m   84.81 kB[22m[1m[22m[2m │ gzip:    29.87 kB[22m
+[2mdist/[22m[36mapp/js/zu.Bzl7xdFS.js                                              [39m[1m[2m   84.83 kB[22m[1m[22m[2m │ gzip:    31.28 kB[22m
+[2mdist/[22m[36mapp/js/ro.BWTp-F_6.js                                              [39m[1m[2m   84.87 kB[22m[1m[22m[2m │ gzip:    31.81 kB[22m
+[2mdist/[22m[36mapp/js/sq.BchoDsxI.js                                              [39m[1m[2m   85.12 kB[22m[1m[22m[2m │ gzip:    31.82 kB[22m
+[2mdist/[22m[36mapp/js/lv.CeFdbH_R.js                                              [39m[1m[2m   85.16 kB[22m[1m[22m[2m │ gzip:    32.04 kB[22m
+[2mdist/[22m[36mapp/js/uz.BhGP0Rdk.js                                              [39m[1m[2m   85.21 kB[22m[1m[22m[2m │ gzip:    31.30 kB[22m
+[2mdist/[22m[36mapp/js/lt.C230TR_l.js                                              [39m[1m[2m   85.58 kB[22m[1m[22m[2m │ gzip:    32.25 kB[22m
+[2mdist/[22m[36mapp/js/de.BHGA_I2M.js                                              [39m[1m[2m   85.59 kB[22m[1m[22m[2m │ gzip:    31.41 kB[22m
+[2mdist/[22m[36mapp/js/az.DKPrCkK5.js                                              [39m[1m[2m   86.24 kB[22m[1m[22m[2m │ gzip:    31.98 kB[22m
+[2mdist/[22m[36mapp/js/mg.DgE-4AW9.js                                              [39m[1m[2m   86.33 kB[22m[1m[22m[2m │ gzip:    31.02 kB[22m
+[2mdist/[22m[36mapp/js/ga.BrfgcIuX.js                                              [39m[1m[2m   86.44 kB[22m[1m[22m[2m │ gzip:    32.01 kB[22m
+[2mdist/[22m[36mapp/js/hu.Row2ujAu.js                                              [39m[1m[2m   86.63 kB[22m[1m[22m[2m │ gzip:    32.87 kB[22m
+[2mdist/[22m[36mapp/js/jquery.B8MZM-6x.js                                          [39m[1m[2m   87.63 kB[22m[1m[22m[2m │ gzip:    31.43 kB[22m
+[2mdist/[22m[36mapp/js/fr.CmPxvCRt.js                                              [39m[1m[2m   87.64 kB[22m[1m[22m[2m │ gzip:    31.84 kB[22m
+[2mdist/[22m[36mapp/js/lang-ar.Bb3oFHUI.js                                         [39m[1m[2m   90.23 kB[22m[1m[22m[2m │ gzip:    20.63 kB[22m
+[2mdist/[22m[36mapp/js/ja.DOFSWa5r.js                                              [39m[1m[2m   93.20 kB[22m[1m[22m[2m │ gzip:    33.62 kB[22m
+[2mdist/[22m[36mapp/js/UMapView.C9WFMNzD.js                                        [39m[1m[2m   95.26 kB[22m[1m[22m[2m │ gzip:    28.98 kB[22m
+[2mdist/[22m[36mapp/js/he.DRSDbkgp.js                                              [39m[1m[2m   95.44 kB[22m[1m[22m[2m │ gzip:    33.07 kB[22m
+[2mdist/[22m[36mapp/js/vi.4saAigox.js                                              [39m[1m[2m   95.98 kB[22m[1m[22m[2m │ gzip:    32.89 kB[22m
+[2mdist/[22m[36mapp/js/vuedraggable.umd.DdO_luMU.js                                [39m[1m[2m   97.93 kB[22m[1m[22m[2m │ gzip:    34.39 kB[22m
+[2mdist/[22m[36mapp/js/leader-line.min.Cn6jisv6.js                                 [39m[1m[2m  100.18 kB[22m[1m[22m[2m │ gzip:    29.91 kB[22m
+[2mdist/[22m[36mapp/js/UPaymentCard.T6vGht1p.js                                    [39m[1m[2m  100.85 kB[22m[1m[22m[2m │ gzip:    43.00 kB[22m
+[2mdist/[22m[36mapp/js/ar.Ds54dauA.js                                              [39m[1m[2m  100.95 kB[22m[1m[22m[2m │ gzip:    33.71 kB[22m
+[2mdist/[22m[36mapp/js/vue-filepond.esm.2ghbP7EC.js                                [39m[1m[2m  104.02 kB[22m[1m[22m[2m │ gzip:    34.25 kB[22m
+[2mdist/[22m[36mapp/js/ps.CLyqZ26H.js                                              [39m[1m[2m  104.18 kB[22m[1m[22m[2m │ gzip:    34.18 kB[22m
+[2mdist/[22m[36mapp/js/am.DbT8Uota.js                                              [39m[1m[2m  106.33 kB[22m[1m[22m[2m │ gzip:    34.91 kB[22m
+[2mdist/[22m[36mapp/js/SStorefrontMasterPaymentDialog.jMn7oIUH.js                  [39m[1m[2m  107.34 kB[22m[1m[22m[2m │ gzip:    36.62 kB[22m
+[2mdist/[22m[36mapp/js/ur.DDXYsBJr.js                                              [39m[1m[2m  109.43 kB[22m[1m[22m[2m │ gzip:    34.44 kB[22m
+[2mdist/[22m[36mapp/js/tt.gDbBz_Db.js                                              [39m[1m[2m  111.28 kB[22m[1m[22m[2m │ gzip:    34.92 kB[22m
+[2mdist/[22m[36mapp/js/sr.BWkpEFN3.js                                              [39m[1m[2m  112.23 kB[22m[1m[22m[2m │ gzip:    36.01 kB[22m
+[2mdist/[22m[36mapp/js/ug.C4Gt_d7c.js                                              [39m[1m[2m  114.04 kB[22m[1m[22m[2m │ gzip:    34.38 kB[22m
+[2mdist/[22m[36mapp/js/kk.B9a20A-u.js                                              [39m[1m[2m  114.09 kB[22m[1m[22m[2m │ gzip:    35.30 kB[22m
+[2mdist/[22m[36mapp/js/ky.DvILXMMd.js                                              [39m[1m[2m  115.05 kB[22m[1m[22m[2m │ gzip:    35.81 kB[22m
+[2mdist/[22m[36mapp/js/be.D94DgI2E.js                                              [39m[1m[2m  115.97 kB[22m[1m[22m[2m │ gzip:    36.84 kB[22m
+[2mdist/[22m[36mapp/js/yi.DcFlwZDn.js                                              [39m[1m[2m  116.01 kB[22m[1m[22m[2m │ gzip:    34.90 kB[22m
+[2mdist/[22m[36mapp/js/uk.BJUYoJF1.js                                              [39m[1m[2m  116.96 kB[22m[1m[22m[2m │ gzip:    36.78 kB[22m
+[2mdist/[22m[36mapp/js/mn.BPf6GYdH.js                                              [39m[1m[2m  117.31 kB[22m[1m[22m[2m │ gzip:    35.17 kB[22m
+[2mdist/[22m[36mapp/js/tg.BYwSPEDC.js                                              [39m[1m[2m  118.32 kB[22m[1m[22m[2m │ gzip:    35.74 kB[22m
+[2mdist/[22m[36mapp/js/mk.D2_f8aMv.js                                              [39m[1m[2m  118.69 kB[22m[1m[22m[2m │ gzip:    36.10 kB[22m
+[2mdist/[22m[36mapp/js/bg.xuuV9lgq.js                                              [39m[1m[2m  119.33 kB[22m[1m[22m[2m │ gzip:    36.38 kB[22m
+[2mdist/[22m[36mapp/js/hy.CtMpv8fO.js                                              [39m[1m[2m  119.43 kB[22m[1m[22m[2m │ gzip:    36.16 kB[22m
+[2mdist/[22m[36mapp/js/ru.KHVGmfRK.js                                              [39m[1m[2m  121.18 kB[22m[1m[22m[2m │ gzip:    37.61 kB[22m
+[2mdist/[22m[36mapp/js/es.hpZilAs0.js                                              [39m[1m[2m  122.41 kB[22m[1m[22m[2m │ gzip:    46.42 kB[22m
+[2mdist/[22m[36mapp/js/el.CNJPqNvZ.js                                              [39m[1m[2m  125.35 kB[22m[1m[22m[2m │ gzip:    38.64 kB[22m
+[2mdist/[22m[36mapp/js/gu.BGzeWMF8.js                                              [39m[1m[2m  137.12 kB[22m[1m[22m[2m │ gzip:    36.43 kB[22m
+[2mdist/[22m[36mapp/js/mr.RjzbpOjB.js                                              [39m[1m[2m  138.76 kB[22m[1m[22m[2m │ gzip:    36.73 kB[22m
+[2mdist/[22m[36mapp/js/th.CGwCvtRp.js                                              [39m[1m[2m  139.61 kB[22m[1m[22m[2m │ gzip:    35.45 kB[22m
+[2mdist/[22m[36mapp/js/pa.BDQB58Tj.js                                              [39m[1m[2m  140.20 kB[22m[1m[22m[2m │ gzip:    36.68 kB[22m
+[2mdist/[22m[36mapp/js/hi.DgzKIXMn.js                                              [39m[1m[2m  141.54 kB[22m[1m[22m[2m │ gzip:    37.26 kB[22m
+[2mdist/[22m[36mapp/js/lo.BgFKae6X.js                                              [39m[1m[2m  141.79 kB[22m[1m[22m[2m │ gzip:    36.37 kB[22m
+[2mdist/[22m[36mapp/js/UMapCountriesSingle.C0hmGoUT.js                             [39m[1m[2m  142.74 kB[22m[1m[22m[2m │ gzip:    56.48 kB[22m
+[2mdist/[22m[36mapp/js/si.DfwHZgEF.js                                              [39m[1m[2m  142.92 kB[22m[1m[22m[2m │ gzip:    37.07 kB[22m
+[2mdist/[22m[36mapp/js/UTelInput.CzB3R_ta.js                                       [39m[1m[2m  144.88 kB[22m[1m[22m[2m │ gzip:    39.13 kB[22m
+[2mdist/[22m[36mapp/js/bn.tYoNAxPn.js                                              [39m[1m[2m  147.62 kB[22m[1m[22m[2m │ gzip:    36.86 kB[22m
+[2mdist/[22m[36mapp/js/SProductOverview.LzdurxaE.js                                [39m[1m[2m  147.75 kB[22m[1m[22m[2m │ gzip:    47.25 kB[22m
+[2mdist/[22m[36mapp/js/ne.B0qOE8gq.js                                              [39m[1m[2m  149.59 kB[22m[1m[22m[2m │ gzip:    36.66 kB[22m
+[2mdist/[22m[36mapp/js/or.oLU9TmAQ.js                                              [39m[1m[2m  150.05 kB[22m[1m[22m[2m │ gzip:    37.07 kB[22m
+[2mdist/[22m[36mapp/js/km.DyeVWXRD.js                                              [39m[1m[2m  151.60 kB[22m[1m[22m[2m │ gzip:    36.92 kB[22m
+[2mdist/[22m[36mapp/js/kn.Bb5cFu56.js                                              [39m[1m[2m  152.94 kB[22m[1m[22m[2m │ gzip:    37.49 kB[22m
+[2mdist/[22m[36mapp/js/te.DtP5-xmV.js                                              [39m[1m[2m  155.19 kB[22m[1m[22m[2m │ gzip:    38.18 kB[22m
+[2mdist/[22m[36mapp/js/ka.DLxglEy1.js                                              [39m[1m[2m  155.44 kB[22m[1m[22m[2m │ gzip:    37.54 kB[22m
+[2mdist/[22m[36mapp/js/ml.C5Rhmnxy.js                                              [39m[1m[2m  165.21 kB[22m[1m[22m[2m │ gzip:    39.06 kB[22m
+[2mdist/[22m[36mapp/js/ta.Da-ekyjU.js                                              [39m[1m[2m  166.38 kB[22m[1m[22m[2m │ gzip:    37.52 kB[22m
+[2mdist/[22m[36mapp/js/my.DH0Wv23y.js                                              [39m[1m[2m  172.57 kB[22m[1m[22m[2m │ gzip:    38.61 kB[22m
+[2mdist/[22m[36mapp/js/fa.0eWA6Jxc.js                                              [39m[1m[2m  198.74 kB[22m[1m[22m[2m │ gzip:    61.97 kB[22m
+[2mdist/[22m[36mapp/js/CPostEditor.Dc2yMdqJ.js                                     [39m[1m[2m  218.44 kB[22m[1m[22m[2m │ gzip:    64.08 kB[22m
+[2mdist/[22m[36mapp/js/SArticleEditor.nJw--7ck.js                                  [39m[1m[2m  388.63 kB[22m[1m[22m[2m │ gzip:   107.21 kB[22m
+[2mdist/[22m[36mapp/js/UScanner.PSoH2Y4J.js                                        [39m[1m[2m  391.19 kB[22m[1m[22m[2m │ gzip:   103.44 kB[22m
+[2mdist/[22m[36mapp/js/vue3-apexcharts.1mwvA5Vb.js                                 [39m[1m[33m  626.26 kB[39m[22m[2m │ gzip:   174.04 kB[22m
+[2mdist/[22m[36mapp/js/apexcharts.ssr.esm.Czytgmec.js                              [39m[1m[33m  626.31 kB[39m[22m[2m │ gzip:   173.86 kB[22m
+[2mdist/[22m[36mapp/js/MapBox.d8JGrZRl.js                                          [39m[1m[33m1,680.63 kB[39m[22m[2m │ gzip:   463.61 kB[22m
+[2mdist/[22m[36mapp/js/core.welvFV-s.js                                            [39m[1m[33m3,513.42 kB[39m[22m[2m │ gzip: 1,050.37 kB[22m
+[33m
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 1m 33s[39m
+Inline SVG data URIs found: 345, flattened: 337
+java-mime:0 shop.js-imports:0 files:354 (keep under ~360)
+INFO: Build directory: D:\Kalio Sample Shop Claude\mikio-layout\dist (354 files)
+INFO: Manifest target: mikio-ticker-patisserie@1.0.0
+WARNING: Version uniqueness cannot be verified offline.
+PASS: Selldone storefront Layout artifact is valid.
+INFO: ZIP archive: D:\Kalio Sample Shop Claude\mikio-layout\dist.zip.68xgrywe.tmp (357 members, 9125102 bytes)
+PASS: Selldone storefront Layout artifact is valid.
+CREATED: D:\Kalio Sample Shop Claude\mikio-layout\dist.zip (9125102 bytes)
+zip matches dist
+▶  Checking 2FA status...
+✅  2FA is enabled.
+account: ee.shirdel@gmail.com
+▶  Checking layout version [1.0.0] in the manifest...
+❎  Version is valid!
+package mikio-ticker-patisserie @ 1.0.0
+manifest mode: safe-json
+response after 18.4s: HTTP 200
+  content-type: application/json
+  transfer-encoding: chunked
+  cf-ray: a5a112bad89511f4-CDG
+  server: cloudflare
+HTTP 200
+UPLOAD ACCEPTED: Layout uploaded successfully!
+deploy: {"layout_id":37,"id":636,"version":"1.0.0"}
+panel: https://selldone.com/developer/layouts/37
+Set LAYOUT_ID to check the upload on the server (wiki: Build and Upload).
