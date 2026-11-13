@@ -25,3 +25,4 @@ yarn-error.log*
 /check-logs*/
 check-logs*.txt
 build.log
+release-*.log

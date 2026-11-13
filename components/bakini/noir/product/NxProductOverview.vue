@@ -382,20 +382,23 @@ export default {
 
   mounted() {
     this.centerSib();
-    if (typeof IntersectionObserver !== "undefined" && this.$refs.add) {
-      this.io = new IntersectionObserver(
-        (entries) => {
-          const e = entries[entries.length - 1];
-          this.barOn = !!e && !e.isIntersecting && e.boundingClientRect.bottom < 0;
-        },
-        { threshold: 0 },
-      );
-      this.io.observe(this.$refs.add);
-    }
+    /* the phone's buy bar: on once the Add box has scrolled up out of view, off again as soon as it is
+       back or below; read on every scroll (an IntersectionObserver misses a jump straight to the top) */
+    this.onScroll = () => {
+      if (this.barTick) return;
+      this.barTick = true;
+      requestAnimationFrame(() => {
+        this.barTick = false;
+        const add = this.$refs.add;
+        this.barOn = !!add && add.getBoundingClientRect().bottom < 0;
+      });
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    this.onScroll();
   },
 
   beforeUnmount() {
-    this.io?.disconnect();
+    window.removeEventListener("scroll", this.onScroll);
     clearTimeout(this.copyTimer);
   },
 

@@ -3,7 +3,7 @@
   "deploy_path": "",
   "package": "mikio-ticker-patisserie",
   "name": "Mikio Ticker Patisserie",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "storefront": true,
   "backoffice": false,
   "description": "A single bakery dressed like a busy cake counter: a black announcement bar, a centred caps wordmark with a nav row and a photo Shop menu, a moving ticker of the shop's real facts, a two-photo slider of the best-selling collections, cream-tile cards with Add to bag, rails, delivery photo tiles, an icon band, journal features and a black footer; collection pages with a two-photo hero, filters in a side panel and delivery questions; a product page with a gallery, the collection's other pieces as tiles and rows that open; bag drawer, checkout, order and account in the same caps-and-cream dress, light first with a dark mode."

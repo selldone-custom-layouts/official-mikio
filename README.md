@@ -73,6 +73,22 @@ Everything is read live from the shop: its title (drawn as the wordmark), collec
 Every check runs one browser at a time against the live shop, at 1440px and 390px, dark and light, a custom yellow brand colour and Arabic (right to left). Each is delivered at **TOTAL 0**.
 
 <!-- TESTS:START -->
+Live shop **mikio.selldone.shop**, 13–14 November 2026 (`bash scripts/run-checks.sh https://mikio.selldone.shop <logs>`): every check on 1.0.0, then the ones that had findings again on 1.0.1, where they are 0.
+
+| Check | What it looks for | Where | TOTAL |
+| --- | --- | --- | --- |
+| Ring sweep (dark, light, Arabic) | every selection ring and edge drawn inside its box | 16 pages (home, collection, Shop all, search, two products, compare, journal, About, Terms, Privacy, Contact, FAQ, 404, bag, account), 8 in Arabic | **0** |
+| Card edge (kit, dark, light) | no card's content touching its edge | home, collection, search, Shop all, journal, About, FAQ, Contact | **0** |
+| Corner clear | the quick-look eye on a card never on or touching words | 8 pages, 390 to 1920px | **0** |
+| Circle fit (long prices, Arabic) | the words in any circle stay inside it | home, Shop all | **0** |
+| Contrast (dark, light, yellow brand, Arabic) | every word at 4.5:1 or better on what is really behind it | 16 pages, 8 for yellow and Arabic | **0** |
+| Contrast with layers open | the bag drawer or the menu panel open, the sign-in sheet open | home | **0** |
+| Bag audit (dark, light) | the drawer, the bag page and the address sheet | 1440 and 390 | **0** |
+| Currency | every price, filter and total follows the picked currency at once | home, collection, product, Shop all, drawer, menus | **0** |
+| Box check (dark, light, Arabic) | no photo over words, icon rows aligned | every page and open state | **0** |
+| Underline (dark, light) | no line under any word or icon, at rest or on hover | 8 pages | **0** |
+
+On 1.0.0 two causes had findings, both fixed in 1.0.1: the footer's Theme row and Selldone's legal-row link kept the page's dark words on the black footer in light mode, and About's address block shared a class name with the header's "Visit us" button, so its map covered the page. The mockups (every page at 1440, 1100, 768, 390 and 360, light and dark, with their menus, panels and sheets open) were checked the same way before the build.
 <!-- TESTS:END -->
 
 ## Languages
