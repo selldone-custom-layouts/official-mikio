@@ -1,5 +1,6 @@
 <!--
-  Bakini Noir — the bag drawer (b/core.js drawerHTML(), renderDrawer(),
+  Mikio Ticker — the bag drawer: Mikio's side panel (m/core.css .panel) with
+  Bakini Noir's inside (b/core.js drawerHTML(), renderDrawer(),
   bagRow()): "Your bag" from the right; a row per line (the photo on its
   plate, the name, the price with was and the saving, the line total and
   − n +); "Often added" (best sellers from collections not in the bag); the
@@ -9,10 +10,10 @@
   through kalio-basket's queue), its amounts in the visitor's currency.
 -->
 <template>
-  <aside id="drawer" :aria-label="t('bakini.n.bag.title', 'Your bag')" :class="['drawer', { open }]" aria-modal="true" role="dialog">
-    <div class="drawer-hd">
-      <h2>{{ t("bakini.n.bag.title", "Your bag") }}</h2>
-      <button :aria-label="t('bakini.n.bag.close', 'Close bag')" class="iconbtn" type="button" @click="close"><nx-icon name="close" /></button>
+  <aside id="drawer" :aria-label="t('bakini.n.bag.title', 'Your bag')" :class="['panel', 'drawer', { open }]" aria-modal="true" role="dialog">
+    <div class="pn-hd">
+      <h2 class="pn-t">{{ t("bakini.n.bag.title", "Your bag") }}</h2>
+      <button :aria-label="t('bakini.n.bag.close', 'Close bag')" class="ibtn x" type="button" @click="close"><nx-icon name="close" /></button>
     </div>
     <div class="drawer-body">
       <template v-if="lines.length">
@@ -72,7 +73,7 @@
       </div>
       <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; flex-wrap: wrap">
         <router-link :to="bagTo" class="link" @click="close">{{ t("bakini.n.bag.view", "View bag") }}</router-link>
-        <router-link :to="checkoutTo" class="btn lg" @click="close">{{ t("bakini.n.bag.checkout", "Checkout") }}<nx-icon name="arrow" /></router-link>
+        <router-link :to="checkoutTo" class="btn" @click="close">{{ t("bakini.n.bag.checkout", "Checkout") }}<nx-icon name="arrow" /></router-link>
       </div>
     </div>
   </aside>

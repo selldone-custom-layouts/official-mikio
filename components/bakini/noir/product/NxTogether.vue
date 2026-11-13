@@ -1,18 +1,17 @@
 <!--
-  Bakini Noir — "Buy together" on the product page (b/pages-product.js bt2):
+  Mikio Ticker — "Goes well with" (buy together) on the product page (Noir's bt2):
   this pastry with the best seller of the two best-selling other
   collections, each a tick box (all ticked), the live total with the struck
   full price and the saving, and one button that puts the ticked pieces in
   the bag (kalio-basket's queue; the button itself says it worked).
 -->
 <template>
-  <section v-if="items.length > 1" class="sec tight">
+  <section v-if="items.length > 1" class="pd-bt">
     <div class="wrap">
       <div class="bt2">
         <div class="bt2-hd">
-          <p class="eyebrow">{{ t("bakini.n.pd.togetherEyebrow", "Buy together") }}</p>
-          <h2 class="serif">{{ t("bakini.n.pd.togetherH", "Complete the") }}{{ " " }}<em>{{ t("bakini.n.pd.togetherHem", "plate.") }}</em></h2>
-          <p class="muted">{{ lede }}</p>
+          <h2 class="h2">{{ t("mikio.pd.togetherH", "Goes well with") }}</h2>
+          <p class="lead">{{ lede }}</p>
         </div>
         <div class="bt2-items">
           <template v-for="(x, i) in items" :key="x.p.id">

@@ -1,10 +1,10 @@
 {
   "deploy_server": "https://layouts.selldone.com",
   "deploy_path": "",
-  "package": "bakini-noir-patisserie",
-  "name": "Bakini Noir Patisserie",
-  "version": "1.0.5",
+  "package": "mikio-ticker-patisserie",
+  "name": "Mikio Ticker Patisserie",
+  "version": "1.0.0",
   "storefront": true,
   "backoffice": false,
-  "description": "A dark pastry theatre for a single bakery: a slim glass header, a carousel of the collections in arched windows, the collections as a side-scrolling lineup of tall dark cards, a bento of the shop's real facts (counter hours, delivery windows, pickup, shipping, cash on delivery), selection rows, a compare strip, deals and the journal; real spec filters, a product page with a sticky buy column and Buy together, a bag drawer, glass checkout cards, a desk account, and an ivory light mode."
+  "description": "A single bakery dressed like a busy cake counter: a black announcement bar, a centred caps wordmark with a nav row and a photo Shop menu, a moving ticker of the shop's real facts, a two-photo slider of the best-selling collections, cream-tile cards with Add to bag, rails, delivery photo tiles, an icon band, journal features and a black footer; collection pages with a two-photo hero, filters in a side panel and delivery questions; a product page with a gallery, the collection's other pieces as tiles and rows that open; bag drawer, checkout, order and account in the same caps-and-cream dress, light first with a dark mode."
 }

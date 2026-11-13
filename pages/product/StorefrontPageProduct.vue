@@ -14,14 +14,14 @@
 
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <!--
-    Bakini Noir — the product page (bakio-design/product-b.html,
-    b/pages-product.js): the breadcrumb (Home › collection › product); the
-    gallery and the sticky buy column (NxProductOverview); "Why you'll love
-    it" (the product's own pros, numbered); the product's own description
-    when it has one; "Product information" (the spec in the shop's groups,
-    the SKU); "Buy together" (this and the best seller of two other
-    collections); the reviews (an honest empty state with the rating
-    criteria until there is one); "More <collection>" (never this product).
+    Mikio Ticker — the product page (mikio-design/product-a.html,
+    nx/pages-product.js), like milkbarstore.com's: the breadcrumb
+    (Home / collection / product); the gallery and the buy column with the
+    collection's other pieces, the delivery lines and the rows that open
+    (NxProductOverview); the product's own description when it has one;
+    "Goes well with" (this and the best seller of two other collections);
+    the reviews (an honest empty state with the rating criteria until there
+    is one); "More <collection>" (never this product); more collections.
     Selldone's own sections for other kinds of product (offers, includes,
     files, membership, a product landing page) follow when the product has
     them.
@@ -32,11 +32,11 @@
       <nav :aria-label="t('bakini.n.pd.crumbs', 'Breadcrumb')" class="crumbs">
         <router-link :to="{ path: '/' }">{{ t("bakini.n.pd.home", "Home") }}</router-link>
         <template v-if="cat">
-          <nx-icon name="right" />
+          <span aria-hidden="true" class="sep">/</span>
           <router-link :to="catTo(cat)"><bdi>{{ catTitle(cat) }}</bdi></router-link>
         </template>
         <template v-if="product">
-          <nx-icon name="right" />
+          <span aria-hidden="true" class="sep">/</span>
           <span aria-current="page"><bdi>{{ product.title }}</bdi></span>
         </template>
         <span class="nx-pd-admin"><s-product-admin-button v-if="$vuetify.display.mdAndUp"></s-product-admin-button></span>
@@ -44,71 +44,19 @@
     </div>
 
     <nx-product-overview v-if="product" :key="product.id" can-buy show-cover />
-    <section v-else aria-hidden="true" class="wrap pd nx-pd-skel">
-      <div class="pd-gal">
-        <div class="pd-stage"><div class="pd-ph"></div></div>
-      </div>
-      <div class="pd-buy">
-        <div class="pd-buy-in"><i class="-a"></i><i class="-b"></i><i class="-c"></i><i class="-d"></i><i class="-e"></i></div>
-      </div>
+    <section v-else aria-hidden="true" class="wrap pd2 nx-pd-skel">
+      <div class="pd2-gal"><div class="pd2-main"></div></div>
+      <div class="pd2-buy"><i class="-a"></i><i class="-b"></i><i class="-c"></i><i class="-d"></i><i class="-e"></i></div>
     </section>
 
     <template v-if="product">
-      <!-- Why you'll love it -->
-      <section v-if="pros.length" class="sec">
-        <div class="wrap">
-          <div class="sec-hd">
-            <div>
-              <p class="eyebrow">{{ t("bakini.n.pd.prosEyebrow", "Why you’ll love it") }}</p>
-              <h2>
-                {{ numberWord(pros.length) }}{{ " " }}<em>{{ pros.length === 1 ? t("bakini.n.pd.prosHemOne", "good reason.") : t("bakini.n.pd.prosHem", "good reasons.") }}</em>
-              </h2>
-            </div>
-          </div>
-          <div class="pros">
-            <div v-for="(x, i) in pros" :key="i" class="pro">
-              <span class="pro-n serif">{{ String(i + 1).padStart(2, "0") }}</span>
-              <h3>{{ x[0] }}</h3>
-              <p>{{ x[1] }}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- The product's own description -->
       <section v-if="articleBody" class="sec tight">
         <div class="wrap">
           <div class="sec-hd">
-            <div>
-              <p class="eyebrow">{{ t("bakini.n.pd.storyEyebrow", "The story") }}</p>
-              <h2>{{ t("bakini.n.pd.storyH", "About this") }}{{ " " }}<em>{{ unit }}.</em></h2>
-            </div>
+            <h2 class="h2">{{ t("mikio.pd.aboutThis", "About this {unit}", { unit }) }}</h2>
           </div>
           <div class="nx-pd-article" v-html="articleBody"></div>
-        </div>
-      </section>
-
-      <!-- The details -->
-      <section v-if="groups.length || product.sku" class="sec tight">
-        <div class="wrap">
-          <div class="sec-hd">
-            <div>
-              <p class="eyebrow">{{ t("bakini.n.pd.detailsEyebrow", "The details") }}</p>
-              <h2>{{ t("bakini.n.pd.detailsH", "Product") }}{{ " " }}<em>{{ t("bakini.n.pd.detailsHem", "information.") }}</em></h2>
-            </div>
-          </div>
-          <div class="spec">
-            <div v-for="g in groups" :key="g.group" class="spec-g">
-              <h3 v-if="g.group">{{ g.group }}</h3>
-              <dl>
-                <div v-for="r in g.rows" :key="r[0]">
-                  <dt>{{ r[0] }}</dt>
-                  <dd>{{ r[1] }}</dd>
-                </div>
-              </dl>
-            </div>
-            <p v-if="product.sku" class="spec-sku muted">{{ t("bakini.n.pd.sku", "SKU {sku}", { sku: product.sku }) }}</p>
-          </div>
         </div>
       </section>
 
@@ -125,13 +73,14 @@
 
       <nx-row
         v-if="more.length"
-        :accent="catTitle(cat).toLowerCase() + '.'"
-        :eyebrow="t('bakini.n.pd.moreEyebrow', 'From the same case')"
+        id="pd-more"
         :items="more"
-        :more-label="t('bakini.n.pd.moreAll', 'All {name}', { name: catTitle(cat).toLowerCase() })"
+        :more-label="t('mikio.pd.shopAllOf', 'Shop all {name}', { name: catTitle(cat).toLowerCase() })"
         :more-to="catTo(cat)"
-        :title="t('bakini.n.pd.moreH', 'More')"
+        :sub="t('mikio.pd.moreSub', 'The rest of the collection, best sellers first.')"
+        :title="t('mikio.pd.moreOf', 'More {name}', { name: catTitle(cat).toLowerCase() })"
       />
+      <mk-bands :except="cat ? cat.id : null" more />
     </template>
   </div>
 </template>
@@ -140,6 +89,7 @@
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 import NxIcon from "../../components/bakini/noir/NxIcon.vue";
 import NxRow from "../../components/bakini/noir/NxRow.vue";
+import MkBands from "../../components/mikio/MkBands.vue";
 import NxProductOverview from "../../components/bakini/noir/product/NxProductOverview.vue";
 import NxTogether from "../../components/bakini/noir/product/NxTogether.vue";
 import NxReviews from "../../components/bakini/noir/product/NxReviews.vue";
@@ -169,6 +119,7 @@ export default {
     NxIcon,
     NxRow,
     NxProductOverview,
+    MkBands,
     NxTogether,
     NxReviews,
     SProductLanding,

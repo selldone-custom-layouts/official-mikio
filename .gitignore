@@ -19,3 +19,9 @@ yarn-error.log*
 /Backend/bootstrap/cache/
 /dist.zip
 /modules/
+
+# Mikio: local looks, check logs and build output
+/shots-dev/
+/check-logs*/
+check-logs*.txt
+build.log

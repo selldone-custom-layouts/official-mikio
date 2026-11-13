@@ -22,9 +22,9 @@
 import type { ThemeSettings } from "../theme-switcher/theme-switcher";
 
 export const THEME_SETTINGS: ThemeSettings = {
-  palette: "caramel",
+  palette: "cherry",
   // brandColor: "#F5C400",
-  mode: "dark",
+  mode: "light",
   themeSwitcher: "showcase",
   textOnBrand: "auto",
 };

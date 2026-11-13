@@ -1,27 +1,21 @@
 /*
- * Bakini Noir — the theme switcher's config (the footer's Theme row: the
+ * Mikio Ticker — the theme switcher's config (the footer's Theme row: the
  * owner's rules: colour palettes, a custom colour and Light / Dark, a click
  * changes the whole site; the same shared package in every Layout,
  * components/theme-switcher/).
  *
- * Noir is dark first, like Valero: the designed default is the dark stage
- * (bakini-theme.settings.ts says mode "dark"), so on every shop the switcher
- * paints html.bk-dark before the first paint, also where the switcher itself
- * is hidden (its fixedTheme). Light is the refined ivory version. Both sets
- * of grounds, lines and words are in style/bakini-theme.scss (:root = ivory,
- * html.bk-dark = Noir); this config writes only the palette's action colour
- * (--bk-act*) and Vuetify's theme.
+ * Mikio is light first (white pages, black bars, cream tiles); Dark is the
+ * warm-black version. Both sets of grounds, lines and words come from the
+ * mockup (style/mikio/tokens.css, generated from mikio-design/m/a.css and
+ * nx/alias.css); this config writes only the palette's action colour
+ * (--bk-act*, and --bk-act-dk, the light variant the black bars use in both
+ * modes) and Vuetify's theme.
  *
- * The palettes are the mockup's (bakio-design/b/core.js PRESETS): Caramel
- * (the brand), Cassis, Pistachio, Sapphire and Gold-safe, each built by
- * paletteFromColor() with Noir's surfaces (the same function the Custom
- * swatch uses; Caramel's result equals the mockup's hand-set values).
- *
- * Contrast (WCAG 2.1, measured 12 November 2026 with paletteFromColor and
- * the surfaces below). White on each light primary: Caramel #a0522d 5.62,
- * Cassis 7.81, Pistachio 5.47, Sapphire 6.16, Gold-safe 5.53. White on each
- * dark primary 5.19 or more, each 3.2:1 or more against the dark card
- * #1c1419; each dark "text" colour on the raised surface #261b22 7.15 or more.
+ * The palettes are the mockup's (mikio-design/m/home.js PRESETS): Cherry (the
+ * brand), Caramel, Pistachio, Blueberry and Licorice, each built by
+ * paletteFromColor() with Mikio's surfaces (the same function the Custom
+ * swatch uses). White words on every light primary 4.5:1 or more; every dark
+ * text colour 4.5:1 or more on the dark card.
  */
 import type { ThemeSwitcherConfig } from "../theme-switcher/theme-switcher";
 import { THEME_SETTINGS } from "./bakini-theme.settings";
@@ -47,45 +41,45 @@ export const BAKINI_THEME: ThemeSwitcherConfig = {
      own shop must not see the switcher. With themeSwitcher "showcase" it
      shows only on these shops (window.shop.id, else <meta name="shop-name">). */
   showcaseShops: [
-    { id: 15740, name: "bakio" }, // Bakio: Bakini Noir
+    { id: 15740, name: "bakio" }, // Bakio: Mikio Ticker (and Bakini Noir)
     { id: 15549, name: "digini-hzgablru" }, // Digini: Digito, Besti, Argon, Senso, Medio
     { id: 15645, name: "molino" }, // Molino: Molino, Tario, Walio, Dino, Valero
   ],
 
-  storageKey: "bakini-theme",
+  storageKey: "mikio-theme",
   darkClass: "bk-dark",
-  defaultMode: "dark",
+  defaultMode: "light",
 
   palettes: [
     pal(
-      "caramel",
-      () => t("bakini.palette.caramel", "Caramel"),
-      { primary: "#a0522d", deep: "#893e17", soft: "#ffece3", onPrimary: "#ffffff", text: "#a0522d" },
-      { primary: "#a0522d", deep: "#90431d", soft: "#4a200c", onPrimary: "#ffffff", text: "#ea9570" },
+      "cherry",
+      () => t("mikio.palette.cherry", "Cherry"),
+      { primary: "#b3261e", deep: "#9a0003", soft: "#ffebe8", onPrimary: "#ffffff", text: "#b3261e" },
+      { primary: "#c73b30", deep: "#b52920", soft: "#4b1e19", onPrimary: "#ffffff", text: "#ff9082" },
     ),
     pal(
-      "cassis",
-      () => t("bakini.palette.cassis", "Cassis"),
-      { primary: "#8e2f55", deep: "#771842", soft: "#ffeaf0", onPrimary: "#ffffff", text: "#8e2f55" },
-      { primary: "#ad4b70", deep: "#9c3c61", soft: "#491d2d", onPrimary: "#ffffff", text: "#f48aae" },
+      "caramel",
+      () => t("mikio.palette.caramel", "Caramel"),
+      { primary: "#a1581d", deep: "#894500", soft: "#ffece0", onPrimary: "#ffffff", text: "#a1581d" },
+      { primary: "#a35a1f", deep: "#934b08", soft: "#482304", onPrimary: "#ffffff", text: "#ec9d65" },
     ),
     pal(
       "pistachio",
-      () => t("bakini.palette.pistachio", "Pistachio"),
-      { primary: "#477526", deep: "#34600c", soft: "#e7f6de", onPrimary: "#ffffff", text: "#477526" },
-      { primary: "#4a782a", deep: "#3c6919", soft: "#1e350d", onPrimary: "#ffffff", text: "#87b868" },
+      () => t("mikio.palette.pistachio", "Pistachio"),
+      { primary: "#4c762a", deep: "#386212", soft: "#e7f6de", onPrimary: "#ffffff", text: "#4c762a" },
+      { primary: "#4f7a2e", deep: "#416b1e", soft: "#1f350d", onPrimary: "#ffffff", text: "#8dbc6e" },
     ),
     pal(
-      "sapphire",
-      () => t("bakini.palette.sapphire", "Sapphire"),
-      { primary: "#2f5fb3", deep: "#1b4a9c", soft: "#e8f1ff", onPrimary: "#ffffff", text: "#2f5fb3" },
-      { primary: "#3a6bc0", deep: "#2c5cb0", soft: "#182d51", onPrimary: "#ffffff", text: "#79abff" },
+      "blueberry",
+      () => t("mikio.palette.blueberry", "Blueberry"),
+      { primary: "#2f56a6", deep: "#1c4190", soft: "#e9f1ff", onPrimary: "#ffffff", text: "#2f56a6" },
+      { primary: "#436bbe", deep: "#355cad", soft: "#1a2c51", onPrimary: "#ffffff", text: "#85afff" },
     ),
     pal(
-      "gold",
-      () => t("bakini.palette.gold", "Gold-safe"),
-      { primary: "#8c5f30", deep: "#774b1a", soft: "#ffeddc", onPrimary: "#ffffff", text: "#8c5f30" },
-      { primary: "#906334", deep: "#815525", soft: "#442500", onPrimary: "#ffffff", text: "#d4a373" },
+      "licorice",
+      () => t("mikio.palette.licorice", "Licorice"),
+      { primary: "#2b2b2b", deep: "#1a1a1a", soft: "#f0f0f0", onPrimary: "#ffffff", text: "#2b2b2b" },
+      { primary: "#6d6d6d", deep: "#5f5f5f", soft: "#2e2e2e", onPrimary: "#ffffff", text: "#aeaeae" },
     ),
   ],
 
@@ -97,6 +91,7 @@ export const BAKINI_THEME: ThemeSwitcherConfig = {
     "--bk-act-soft": "soft",
     "--bk-act-on": "onPrimary",
     "--bk-act-text": "text",
+    "--bk-act-dk": "dark.text",
     "--bk-act-rgb": "primary:rgb",
     "--bk-act-on-rgb": "onPrimary:rgb",
   },
@@ -110,37 +105,37 @@ export const BAKINI_THEME: ThemeSwitcherConfig = {
     light: "light",
     dark: "dark",
     paletteColors: { primary: "primary", "on-primary": "onPrimary" },
-    /* Noir's stage: Selldone's fields, menus, dialogs and sheets are dark too. */
+    /* Mikio's dark: Selldone's fields, menus, dialogs and sheets are dark too. */
     darkColors: {
-      background: "#120c10",
-      surface: "#1c1419",
-      "surface-bright": "#261b22",
-      "surface-variant": "#30232b",
-      "on-background": "#f4ede6",
-      "on-surface": "#f4ede6",
-      "on-surface-variant": "#e2d7d0",
+      background: "#121110",
+      surface: "#1b1917",
+      "surface-bright": "#26221f",
+      "surface-variant": "#302b27",
+      "on-background": "#f5f0ea",
+      "on-surface": "#f5f0ea",
+      "on-surface-variant": "#d8d0c7",
       "on-primary": "#ffffff",
-      secondary: "#d4a373",
-      "on-secondary": "#120c10",
+      secondary: "#ff9082",
+      "on-secondary": "#121110",
       error: "#f2a07f",
-      info: "#d4a373",
+      info: "#ff9082",
       success: "#8fd19e",
       warning: "#f2c27f",
     },
     lightColors: {
-      background: "#f8f5f2",
+      background: "#ffffff",
       surface: "#ffffff",
-      "on-background": "#1d1418",
-      "on-surface": "#1d1418",
-      secondary: "#8a5e2e",
+      "on-background": "#141210",
+      "on-surface": "#141210",
+      secondary: "#141210",
       "on-secondary": "#ffffff",
-      error: "#c4122f",
+      error: "#b3261e",
     },
   },
 
   /* The browser's own bar: the page's ground, not the action colour. */
   metaThemeColor: false,
-  ui: { ink: "var(--bk-ink)", muted: "var(--bk-mut)", line: "var(--bk-line-2)", surface: "var(--bk-s1)", font: "var(--bk-ft)" },
+  ui: { ink: "var(--bk-bar-ink)", muted: "var(--bk-bar-muted)", line: "var(--bk-bar-line)", surface: "var(--bk-bar)", font: "var(--bk-f-body)" },
   /* Read when drawn, so they follow the visitor's language (theme.* are the
      shared Kalio words). */
   labels: {
@@ -178,8 +173,8 @@ export const BAKINI_THEME: ThemeSwitcherConfig = {
      NOIR_OPTIONS). No header band carries the action colour, so 4.5:1. */
   custom: {
     headerContrast: 4.5,
-    darkSurfaces: ["#120c10", "#1c1419", "#261b22"],
-    lightSurfaces: ["#ffffff", "#f8f5f2", "#efe8e2"],
-    darkText: "#1d1418",
+    darkSurfaces: ["#121110", "#1b1917", "#26221f"],
+    lightSurfaces: ["#ffffff", "#fbe9d7", "#f6efe8"],
+    darkText: "#141210",
   },
 };

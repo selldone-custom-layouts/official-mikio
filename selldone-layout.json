@@ -1,9 +1,9 @@
 {
-  "name": "Bakini Noir Patisserie",
+  "name": "Mikio Ticker Patisserie",
   "shop": "Bakio",
   "kind": "Pâtisserie · single bakery",
-  "summary": "A single bakery dressed as a dark pastry theatre: a deep stage with ivory type, deep caramel for every action and gold for small accents; Instrument Serif over Manrope; a glass header with the collections, search, a language and currency pill and the bag; a cinematic hero, the collections as tall dark cards, a bento of the shop's real facts, selection rows, a compare strip, deals and the journal; real spec filters, a product page with a sticky buy column and Buy together, a bag drawer, glass checkout cards and a desk account. Dark by default, with an ivory light mode and a footer Theme row.",
-  "live": "https://bakini.selldone.shop",
+  "summary": "A single bakery laid out like a busy cake-shop counter: white pages, black bars and footer, cream image tiles and one cherry-red theme colour; heavy extended caps (Archivo) over Figtree, with a typewriter mono for the moving strip and stickers. A black announcement bar, a centred wordmark with a nav row, a moving ticker, a two-photo slider of the best-selling collections, rails of cream-tile cards with Add to bag, delivery photo tiles, journal features and the journal; collection pages with a two-photo hero and filters in a side panel; a product page with the collection's other pieces as tiles. Light by default, with a dark mode and a footer Theme row.",
+  "live": "https://mikio.selldone.shop",
   "cover": "docs/screenshots/cover.jpg",
   "screenshots": [
     "docs/screenshots/desktop-home.jpg",
@@ -19,12 +19,12 @@
     "bakery",
     "patisserie",
     "single-vendor",
-    "dark",
-    "luxury",
-    "caramel",
+    "light",
+    "cherry",
+    "ticker",
     "rtl"
   ],
-  "package": "bakini-noir-patisserie",
+  "package": "mikio-ticker-patisserie",
   "base": "selldone/storefront",
-  "status": "live"
+  "status": "building"
 }

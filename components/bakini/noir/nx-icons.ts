@@ -1,5 +1,8 @@
 /* GENERATED from bakio-design/b/core.js (the B mockup icon set, one stroke width): name -> SVG inner markup for a 24x24 viewBox. */
 export const ICONS: Record<string, string> = {
+  /* Mikio: the moving strip's and the slider's pause / play (mikio-design/m/home.js) */
+  "pause": "<path d=\"M9 6v12M15 6v12\"/>",
+  "play": "<path d=\"M8 5.5v13l10.5-6.5z\"/>",
   "bag": "<path d=\"M5.5 8h13l-1 12.2a1 1 0 0 1-1 .8H7.5a1 1 0 0 1-1-.8z\"/><path d=\"M9 10V6.8a3 3 0 0 1 6 0V10\"/>",
   "search": "<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m20 20-4.2-4.2\"/>",
   "user": "<circle cx=\"12\" cy=\"8.5\" r=\"3.8\"/><path d=\"M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.3 2 7.2 5.6\"/>",

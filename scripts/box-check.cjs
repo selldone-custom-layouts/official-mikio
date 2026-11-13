@@ -158,7 +158,7 @@ const fillCart = (pg) =>
       await push(pg, "/");
       await pg.waitForTimeout(3500);
       if (!mob) {
-        await pg.click(".hdr-nav [aria-controls=mega]").catch(() => {});
+        await pg.click(".nav [aria-controls=dd-shop]").catch(() => {});
         await pg.waitForTimeout(800);
         report(`${w} shop-menu`, await pg.evaluate(audit));
         await pg.keyboard.press("Escape");

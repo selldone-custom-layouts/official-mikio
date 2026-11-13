@@ -1,16 +1,13 @@
 <!--
-  Bakini Noir — the wordmark (bakio-design/b/core.css `.wm`): the shop's own
-  live title in lower case, Instrument Serif, its last part in italic, then a
-  small gold dot. Nothing is written in: the word is BRAND.name when the
+  Mikio Ticker — the wordmark (mikio-design/m/a.css .wm-t / .wm-s): the shop's
+  own live title in heavy extended caps (Archivo), then one tilted sprinkle in
+  the theme colour. Nothing is written in: the word is BRAND.name when the
   Layout sets one (kalio-brand.ts), else the shop's title, so another bakery
   that imports the Layout gets its own name drawn the same way.
-
-  The italic part: for a one-word title, its last two fifths ("bak" + "io");
-  for several words, the last word ("maison" + "noir").
 -->
 <template>
-  <component :is="to ? 'router-link' : 'span'" :aria-label="label" :to="to" class="wm bk-wm">
-    <span aria-hidden="true" class="bk-wm__w">{{ parts[0] }}<b v-if="parts[1]">{{ parts[1] }}</b><i></i></span>
+  <component :is="to ? 'router-link' : 'span'" :aria-label="label" :to="to" class="wm">
+    <span aria-hidden="true" class="wm-t">{{ word }}</span><span aria-hidden="true" class="wm-s"></span>
   </component>
 </template>
 
@@ -44,7 +41,7 @@ export default {
       return wordmarkParts(this.word);
     },
     label() {
-      return this.to ? t("bakini.logo.homeOf", "{name}, home", { name: this.word.toLowerCase() }) : this.word.toLowerCase();
+      return this.to ? t("bakini.logo.homeOf", "{name}, home", { name: this.word }) : this.word;
     },
   },
 };

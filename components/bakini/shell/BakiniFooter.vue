@@ -1,12 +1,12 @@
 <!--
-  Bakini Noir — the footer (b/core.js footer()): the wordmark and one line
-  about the shop (its address and how it sends its pieces, from its own
-  data); the collections and Deals; the merchant's own footer menu (Selldone
-  menus, type FOOTER) under the shop's name; Help (FAQ, account, privacy,
-  terms); "Visit the counter" (address, days and counter hours, phone,
-  email) with the icons on one edge. Then the Theme band (the owner's rule
-  of 10 November 2026: palettes, a custom colour and Light / Dark, in a band
-  of its own above the legal row; the kit's ThemeSwitcherRow, only on the
+  Mikio Ticker — the footer (mikio-design/m/home.js footer(), nx/core.js
+  footer()): a black band like milkbarstore.com's. The wordmark with the
+  shop's street, city, days and counter hours, phone and email (icons on one
+  edge); Shop (every collection and Shop all); Help (FAQ, contact, the
+  account, privacy, terms); the merchant's own footer menu (Selldone menus,
+  type FOOTER) under the shop's name. Then the Theme row (the owner's rule of
+  10 November 2026: palettes, a custom colour and Light / Dark, in a band of
+  its own above the legal row; the kit's ThemeSwitcherRow, only on the
   showcase shop). Then the legal row: the copyright and city, the shop's
   policies, Selldone's cookie settings, the language, currency and way to
   pay, the shop's social links and a small "made with" credit.
@@ -15,61 +15,44 @@
 <template>
   <div class="nx nx-ftrwrap">
     <footer class="ftr">
-      <div class="wrap ftr-top">
-        <div class="ftr-brand">
-          <bakini-logo />
-          <p v-if="brandLine">{{ brandLine }}</p>
+      <div class="wrap ftr-in">
+        <div class="f-brand">
+          <bakini-logo class="f-wm" />
+          <p v-if="street"><bdi>{{ street }}</bdi><template v-if="cityLine"><br /><bdi>{{ cityLine }}</bdi></template></p>
+          <p v-if="hoursLine">{{ hoursLine }}</p>
+          <ul v-if="facts.phone || facts.email" class="f-c">
+            <li v-if="facts.phone"><nx-icon name="phone" /><a :href="'tel:' + facts.phone.replace(/[^\d+]/g, '')" dir="ltr">{{ facts.phone }}</a></li>
+            <li v-if="facts.email"><nx-icon name="mail" /><a :href="'mailto:' + facts.email">{{ facts.email }}</a></li>
+          </ul>
         </div>
-        <div class="ftr-col">
-          <h3>{{ t("bakini.n.ftr.shop", "Shop") }}</h3>
+        <div class="f-col">
+          <h2 class="f-h">{{ t("bakini.n.ftr.shop", "Shop") }}</h2>
           <ul>
             <li v-for="c in noir.cats" :key="c.id">
               <router-link :to="catTo(c)"><bdi>{{ catTitle(c) }}</bdi></router-link>
             </li>
             <li>
-              <router-link :to="dealsTo">{{ t("bakini.n.hdr.deals", "Deals") }}</router-link>
+              <router-link :to="dealsTo">{{ t("mikio.hdr.shopAll", "Shop all") }}</router-link>
             </li>
           </ul>
         </div>
-        <div class="ftr-col">
-          <h3><bdi>{{ shopName }}</bdi></h3>
+        <div class="f-col">
+          <h2 class="f-h">{{ t("bakini.n.ftr.help", "Help") }}</h2>
+          <ul>
+            <li><router-link :to="faqTo">{{ t("bakini.n.ftr.faq", "FAQ") }}</router-link></li>
+            <li><router-link :to="{ name: r.SHOP_CONTACT_US }">{{ t("mikio.hdr.contact", "Contact us") }}</router-link></li>
+            <li><router-link :to="{ name: 'KalioAccountHome' }">{{ t("bakini.n.ftr.account", "Your account") }}</router-link></li>
+            <li><router-link :to="{ name: r.SHOP_PROFILE_PAGE_PRIVACY }">{{ t("bakini.n.ftr.privacy", "Privacy") }}</router-link></li>
+            <li><router-link :to="{ name: r.SHOP_PROFILE_PAGE_TERMS }">{{ t("bakini.n.ftr.terms", "Terms of Use") }}</router-link></li>
+          </ul>
+        </div>
+        <div class="f-col">
+          <h2 class="f-h"><bdi>{{ shopName }}</bdi></h2>
           <ul>
             <li v-for="(l, i) in menuLinks" :key="i">
               <router-link :to="l.to"><bdi>{{ l.name }}</bdi></router-link>
             </li>
           </ul>
-        </div>
-        <div class="ftr-col">
-          <h3>{{ t("bakini.n.ftr.help", "Help") }}</h3>
-          <ul>
-            <li>
-              <router-link :to="faqTo">{{ t("bakini.n.ftr.faq", "FAQ") }}</router-link>
-            </li>
-            <li>
-              <router-link :to="{ name: 'KalioAccountHome' }">{{ t("bakini.n.ftr.account", "Your account") }}</router-link>
-            </li>
-            <li>
-              <router-link :to="{ name: r.SHOP_PROFILE_PAGE_PRIVACY }">{{ t("bakini.n.ftr.privacy", "Privacy") }}</router-link>
-            </li>
-            <li>
-              <router-link :to="{ name: r.SHOP_PROFILE_PAGE_TERMS }">{{ t("bakini.n.ftr.terms", "Terms of Use") }}</router-link>
-            </li>
-          </ul>
-        </div>
-        <div v-if="facts.address || facts.phone || facts.email" class="ftr-col ftr-visit">
-          <h3>{{ t("bakini.n.ftr.visit", "Visit the counter") }}</h3>
-          <div class="ilines">
-            <div v-if="facts.address" class="iline">
-              <nx-icon name="pin" /><span><bdi>{{ facts.address }}</bdi></span>
-            </div>
-            <div v-if="hoursLine" class="iline"><nx-icon name="clock" /><span>{{ hoursLine }}</span></div>
-            <div v-if="facts.phone" class="iline">
-              <nx-icon name="phone" /><span><a :href="'tel:' + facts.phone.replace(/[^\d+]/g, '')" dir="ltr">{{ facts.phone }}</a></span>
-            </div>
-            <div v-if="facts.email" class="iline">
-              <nx-icon name="mail" /><span><a :href="'mailto:' + facts.email">{{ facts.email }}</a></span>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -80,7 +63,7 @@
       </div>
 
       <div class="ftr-bot">
-        <div class="wrap">
+        <div class="wrap fb-in">
           <span>© {{ year }} <bdi>{{ shopName }}</bdi><template v-if="facts.city"> · {{ facts.city }}</template></span>
           <nav :aria-label="t('bakini.n.ftr.legal', 'Legal')">
             <router-link :to="{ name: r.SHOP_PROFILE_PAGE_PRIVACY }">{{ t("bakini.n.ftr.privacy", "Privacy") }}</router-link>
@@ -151,11 +134,18 @@ export default {
       const how = list ? t("bakini.n.ftr.how", "Pieces sold one by one, for {kinds}.", { kinds: list }) : "";
       return [at, how].filter(Boolean).join(" ");
     },
+    street() {
+      return String(this.facts.address || "").split(",")[0].trim();
+    },
+    cityLine() {
+      const f = this.facts;
+      return [f.city, [f.region, f.postal].filter(Boolean).join(" ")].filter(Boolean).join(", ");
+    },
     hoursLine() {
       const f = this.facts;
       if (!f.days.length && !f.hours) return "";
       const days = f.everyDay ? t("bakini.n.ftr.everyDay", "Open every day") : f.days.map((d) => d.slice(0, 3)).join(", ");
-      return f.hours ? `${days} · ${f.hours}` : days;
+      return f.hours ? `${days} ${f.hours}` : days;
     },
     /* The merchant's footer menu, flat. */
     menuLinks() {

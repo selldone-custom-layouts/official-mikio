@@ -101,28 +101,26 @@ export default ({mode}: any) => {
     ],
     /* The theme switcher's build step: every fixed colour gets a dark value
        under html.bk-dark (components/theme-switcher/tools, PORTING.md).
-       Bakini Noir is dark first: html.bk-dark is on by default, so these
-       dark values are what a visitor sees unless they pick Light. The Noir
-       tokens (style/bakini-theme.scss) hold both modes themselves: their
-       html.bk-dark block is skipped by the step and outranks :root. The pastry
-       photos are transparent cut-outs, so their plates are tokens that turn
-       dark too (no light-tile exceptions beyond the build step's own). */
+       Mikio Ticker is light first; these dark values (Mikio's #121110 page,
+       #1b1917 card) show once a visitor picks Dark. The Mikio stylesheets
+       (style/mikio/, generated from the mockup), the tokens and the Noir
+       dress files hold both modes themselves, so the step leaves them alone. */
     css: {
       postcss: {
         plugins: [
           darkTokens({
             darkSelector: "html.bk-dark",
             include: [/\/style\//, /\/StorefrontApp\.vue/, /\/components\//, /\/pages\//, /\/layouts\//],
-            exclude: [/\/node_modules\//, /\/modules\/pagebuilder\//, /\/theme-switcher\//, /\/style\/noir\//, /\/style\/bakini-noir[\w-]*\.scss/, /\/components\/bakini\/noir\//],
+            exclude: [/\/node_modules\//, /\/modules\/pagebuilder\//, /\/theme-switcher\//, /\/style\/noir\//, /\/style\/mikio\//, /\/style\/mikio-layout\.scss/, /\/style\/bakini-noir[\w-]*\.scss/, /\/components\/bakini\/noir\//, /\/components\/mikio\//],
             lightVars: [],
-            card: "#1c1419",
-            raise: "#261b22",
-            variant: "#30232b",
-            line: "#30232b",
-            lineStrong: "#4a3b43",
-            ink: "#f4ede6",
-            ink2: "#e2d7d0",
-            muted: "#b8a9af",
+            card: "#1b1917",
+            raise: "#26221f",
+            variant: "#302b27",
+            line: "#34302c",
+            lineStrong: "#4a443e",
+            ink: "#f5f0ea",
+            ink2: "#d8d0c7",
+            muted: "#a99f95",
           }),
         ],
       },

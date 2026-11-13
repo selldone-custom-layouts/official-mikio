@@ -1,69 +1,106 @@
 <!--
-  Bakini Noir — the header (b/core.js header(), megaHTML(), searchHTML(),
-  regionHTML(), acctHTML(), pmenuHTML()): a slim glass bar that sticks to
-  the top: the wordmark (the shop's live title) on the left; "Shop ⌄" (the
-  collections panel), the collections themselves (from 1240px) and Deals in
-  the middle; search, the language & currency pill, the account and the bag
-  with its count on the right.
+  Mikio Ticker — the header (mikio-design/nx/core.js ann(), header(),
+  megaHTML(), searchHTML(), pmenuHTML(); the home draws the same in
+  m/home.js), laid out like milkbarstore.com's:
+
+  - a black announcement bar: the shop's live facts (the saving every piece
+    has, the free-shipping threshold, the payment way) with "Shop now", and
+    the language & currency pill at its right end;
+  - a white bar that sticks: the menu button and "Visit us" (the pickup
+    counter: street, days and hours, phone, directions) on the left, the
+    wordmark (the shop's live title) in the centre, search, account and the
+    bag with its count on the right;
+  - a centred nav row (from 1100px): "Shop ⌄" (every collection with its best
+    seller's photo, "Shop all", and a two-colour strip: pickup and the
+    saving), the collections themselves and Journal. The Shop menu opens on
+    hover too; a click right after the hover keeps it open.
 
   Every panel opens on a click and closes on a second click, Esc, a click
-  outside or a page change, with no scrim (noir.ts layers). The panels are
-  teleported to <body> (the glass bar's backdrop-filter would trap fixed
-  panels inside it). Phone (≤760px): the menu button, the wordmark (never
-  lost), search and the bag; the menu is a full panel under the bar with the
-  collections (the first 6, "Show N more" past 8), Deals, the bakery's pages,
-  the account and the "Language & currency" row, which opens a bottom sheet.
-  No bottom tab bar. A shop with custom header code keeps Selldone's header
-  (StorefrontLayout).
+  outside or a page change (noir.ts layers); the menu, the bag and the
+  language sheet add the scrim. Phones: the menu button, Visit us, the
+  wordmark (never lost), search and the bag; the menu panel holds the
+  collections (the first 6, "Show N more" past 8), the shop's pages and the
+  "Language & currency" row (a bottom sheet). No bottom tab bar. A shop with
+  custom header code keeps Selldone's header (StorefrontLayout).
 -->
 <template>
   <div v-if="!$store.getters.getIsNative" class="nx nx-hdrwrap">
     <a class="skip" href="#main" @click.prevent="skip">{{ t("bakini.n.hdr.skip", "Skip to content") }}</a>
+    <div class="ann">
+      <div class="ann-in">
+        <p class="ann-msg">
+          <template v-for="(m, i) in annMsgs" :key="i"
+            ><span v-if="i" :class="['ann-dot', 'd' + i]" aria-hidden="true"></span><span :class="'am' + i">{{ m }}</span></template
+          >
+          <router-link :to="dealsTo" class="ann-go">{{ t("mikio.hdr.shopNow", "Shop now") }}</router-link>
+        </p>
+        <button
+          v-if="regionOn"
+          :key="regionKey"
+          :aria-expanded="is('region') ? 'true' : 'false'"
+          :aria-label="t('bakini.n.hdr.regionAria', 'Language and currency: {value}', { value: regionLabel })"
+          aria-controls="region"
+          class="reg rs-pick__btn"
+          type="button"
+          @click="toggle('region', $event)"
+        >
+          <nx-icon name="globe" /><span>{{ regionLabel }}</span>
+        </button>
+        <div v-if="regionOn" id="region" :aria-label="t('region.title', 'Language & currency')" :class="['dd', 'pop', 'reg-pop', 'rs-pop', { open: is('region') }]" role="dialog">
+          <p class="pop-h">{{ regionTitle }}</p>
+          <region-chips :key="regionKey" @picked="closeLayer()" />
+          <p class="pop-note">{{ regionNote }}</p>
+        </div>
+      </div>
+    </div>
     <header id="hdr" class="hdr">
       <div class="hdr-in">
-        <button
-          :aria-expanded="is('pmenu') ? 'true' : 'false'"
-          :aria-label="is('pmenu') ? t('bakini.n.hdr.closeMenu', 'Close menu') : t('bakini.n.hdr.menu', 'Menu')"
-          aria-controls="pmenu"
-          class="iconbtn menu-btn"
-          type="button"
-          @click="toggle('pmenu', $event)"
-        >
-          <nx-icon :name="is('pmenu') ? 'close' : 'menu'" />
-        </button>
-        <bakini-logo />
-        <nav :aria-label="t('bakini.n.hdr.collections', 'Collections')" class="hdr-nav">
-          <button :aria-expanded="is('mega') ? 'true' : 'false'" aria-controls="mega" type="button" @click="toggle('mega', $event)">
-            {{ t("bakini.n.hdr.shop", "Shop") }}<nx-icon name="down" />
+        <div class="h-l">
+          <button
+            :aria-expanded="is('pmenu') ? 'true' : 'false'"
+            :aria-label="t('bakini.n.hdr.menu', 'Menu')"
+            aria-controls="pmenu"
+            class="ibtn menu-btn"
+            type="button"
+            @click="toggle('pmenu', $event)"
+          >
+            <nx-icon name="menu" />
           </button>
-          <span class="hdr-cats">
-            <router-link v-for="c in cats" :key="c.id" :aria-current="c.name === currentCat ? 'page' : undefined" :to="catTo(c)"><bdi>{{ catTitle(c) }}</bdi></router-link>
-          </span>
-          <router-link :aria-current="onDeals ? 'page' : undefined" :to="dealsTo" class="deal">{{ t("bakini.n.hdr.deals", "Deals") }}</router-link>
-        </nav>
-        <div class="hdr-tools">
-          <button :aria-expanded="is('srch') ? 'true' : 'false'" :aria-label="t('bakini.n.hdr.search', 'Search')" aria-controls="srch" class="iconbtn" type="button" @click="toggle('srch', $event)">
+          <template v-if="facts.address">
+            <button
+              :aria-expanded="is('dd-visit') ? 'true' : 'false'"
+              :aria-label="t('mikio.hdr.visitAria', 'Visit the counter')"
+              aria-controls="dd-visit"
+              class="ibtn visit"
+              type="button"
+              @click="toggle('dd-visit', $event)"
+            >
+              <nx-icon name="pin" /><span class="vl">{{ t("mikio.hdr.visit", "Visit us") }}</span>
+            </button>
+            <div id="dd-visit" :class="['dd', 'pop', 'visit-pop', { open: is('dd-visit') }]" role="dialog" :aria-label="t('mikio.hdr.visitAria', 'Visit the counter')">
+              <p class="pop-k"><bdi>{{ facts.pickup ? facts.pickup.title : facts.title }}</bdi></p>
+              <p class="pop-t"><bdi>{{ street }}</bdi><br /><bdi>{{ cityLine }}</bdi></p>
+              <ul class="pop-l">
+                <li v-if="openLine"><nx-icon name="clock" /><span>{{ openLine }}</span></li>
+                <li v-if="facts.phone"><nx-icon name="phone" /><a :href="tel" dir="ltr">{{ facts.phone }}</a></li>
+              </ul>
+              <a v-if="mapUrl" :href="mapUrl" class="btn sm" rel="noopener" target="_blank">{{ t("mikio.hdr.directions", "Get directions") }}</a>
+            </div>
+          </template>
+        </div>
+        <bakini-logo />
+        <div class="h-r">
+          <button :aria-expanded="is('srch') ? 'true' : 'false'" :aria-label="t('bakini.n.hdr.search', 'Search')" aria-controls="srch" class="ibtn" type="button" @click="toggle('srch', $event)">
             <nx-icon name="search" />
           </button>
-          <button
-            v-if="regionOn"
-            :key="regionKey"
-            :aria-expanded="is('region') ? 'true' : 'false'"
-            :aria-label="t('bakini.n.hdr.regionAria', 'Language and currency: {value}', { value: regionLabel })"
-            aria-controls="region"
-            class="pill-region rs-pick__btn"
-            type="button"
-            @click="toggle('region', $event)"
-          >
-            <nx-icon name="globe" />{{ regionLabel }}
-          </button>
-          <button :aria-expanded="is('acct') ? 'true' : 'false'" :aria-label="t('bakini.n.hdr.account', 'Account')" aria-controls="acct" class="iconbtn acct-btn" type="button" @click="toggle('acct', $event)">
+          <button :aria-label="user ? t('mikio.hdr.accountOf', 'Account: {name}', { name: firstName }) : t('bakini.n.hdr.signIn', 'Sign in')" class="ibtn acct" type="button" @click="account">
             <nx-icon name="user" />
           </button>
           <button
+            :aria-expanded="is('drawer') ? 'true' : 'false'"
             :aria-label="t('bakini.n.hdr.bagAria', { one: 'Bag, {n} piece', other: 'Bag, {n} pieces' }, { n: units })"
             aria-controls="drawer"
-            class="iconbtn bag-btn"
+            class="ibtn bag-btn"
             type="button"
             @click="toggle('drawer', $event)"
           >
@@ -71,137 +108,138 @@
           </button>
         </div>
       </div>
+      <nav :aria-label="t('mikio.hdr.main', 'Main')" class="nav">
+        <ul>
+          <li class="has-dd" @mouseenter="hoverShop">
+            <button :aria-expanded="is('dd-shop') ? 'true' : 'false'" aria-controls="dd-shop" class="nav-a" type="button" @click="clickShop($event)">
+              {{ t("bakini.n.hdr.shop", "Shop") }}<nx-icon cls="chev" name="down" />
+            </button>
+          </li>
+          <li v-for="c in cats" :key="c.id">
+            <router-link :aria-current="c.name === currentCat ? 'page' : undefined" :to="catTo(c)" class="nav-a"><bdi>{{ catTitle(c) }}</bdi></router-link>
+          </li>
+          <li>
+            <router-link :aria-current="onJournal ? 'page' : undefined" :to="blogTo" class="nav-a">{{ t("bakini.n.hdr.journal", "Journal") }}</router-link>
+          </li>
+        </ul>
+      </nav>
+      <!-- Shop: every collection with its best seller's photo, "Shop all", and the strip. -->
+      <div id="dd-shop" :aria-label="t('bakini.n.hdr.shopCollections', 'Shop the collections')" :class="['dd', 'mega', { open: is('dd-shop') }]" role="region" @mouseleave="leaveShop">
+        <ul class="mg-list">
+          <li v-for="c in cats" :key="c.id">
+            <router-link :to="catTo(c)">
+              <span class="mg-th"><img v-if="topImg(c)" :src="topImg(c)" alt="" class="cut" loading="lazy" /></span><span class="mg-t"><bdi>{{ catTitle(c) }}</bdi></span>
+            </router-link>
+          </li>
+          <li>
+            <router-link :to="dealsTo">
+              <span class="mg-th all"><img v-for="src in allImgs" :key="src" :src="src" alt="" class="cut" loading="lazy" /></span><span class="mg-t">{{ t("mikio.hdr.shopAll", "Shop all") }}</span>
+            </router-link>
+          </li>
+        </ul>
+        <div class="mg-strip">
+          <a v-if="mapUrl && facts.pickup" :href="mapUrl" class="mg-a" rel="noopener" target="_blank">{{ pickupLine }}</a>
+          <router-link v-else :to="aboutTo" class="mg-a">{{ t("mikio.hdr.aboutUs", "About us") }}</router-link>
+          <router-link :to="dealsTo" class="mg-b"><span>{{ offLine }}</span><span class="mg-go">{{ t("mikio.hdr.shopNow", "Shop now") }}</span></router-link>
+        </div>
+      </div>
+      <!-- Search: suggestions while typing (the live catalogue); Enter opens every result. -->
+      <div id="srch" :class="['srch', { open: is('srch') }]" role="search">
+        <div class="srch-in">
+          <form class="srch-f" @submit.prevent="submit()">
+            <nx-icon name="search" />
+            <input
+              ref="q"
+              :aria-label="t('mikio.hdr.searchLabel', 'Search the shop')"
+              :placeholder="t('bakini.n.hdr.searchPh', 'Search {examples}…', { examples: searchExamples })"
+              :value="q"
+              autocomplete="off"
+              enterkeyhint="search"
+              type="search"
+              @input="q = $event.target.value"
+              @keydown.down.prevent="move(1)"
+              @keydown.up.prevent="move(-1)"
+            />
+            <button :aria-label="t('mikio.hdr.closeSearch', 'Close search')" class="ibtn x" type="button" @click="closeLayer()"><nx-icon name="close" /></button>
+          </form>
+          <div class="srch-out">
+            <p v-if="!query" class="srch-hint">
+              {{ t("bakini.n.hdr.popular", "Popular") }}:
+              <router-link v-for="w in popular" :key="w" :to="searchTo(w)" class="chip">{{ w }}</router-link>
+            </p>
+            <template v-else>
+              <p v-if="sugCats.length" class="srch-hint">
+                <router-link v-for="c in sugCats" :key="c.id" :to="catTo(c)" class="chip"><bdi>{{ catTitle(c) }}</bdi></router-link>
+              </p>
+              <ul v-if="hits.length" class="srch-list" role="listbox">
+                <li v-for="(p, i) in hits" :key="p.id">
+                  <router-link :class="{ hl: i === cursor }" :to="productTo(p)" role="option">
+                    <span class="th"><img :src="thumb(p)" alt="" class="cut" /></span>
+                    <span class="tx"><b v-html="mark(p.title)"></b><small><bdi>{{ catTitle(catOf(p.category_id)) }}</bdi> · {{ t("bakini.n.card.per", "per {unit}", { unit: unitOf(p) }) }}</small></span>
+                    <span class="pr money">{{ money(priceView(shop, p).now) }}</span>
+                  </router-link>
+                </li>
+              </ul>
+              <p v-if="!hits.length && !sugCats.length" class="srch-hint">{{ t("bakini.n.hdr.noMatch", "Nothing matches “{q}”. Try another word.", { q: query }) }}</p>
+              <p v-else class="srch-all">
+                <router-link :to="searchTo(query)" class="rl-more">{{ t("bakini.n.hdr.allFor", "See every result for “{q}”", { q: query }) }}<nx-icon name="arrow" /></router-link>
+              </p>
+            </template>
+          </div>
+        </div>
+      </div>
     </header>
 
     <teleport to="body">
       <div :dir="rtl ? 'rtl' : 'ltr'" class="nx nx-layers">
-        <!-- Shop: every collection with its photo and line; the side links. -->
-        <div id="mega" :aria-label="t('bakini.n.hdr.shopCollections', 'Shop the collections')" :class="['drop', { open: is('mega') }]" role="region">
-          <div class="drop-in">
-            <div class="mega">
-              <div class="mega-cats">
-                <router-link v-for="c in cats" :key="c.id" :style="{ '--bk-hue': hueOf(c.id) }" :to="catTo(c)" class="mega-cat">
-                  <div class="ph"><img v-if="catImg(c)" :src="catImg(c)" alt="" class="cut" loading="lazy" /></div>
-                  <div><b><bdi>{{ catTitle(c) }}</bdi></b><span v-if="c.description"><bdi>{{ c.description }}</bdi></span></div>
-                </router-link>
-              </div>
-              <div class="mega-side">
-                <router-link :to="dealsTo"><nx-icon name="tag" /><span><b>{{ t("bakini.n.hdr.deals", "Deals") }}</b><small>{{ dealsLine }}</small></span></router-link>
-                <router-link :to="lovedTo"><nx-icon name="heart" /><span><b>{{ t("bakini.n.hdr.loved", "Most loved") }}</b><small>{{ t("bakini.n.hdr.lovedL", "Ranked by what sells") }}</small></span></router-link>
-                <router-link :to="compareTo"><nx-icon name="compare" /><span><b>{{ t("bakini.n.hdr.compare", "Compare") }}</b><small>{{ t("bakini.n.hdr.compareL", "Side by side, row by row") }}</small></span></router-link>
-                <router-link :to="blogTo"><nx-icon name="book" /><span><b>{{ t("bakini.n.hdr.journal", "Journal") }}</b><small>{{ t("bakini.n.hdr.journalL", "Stories from the counter") }}</small></span></router-link>
-              </div>
-            </div>
+        <!-- The menu panel (every width): collections, the shop's pages, Language & currency, the counter. -->
+        <nav id="pmenu" :aria-label="t('bakini.n.hdr.menu', 'Menu')" :class="['panel', 'menu', { open: is('pmenu') }]">
+          <div class="pn-hd">
+            <span class="pn-t">{{ t("bakini.n.hdr.menu", "Menu") }}</span>
+            <button :aria-label="t('bakini.n.hdr.closeMenu', 'Close menu')" class="ibtn x" type="button" @click="closeLayer()"><nx-icon name="close" /></button>
           </div>
-        </div>
-
-        <!-- Search: suggestions while typing (the live catalogue); Enter opens every result. -->
-        <div id="srch" :class="['drop', { open: is('srch') }]" role="search">
-          <div class="drop-in">
-            <form class="srch-form" @submit.prevent="submit()">
-              <nx-icon name="search" />
-              <input
-                ref="q"
-                :aria-label="t('bakini.n.hdr.searchLabel', 'Search the bakery')"
-                :placeholder="t('bakini.n.hdr.searchPh', 'Search {examples}…', { examples: searchExamples })"
-                :value="q"
-                autocomplete="off"
-                enterkeyhint="search"
-                type="search"
-                @input="q = $event.target.value"
-                @keydown.down.prevent="move(1)"
-                @keydown.up.prevent="move(-1)"
-              />
-              <button class="btn sm" type="submit">{{ t("bakini.n.hdr.search", "Search") }}</button>
-            </form>
-            <div class="srch-body">
-              <div v-if="!query" class="srch-pop">
-                <span class="lbl">{{ t("bakini.n.hdr.popular", "Popular") }}</span>
-                <router-link v-for="w in popular" :key="w" :to="searchTo(w)" class="chip">{{ w }}</router-link>
-              </div>
-              <template v-else>
-                <div v-if="sugCats.length" class="srch-pop" style="margin-bottom: 10px">
-                  <router-link v-for="c in sugCats" :key="c.id" :to="catTo(c)" class="chip"><img v-if="catImg(c)" :src="catImg(c)" alt="" /><bdi>{{ catTitle(c) }}</bdi></router-link>
-                </div>
-                <div v-if="hits.length" class="sugg" role="listbox">
-                  <router-link v-for="(p, i) in hits" :key="p.id" :class="{ hl: i === cursor }" :style="{ '--bk-hue': hueOf(p.category_id) }" :to="productTo(p)" role="option">
-                    <span class="th"><img :src="thumb(p)" alt="" /></span>
-                    <span style="min-width: 0"><b v-html="mark(p.title)"></b><small><bdi>{{ catTitle(catOf(p.category_id)) }}</bdi> · {{ t("bakini.n.card.per", "per {unit}", { unit: unitOf(p) }) }}</small></span>
-                    <span class="pr money">{{ money(priceView(shop, p).now) }}</span>
-                  </router-link>
-                </div>
-                <p v-if="!hits.length && !sugCats.length" class="muted" style="padding: 6px 4px">
-                  {{ t("bakini.n.hdr.noMatch", "Nothing matches “{q}”. Try another word.", { q: query }) }}
-                </p>
-                <div v-else class="sugg-all">
-                  <router-link :to="searchTo(query)" class="link">{{ t("bakini.n.hdr.allFor", "See every result for “{q}”", { q: query }) }}<nx-icon name="arrow" /></router-link>
-                </div>
-              </template>
-            </div>
-          </div>
-        </div>
-
-        <!-- Language and currency (the region-switcher kit's chips; the kit's own class
-             names stay on the pill, panel, row and sheet so its checks find them). -->
-        <div v-if="regionOn" id="region" ref="region" :aria-label="t('region.title', 'Language & currency')" :class="['pop', 'rs-pop', { open: is('region') }]" :style="popPos.region" role="dialog">
-          <h3>{{ regionTitle }}</h3>
-          <region-chips :key="regionKey" @picked="closeLayer()" />
-          <p class="note">{{ regionNote }}</p>
-        </div>
-
-        <!-- Account. -->
-        <div id="acct" ref="acct" :aria-label="t('bakini.n.hdr.account', 'Account')" :class="['pop', 'acct-pop', { open: is('acct') }]" :style="popPos.acct" role="dialog">
-          <h3>{{ user ? t("bakini.n.hdr.hello", "Hello, {name}", { name: firstName }) : t("bakini.n.hdr.yourAccount", "Your account") }}</h3>
-          <button v-if="!user" class="btn block" type="button" @click="signIn">{{ t("bakini.n.hdr.signIn", "Sign in") }}</button>
-          <div class="acct-links">
-            <router-link :to="accountTo"><nx-icon name="grid" />{{ t("bakini.n.hdr.overview", "Overview") }}</router-link>
-            <router-link :to="ordersTo"><nx-icon name="box" />{{ t("bakini.n.hdr.orders", "Orders") }}</router-link>
-            <router-link :to="addressesTo"><nx-icon name="pin" />{{ t("bakini.n.hdr.addresses", "Addresses") }}</router-link>
-            <a v-if="user" href="#" @click.prevent="signOut"><nx-icon name="logout" />{{ t("bakini.n.hdr.signOut", "Sign out") }}</a>
-          </div>
-          <p v-if="!user" class="note">{{ t("bakini.n.hdr.guestNote", "Checkout works without an account.") }}</p>
-        </div>
-
-        <!-- The phone menu: a panel under the bar. -->
-        <nav id="pmenu" :aria-label="t('bakini.n.hdr.menu', 'Menu')" :class="['pmenu', { open: is('pmenu') }]">
-          <div class="pmenu-in">
-            <p class="pm-h">{{ t("bakini.n.hdr.collections", "Collections") }}</p>
-            <div class="pm-list">
-              <router-link v-for="c in menuFirst" :key="c.id" :to="catTo(c)">
-                <span class="ic"><img v-if="catImg(c)" :src="catImg(c)" alt="" loading="lazy" /></span><span><bdi>{{ catTitle(c) }}</bdi></span><nx-icon cls="chev" name="right" />
-              </router-link>
-              <template v-if="menuRest.length && moreOpen">
-                <router-link v-for="c in menuRest" :key="c.id" :to="catTo(c)">
-                  <span class="ic"><img v-if="catImg(c)" :src="catImg(c)" alt="" loading="lazy" /></span><span><bdi>{{ catTitle(c) }}</bdi></span><nx-icon cls="chev" name="right" />
-                </router-link>
-              </template>
-              <button v-if="menuRest.length" :aria-expanded="moreOpen ? 'true' : 'false'" class="pm-more" type="button" @click="moreOpen = !moreOpen">
-                <span class="ic"><nx-icon :name="moreOpen ? 'minus' : 'down'" /></span>
-                <span>{{ moreOpen ? t("bakini.n.hdr.fewer", "Show fewer") : t("bakini.n.hdr.more", "Show {n} more", { n: menuRest.length }) }}</span><span></span>
+          <ul class="mn-big">
+            <li>
+              <router-link :to="dealsTo"><span class="th all"><nx-icon name="bag" /></span><span>{{ t("mikio.hdr.shopAll", "Shop all") }}</span></router-link>
+            </li>
+            <li v-for="c in menuFirst" :key="c.id">
+              <router-link :to="catTo(c)"><span class="th"><img v-if="topImg(c)" :src="topImg(c)" alt="" class="cut" loading="lazy" /></span><span><bdi>{{ catTitle(c) }}</bdi></span></router-link>
+            </li>
+            <template v-if="menuRest.length && moreOpen">
+              <li v-for="c in menuRest" :key="c.id">
+                <router-link :to="catTo(c)"><span class="th"><img v-if="topImg(c)" :src="topImg(c)" alt="" class="cut" loading="lazy" /></span><span><bdi>{{ catTitle(c) }}</bdi></span></router-link>
+              </li>
+            </template>
+            <li v-if="menuRest.length">
+              <button :aria-expanded="moreOpen ? 'true' : 'false'" class="mn-more" type="button" @click="moreOpen = !moreOpen">
+                <span class="th all"><nx-icon :name="moreOpen ? 'minus' : 'down'" /></span><span>{{ moreOpen ? t("bakini.n.hdr.fewer", "Show fewer") : t("bakini.n.hdr.more", "Show {n} more", { n: menuRest.length }) }}</span>
               </button>
-            </div>
-            <div class="pm-list">
-              <router-link :to="dealsTo"><span class="ic"><nx-icon name="tag" /></span><span>{{ t("bakini.n.hdr.deals", "Deals") }}<small>{{ dealsLine }}</small></span><nx-icon cls="chev" name="right" /></router-link>
-              <router-link :to="blogTo"><span class="ic"><nx-icon name="book" /></span><span>{{ t("bakini.n.hdr.journal", "Journal") }}</span><nx-icon cls="chev" name="right" /></router-link>
-              <router-link :to="aboutTo"><span class="ic"><nx-icon name="info" /></span><span>{{ t("bakini.n.hdr.about", "About") }}</span><nx-icon cls="chev" name="right" /></router-link>
-              <router-link :to="contactTo"><span class="ic"><nx-icon name="phone" /></span><span>{{ t("bakini.n.hdr.contact", "Contact") }}</span><nx-icon cls="chev" name="right" /></router-link>
-            </div>
-            <div class="pm-list">
-              <router-link v-if="user" :to="accountTo"><span class="ic"><nx-icon name="user" /></span><span>{{ firstName }}<small>{{ t("bakini.n.hdr.acctLine", "Orders, addresses and profile") }}</small></span><nx-icon cls="chev" name="right" /></router-link>
-              <button v-else type="button" @click="signIn"><span class="ic"><nx-icon name="user" /></span><span>{{ t("bakini.n.hdr.signIn", "Sign in") }}<small>{{ t("bakini.n.hdr.acctLine", "Orders, addresses and profile") }}</small></span><nx-icon cls="chev" name="right" /></button>
-              <button v-if="regionOn" :key="regionKey" aria-controls="langsheet" class="rs-row" type="button" @click="openLayer('langsheet', $event.currentTarget)">
-                <span class="ic"><nx-icon name="globe" /></span><span>{{ t("region.title", "Language & currency") }}<small>{{ regionLong }}</small></span><nx-icon cls="chev" name="right" />
-              </button>
-            </div>
-          </div>
+            </li>
+          </ul>
+          <ul class="mn-small">
+            <li><router-link :to="blogTo">{{ t("bakini.n.hdr.journal", "Journal") }}</router-link></li>
+            <li><router-link :to="faqTo">{{ t("mikio.hdr.faq", "FAQ") }}</router-link></li>
+            <li><router-link :to="contactTo">{{ t("mikio.hdr.contact", "Contact us") }}</router-link></li>
+            <li><router-link :to="aboutTo">{{ t("mikio.hdr.aboutUs", "About us") }}</router-link></li>
+            <li v-if="user"><router-link :to="accountTo">{{ t("mikio.hdr.yourAccount", "Your account") }}</router-link></li>
+            <li v-else><button class="mn-link" type="button" @click="signIn">{{ t("bakini.n.hdr.signIn", "Sign in") }}</button></li>
+          </ul>
+          <button v-if="regionOn" :key="regionKey" aria-controls="langsheet" class="mn-reg rs-row" type="button" @click="openLayer('langsheet', $event.currentTarget)">
+            <nx-icon name="globe" /><span>{{ t("region.title", "Language & currency") }}</span><b>{{ regionLabel }}</b>
+          </button>
+          <ul class="mn-info">
+            <li v-if="openLine"><nx-icon name="clock" /><span>{{ openLine }}</span></li>
+            <li v-if="facts.address"><nx-icon name="pin" /><span><bdi>{{ facts.address }}</bdi></span></li>
+            <li v-if="facts.phone"><nx-icon name="phone" /><a :href="tel" dir="ltr">{{ facts.phone }}</a></li>
+          </ul>
         </nav>
 
-        <!-- The language & currency sheet (phone). -->
+        <!-- The language & currency sheet (from the menu panel). -->
         <div v-if="regionOn" id="langsheet" :aria-label="t('region.title', 'Language & currency')" :class="['bsheet', 'rs-sheet', { open: is('langsheet') }]" aria-modal="true" role="dialog">
           <div class="grab"></div>
           <h2>{{ t("region.title", "Language & currency") }}</h2>
           <region-chips :key="regionKey" />
-          <p class="muted" style="font-size: 13px; margin: 14px 0 18px">{{ regionNote }}</p>
+          <p class="pop-note">{{ regionNote }}</p>
           <button class="btn block" type="button" @click="closeLayer()">{{ t("region.done", "Done") }}</button>
         </div>
 
@@ -224,6 +262,7 @@ import { catalogueRoute, dealsRoute } from "../../kalio/kalio-catalog";
 import { journalRoute } from "../../kalio/pages/kalio-journal";
 import { currencies, currentCurrency, currentLanguage, hasChoice, isRtl, languages, regionLabel, regionState, showLanguages } from "../../region-switcher/region";
 import {
+  bySells,
   catImage,
   catOf,
   catTitle,
@@ -240,6 +279,7 @@ import {
   priceView,
   productImage,
   productTo,
+  shopFacts,
   toggleLayer,
   unitOf,
   wireLayers,
@@ -251,14 +291,14 @@ import { t } from "../../kalio/i18n/kalio-i18n";
 const STOP = new Set(["and", "with", "the", "of", "a", "an", "in", "on", "mini", "classic", "double", "cake", "cakes"]);
 
 export default {
-  name: "BakiniHeader",
+  name: "BakiniHeader", // Mikio Ticker's header (kept under Bakini's name: StorefrontLayout and the checks read it)
   components: { BakiniLogo, NxIcon, NxBagDrawer, NxQuick, RegionChips },
   props: {
     showSearch: { type: Boolean, default: true },
   },
   emits: ["search", "clear"],
 
-  data: () => ({ q: "", cursor: -1, moreOpen: false, popPos: { region: {}, acct: {} }, layer, noir, region: regionState }),
+  data: () => ({ q: "", cursor: -1, moreOpen: false, popPos: { region: {}, acct: {} }, layer, noir, region: regionState, hoverAt: 0 }),
 
   computed: {
     shop() {
@@ -318,6 +358,63 @@ export default {
       if (currencies().length <= 1 && !showLanguages())
         return t("bakini.n.hdr.sellsIn", "{shop} sells in {language} and in {currency}.", { shop: this.shop?.title || "", language: lang?.title || "", currency: currentCurrency() });
       return t("region.note", "Prices everywhere change at once: cards, filters, bag and checkout.");
+    },
+    /* The shop's own facts (address, days, the counter's hours, delivery ways, payment). */
+    facts() {
+      return shopFacts(this.shop);
+    },
+    street() {
+      return String(this.facts.address || "").split(",")[0].trim();
+    },
+    cityLine() {
+      return [this.facts.city, [this.facts.region, this.facts.postal].filter(Boolean).join(" ")].filter(Boolean).join(", ");
+    },
+    openLine() {
+      const f = this.facts;
+      if (!f.days.length && !f.hours) return "";
+      if (f.everyDay) return f.hours ? t("mikio.hdr.openEvery", "Open every day {hours}", { hours: f.hours }) : t("mikio.hdr.openEveryNoHours", "Open every day");
+      return f.hours ? t("mikio.hdr.openDaysHours", "Open {days}, {hours}", { days: f.days.join(", "), hours: f.hours }) : t("mikio.hdr.openDays", "Open {days}", { days: f.days.join(", ") });
+    },
+    tel() {
+      return "tel:" + String(this.facts.phone || "").replace(/[^\d+]/g, "");
+    },
+    mapUrl() {
+      const l = this.facts.location;
+      return l ? "https://www.google.com/maps/search/?api=1&query=" + l.lat + "%2C" + l.lng : "";
+    },
+    pickupLine() {
+      return [t("mikio.hdr.pickupAt", "Pickup at {place}", { place: this.street }), this.openLine].filter(Boolean).join(" · ");
+    },
+    /* "25% off every piece", or "Up to 25% off", from the live catalogue; "" without offers. */
+    offLine() {
+      const offs = this.noir.products.map((p) => percentOff(this.shop, p)).filter((x) => x > 0);
+      if (!offs.length) return "";
+      const max = Math.max(...offs);
+      const every = offs.length === this.noir.products.length && Math.min(...offs) === max;
+      return every ? t("mikio.hdr.offEvery", "{off}% off every piece", { off: max }) : t("mikio.hdr.offUpTo", "Up to {off}% off", { off: max });
+    },
+    annMsgs() {
+      const f = this.facts;
+      const free = f.shipping && f.shipping.freeOver ? t("mikio.hdr.freeOver", "Free shipping over {amount}", { amount: money(f.shipping.freeOver, true) }) : "";
+      return [this.offLine, free, f.gateway ? f.gateway.name : ""].filter(Boolean);
+    },
+    /* the collections by pieces sold, each with its products best-selling first */
+    ranked() {
+      return this.cats
+        .map((c, i) => {
+          const ps = bySells(this.noir.products.filter((p) => p.category_id === c.id));
+          return { c, i, ps, sold: ps.reduce((s, p) => s + (p.sells || 0), 0) };
+        })
+        .sort((a, b) => b.sold - a.sold || a.i - b.i);
+    },
+    allImgs() {
+      return this.ranked.slice(0, 3).map((r) => (r.ps[0] ? productImage(r.ps[0]) : catImage(r.c, 512))).filter(Boolean);
+    },
+    onJournal() {
+      return /blog|journal/i.test(String(this.$route?.name || ""));
+    },
+    faqTo() {
+      return this.$router.hasRoute("ShopFAQ") ? { name: "ShopFAQ" } : { name: this.r.SHOP_CONTACT_US };
     },
     menuFirst() {
       return this.cats.length <= 8 ? this.cats : this.cats.slice(0, 6);
@@ -438,6 +535,12 @@ export default {
       if (this.layer.open === "region" || this.layer.open === "acct") this.place(this.layer.open);
     };
     window.addEventListener("resize", this.onResize, { passive: true });
+    /* The hover-opened Shop menu closes when the pointer leaves the nav item and the menu. */
+    this.onOver = (e) => {
+      if (this.layer.open !== "dd-shop" || !window.matchMedia?.("(hover: hover)")?.matches) return;
+      if (!e.target.closest || !e.target.closest(".has-dd, #dd-shop")) closeLayer(true);
+    };
+    document.addEventListener("mouseover", this.onOver, { passive: true });
     /* Any part of the page can open the bag. */
     this.openBag = () => openLayer("drawer");
     EventBus.$on("bakini:open-cart", this.openBag);
@@ -445,6 +548,7 @@ export default {
 
   beforeUnmount() {
     window.removeEventListener("resize", this.onResize);
+    document.removeEventListener("mouseover", this.onOver);
     EventBus.$off("bakini:open-cart", this.openBag);
   },
 
@@ -467,7 +571,27 @@ export default {
       toggleLayer(id, e?.currentTarget || null);
     },
     catImg(c) {
-      return catImage(c, 256);
+      return catImage(c, 512);
+    },
+    /* a collection's photo: its best seller's cut-out, else the collection's own image */
+    topImg(c) {
+      const r = this.ranked.find((x) => x.c.id === c.id);
+      return r && r.ps[0] ? productImage(r.ps[0]) : catImage(c, 512);
+    },
+    /* desktop: the Shop menu opens on hover; a click right after the hover keeps it open */
+    hoverShop(e) {
+      if (!window.matchMedia?.("(hover: hover)")?.matches || this.layer.open === "dd-shop") return;
+      openLayer("dd-shop", e.currentTarget.querySelector("button"));
+      this.hoverAt = Date.now();
+    },
+    clickShop(e) {
+      if (this.layer.open === "dd-shop" && Date.now() - this.hoverAt < 700) return;
+      this.toggle("dd-shop", e);
+    },
+    leaveShop() {},
+    account() {
+      if (this.user) this.$router.push(this.accountTo);
+      else this.signIn();
     },
     thumb(p) {
       return productImage(p, 128);

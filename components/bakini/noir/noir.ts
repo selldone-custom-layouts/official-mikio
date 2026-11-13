@@ -293,7 +293,8 @@ export function shopFacts(shop: any): ShopFacts {
 
 export const layer = reactive({ open: "" as string, quick: null as any, product: null as any });
 let opener: HTMLElement | null = null;
-const MODAL = new Set(["drawer", "qv", "langsheet", "fsheet"]);
+/* Mikio: the menu and filter panels slide in over a scrim like the bag. */
+const MODAL = new Set(["drawer", "qv", "langsheet", "fsheet", "pmenu", "fpanel"]);
 
 /** Open a layer by id; the button that opened it gets focus back on close. */
 export function openLayer(id: string, btn?: HTMLElement | null): void {
@@ -316,7 +317,7 @@ export function closeLayer(silent = false): void {
     }
   }
   /* The language sheet came from the phone menu: back to the menu. */
-  if (was === "langsheet" && window.innerWidth <= 760) {
+  if (was === "langsheet" && opener && (opener as HTMLElement).closest && (opener as HTMLElement).closest("#pmenu")) {
     layer.open = "pmenu";
     document.documentElement.style.overflow = "hidden";
   }

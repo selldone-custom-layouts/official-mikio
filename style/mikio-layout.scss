@@ -1,0 +1,72 @@
+/* ▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Mikio Ticker — the Layout's own touches ▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+
+   Loaded last (StorefrontApp.vue). The look itself is the mockup's, ported
+   unchanged into style/mikio/ by scripts/mikio-css.cjs; this file only holds
+   what the live storefront needs on top of it: Selldone's and Vuetify's own
+   parts inside Mikio's pages, and the few places where the Vue markup differs
+   from the mockup's. Every colour is a token (--bk-*). */
+
+/* The page's ground follows the mode (Selldone's grey body rule loads later). */
+html body,
+html {
+  background: var(--bk-bg) !important;
+}
+
+/* An arrow at the end of its rail is disabled: it fades, nothing moves. */
+.nx .arr[disabled] {
+  opacity: 0.35;
+  cursor: default;
+}
+.nx .arr[disabled]:hover {
+  background: var(--bk-arr-bg);
+  color: var(--bk-arr-ink);
+}
+
+/* The menu's "Sign in" row is a button that reads like the links beside it. */
+.nx .mn-small .mn-link {
+  display: block;
+  width: 100%;
+  padding: 9px 0;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: start;
+  border-radius: var(--bk-r-s);
+}
+.nx .mn-small .mn-link:hover {
+  color: var(--bk-act-text);
+}
+.nx .mn-big .mn-more {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 60px;
+  padding: 6px 12px;
+  border-radius: var(--bk-r-card);
+  text-align: start;
+  font-weight: 700;
+}
+
+/* The header's account button and the region chips inside the pop-overs. */
+.nx .reg-pop .rs-chips,
+.nx #langsheet .rs-chips {
+  margin: 4px 0;
+}
+
+/* Loading cards keep the card's shape while the catalogue arrives. */
+.nx .nx-skel .pc-img {
+  aspect-ratio: 1;
+  background: var(--bk-tile);
+}
+.nx .nx-skel .pc-b {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+.nx .nx-skel .pc-b i {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: var(--bk-s2);
+}

@@ -1,181 +1,95 @@
 <!--
-  Bakini Noir — the shop pages that list pastries (b/pages-shop.js
-  listingPage(): category-b, search-b, deals-b): a short head (a
-  collection's name, line and picture with every collection as a chip; the
-  search box with what was asked; the deals' headline with the biggest
-  saving), then the filter panel and the grid.
+  Mikio Ticker — the shop pages that list pieces (mikio-design/nx/pages-shop.js
+  listingPage(): category-a, search-a, deals-a), laid out like
+  milkbarstore.com's collection page:
 
-  The filters are the collection's own spec, read live: a key becomes a
-  filter only when the collection has two or more short values for it (28
-  characters at most: a sentence such as an allergen note is never a filter;
-  the coordinator's rule of 12 November 2026), plus Price (a two-thumb range
-  with short boxes) and "On offer". No filter is invented, so a collection
-  may show fewer than five. Sort: Featured, Best sellers, Customer review,
-  Price low to high and high to low, Newest (deals: Biggest saving first).
-  Every change dims the cards, shows "Updating results…" and fades the new
-  ones up in steps (nothing moves with reduced motion). Phone: a Filter
-  button opens the panel as a sheet.
+  - a collection opens on the home's two-photo hero for that collection
+    (MkPhoto: the shop's photo, or its best sellers' cut-outs) with the
+    "from" price, its name and its own description; search and Shop all
+    open on a short centred head (the search box; the saving every piece
+    has);
+  - a slim bar: the breadcrumb on the left, Filter and Sort on the right;
+    Shop all and search add the collections as tabs;
+  - the grid of the home's cards, five across on wide screens, with one dark
+    band after the first full row (how paying works) when nothing is
+    filtered;
+  - then "How it works", the delivery questions and more collections
+    (MkBands).
 
-  The products are the shop's live catalogue (one read, shared); search
-  matches the title, the collection and the spec, like the header's
-  suggestions.
+  The filters (Noir's, the coordinator's rule of 12 November 2026) open in a
+  side panel at every width: a spec key becomes a filter only when the list
+  has two or more short values for it (28 characters at most), plus Price (a
+  two-thumb range with short boxes) and "On offer". Nothing is invented.
+  Sort: Featured, Best sellers, Customer review, Price low to high and high
+  to low, Newest (Shop all: Biggest saving first). Every change dims the
+  cards, shows "Updating results…" and fades the new ones up in steps
+  (nothing moves with reduced motion).
 -->
 <template>
   <div class="nx nx-listing">
     <div class="lt">
       <!-- The head -->
-      <div class="wrap lt-head">
-        <template v-if="kind === 'category'">
-          <div :style="{ '--bk-hue': hueOf(cat?.id) }" class="cath">
-            <div class="cath-txt">
-              <nav :aria-label="t('bakini.n.ls.crumbs', 'Breadcrumb')" class="crumbs">
-                <router-link :to="{ path: '/' }">{{ t("bakini.n.ls.home", "Home") }}</router-link><nx-icon name="right" /><span aria-current="page"><bdi>{{ catTitle(cat) || categoryName }}</bdi></span>
-              </nav>
-              <h1 class="serif"><bdi>{{ catTitle(cat) || categoryName }}</bdi></h1>
-              <p v-if="catLine" class="muted">{{ catLine }}</p>
-            </div>
-            <div aria-hidden="true" class="cath-ph"><img v-if="catImg(cat)" :src="catImg(cat)" alt="" class="cut" /></div>
+      <section v-if="kind === 'category'" aria-labelledby="lh-h" class="lh">
+        <div class="wrap lh-in">
+          <div class="lh-ph">
+            <mk-photo :alt="catTitle(cat)" :file="heroFiles(cat)[0]" :products="byBest.slice(0, 3)" />
+            <mk-photo :alt="catTitle(cat)" :file="heroFiles(cat)[1]" :products="byBest.length > 3 ? byBest.slice(3, 6) : byBest.slice(0, 3)" />
           </div>
-          <div class="cat-chips">
-            <router-link
-              v-for="c in noir.cats"
-              :key="c.id"
-              :aria-current="c.id === cat?.id ? 'page' : undefined"
-              :class="['chip', { on: c.id === cat?.id }]"
-              :to="catTo(c)"
-              ><img v-if="catImg(c, 128)" :src="catImg(c, 128)" alt="" /><bdi>{{ catTitle(c) }}</bdi></router-link
-            >
+          <div class="lh-copy">
+            <p v-if="fromKick" class="kick">{{ fromKick }}</p>
+            <h1 id="lh-h" class="lh-h"><bdi>{{ catTitle(cat) || categoryName }}</bdi></h1>
+            <p v-if="cat && cat.description" class="lh-p">{{ cat.description }}</p>
           </div>
-        </template>
-
-        <div v-else-if="kind === 'search'" class="sr-head">
-          <nav :aria-label="t('bakini.n.ls.crumbs', 'Breadcrumb')" class="crumbs">
-            <router-link :to="{ path: '/' }">{{ t("bakini.n.ls.home", "Home") }}</router-link><nx-icon name="right" /><span aria-current="page">{{ t("bakini.n.ls.search", "Search") }}</span>
-          </nav>
-          <form class="sr-form" role="search" @submit.prevent="submitSearch">
-            <nx-icon name="search" />
-            <input :aria-label="t('bakini.n.ls.searchLabel', 'Search the bakery')" :value="q" autocomplete="off" enterkeyhint="search" type="search" @input="q = $event.target.value" />
-            <button class="btn" type="submit">{{ t("bakini.n.ls.search", "Search") }}</button>
-          </form>
-          <template v-if="base.length">
-            <p class="sr-sum">
-              {{ t("bakini.n.ls.resultsFor", "Results for") }}{{ " " }}<b class="serif">“{{ search }}”</b>{{ " " }}{{ resultCats.length > 1 ? t("bakini.n.ls.acrossAll", "across the collections") : t("bakini.n.ls.in", "in {name}", { name: catTitle(catOf(resultCats[0])) }) }}
-            </p>
-            <div v-if="resultCats.length > 1" class="cat-chips tabs">
-              <button :aria-pressed="tab === 'all' ? 'true' : 'false'" class="chip" type="button" @click="setTab('all')">{{ t("bakini.n.ls.all", "All") }}</button>
-              <button v-for="id in resultCats" :key="id" :aria-pressed="tab === id ? 'true' : 'false'" class="chip" type="button" @click="setTab(id)">
-                <img v-if="catImg(catOf(id), 128)" :src="catImg(catOf(id), 128)" alt="" /><bdi>{{ catTitle(catOf(id)) }}</bdi>
-              </button>
-            </div>
-          </template>
         </div>
-
-        <template v-else>
-          <div :style="{ '--bk-hue': hueOf(topSave?.category_id) }" class="dl-head">
-            <div>
-              <nav :aria-label="t('bakini.n.ls.crumbs', 'Breadcrumb')" class="crumbs">
-                <router-link :to="{ path: '/' }">{{ t("bakini.n.ls.home", "Home") }}</router-link><nx-icon name="right" /><span aria-current="page">{{ kind === "deals" ? t("bakini.n.ls.deals", "Deals") : t("bakini.n.ls.everything", "Everything") }}</span>
-              </nav>
-              <h1 v-if="kind === 'deals'" class="serif">
-                <template v-if="dealsEvery">{{ t("bakini.n.ls.dealsEvery", "{off}% off.", { off: maxOff }) }}{{ " " }}<em>{{ t("bakini.n.ls.dealsEveryEm", "Every piece.") }}</em></template>
-                <template v-else-if="maxOff">{{ t("bakini.n.ls.dealsUpTo", "Up to {off}% off.", { off: maxOff }) }}{{ " " }}<em>{{ t("bakini.n.ls.dealsUpToEm", "This week.") }}</em></template>
-                <template v-else>{{ t("bakini.n.ls.dealsNone", "Deals") }}</template>
-              </h1>
-              <h1 v-else class="serif">{{ t("bakini.n.ls.allH", "Every") }}{{ " " }}<em>{{ t("bakini.n.ls.allHem", "pastry.") }}</em></h1>
-              <p class="muted">{{ kind === "deals" ? t("bakini.n.ls.dealsLine", "The saving is already in each price — no codes, no timers. Sorted by the biggest saving first.") : t("bakini.n.ls.allLine", "Every collection in one place, sold one by one.") }}</p>
-            </div>
-            <div v-if="kind === 'deals' && topSave" class="dl-best">
-              <span class="th"><img :src="img(topSave)" alt="" class="cut" /></span>
-              <span>
-                <small class="eyebrow">{{ t("bakini.n.ls.biggest", "Biggest saving") }}</small><b>{{ topSave.title }}</b
-                ><span class="gold">{{ t("bakini.n.ls.save", "Save {amount}", { amount: money(pv(topSave).save) }) }}</span>
-              </span>
-            </div>
-          </div>
-          <div class="cat-chips tabs">
-            <button :aria-pressed="tab === 'all' ? 'true' : 'false'" class="chip" type="button" @click="setTab('all')">{{ t("bakini.n.ls.all", "All") }}</button>
-            <button v-for="c in tabCats" :key="c.id" :aria-pressed="tab === c.id ? 'true' : 'false'" class="chip" type="button" @click="setTab(c.id)">
-              <img v-if="catImg(c, 128)" :src="catImg(c, 128)" alt="" /><bdi>{{ catTitle(c) }}</bdi>
-            </button>
-          </div>
-        </template>
-      </div>
+      </section>
+      <section v-else-if="kind === 'search'" class="sh">
+        <div class="wrap sh-in">
+          <h1 class="lh-h">{{ t("bakini.n.ls.search", "Search") }}</h1>
+          <form class="srch-f sh-f" role="search" @submit.prevent="submitSearch">
+            <nx-icon name="search" />
+            <input :aria-label="t('mikio.hdr.searchLabel', 'Search the shop')" :value="q" autocomplete="off" enterkeyhint="search" type="search" @input="q = $event.target.value" />
+            <button class="btn sm" type="submit">{{ t("bakini.n.ls.search", "Search") }}</button>
+          </form>
+          <p v-if="base.length" class="sh-sum">{{ t("bakini.n.ls.resultsFor", "Results for") }}{{ " " }}<b>“{{ search }}”</b></p>
+        </div>
+      </section>
+      <section v-else class="sh">
+        <div class="wrap sh-in">
+          <p class="kick">{{ t("mikio.ls.noCodes", "No codes · no timers") }}</p>
+          <h1 class="lh-h">{{ allHead }}</h1>
+          <p class="lh-p">{{ kind === "deals" ? t("mikio.ls.dealsLine", "The saving is already in every price. Biggest dollar saving first.") : t("mikio.ls.allLine", "Every collection in one place, sold one by one.") }}</p>
+        </div>
+      </section>
 
       <!-- Nothing found (search) -->
-      <div v-if="kind === 'search' && ready && !base.length" class="wrap" style="padding-bottom: 80px">
-        <div class="empty">
-          <span class="ec"><nx-icon name="search" /></span>
-          <h3>{{ t("bakini.n.ls.noMatchT", "No pastries match “{q}”", { q: search }) }}</h3>
-          <p>{{ noMatchLine }}</p>
-          <div class="acts"><router-link v-if="noir.cats[0]" :to="catTo(noir.cats[0])" class="btn">{{ t("bakini.n.ls.browse", "Browse {name}", { name: catTitle(noir.cats[0]).toLowerCase() }) }}</router-link></div>
-        </div>
-        <nx-row :accent="t('bakini.n.ls.lovedEm', 'loved.')" :items="loved" :title="t('bakini.n.ls.loved', 'Most')" cls="tight" />
-      </div>
-
-      <!-- The panel and the grid -->
-      <div v-else class="wrap lt-body">
-        <aside :aria-label="t('bakini.n.ls.filters', 'Filters')" class="fp">
-          <div :aria-label="t('bakini.n.ls.filters', 'Filters')" :class="['fp-sheet', { open: sheet }]" role="dialog">
-            <div class="fp-in">
-              <div class="fp-h">
-                <h2>{{ t("bakini.n.ls.filter", "Filter") }}</h2>
-                <button class="link" type="button" @click="reset">{{ t("bakini.n.ls.reset", "Reset") }}</button>
-              </div>
-              <div v-if="hi > lo" class="fg fg-price">
-                <p class="fg-t">{{ t("bakini.n.ls.price", "Price") }}</p>
-                <div class="range">
-                  <div class="range-track"><span :style="fillStyle" class="range-fill"></span></div>
-                  <input :aria-label="t('bakini.n.ls.minPrice', 'Minimum price')" :max="hi" :min="lo" :value="min" step="0.25" type="range" @change="update" @input="onMin($event.target.value)" />
-                  <input :aria-label="t('bakini.n.ls.maxPrice', 'Maximum price')" :max="hi" :min="lo" :value="max" step="0.25" type="range" @change="update" @input="onMax($event.target.value)" />
-                </div>
-                <div class="range-boxes">
-                  <label
-                    ><span>{{ t("bakini.n.ls.min", "Min") }}</span
-                    ><span class="rb"
-                      >{{ sign
-                      }}<input :aria-label="t('bakini.n.ls.minPrice', 'Minimum price')" :max="hi" :min="lo" :value="min.toFixed(2)" inputmode="decimal" step="0.25" type="number" @change="boxMin($event.target.value)" /></span
-                  ></label>
-                  <span class="dash">–</span>
-                  <label
-                    ><span>{{ t("bakini.n.ls.max", "Max") }}</span
-                    ><span class="rb"
-                      >{{ sign
-                      }}<input :aria-label="t('bakini.n.ls.maxPrice', 'Maximum price')" :max="hi" :min="lo" :value="max.toFixed(2)" inputmode="decimal" step="0.25" type="number" @change="boxMax($event.target.value)" /></span
-                  ></label>
-                </div>
-              </div>
-              <div v-if="anyOffer" class="fg fg-offer">
-                <label class="switch"><input :checked="offer" type="checkbox" @change="setOffer($event.target.checked)" /><span class="tr"></span>{{ t("bakini.n.ls.onOffer", "On offer") }}</label>
-              </div>
-              <details v-for="(f, gi) in facets" :key="f.key" :open="gi < 3" class="fg">
-                <summary>{{ f.key }}<nx-icon name="down" /></summary>
-                <div class="fg-body">
-                  <template v-for="(v, i) in f.values" :key="v">
-                    <button v-if="i < 12 || moreOpen[f.key]" :aria-pressed="picked(f.key, v) ? 'true' : 'false'" class="fchip" type="button" @click="toggle(f.key, v)">{{ v }}</button>
-                  </template>
-                  <button v-if="f.values.length > 12" :aria-expanded="moreOpen[f.key] ? 'true' : 'false'" class="fmore" type="button" @click="moreOpen[f.key] = !moreOpen[f.key]">
-                    <nx-icon name="down" />{{ moreOpen[f.key] ? t("bakini.n.ls.fewer", "Show fewer") : t("bakini.n.ls.more", "Show {n} more", { n: f.values.length - 12 }) }}
-                  </button>
-                </div>
-              </details>
-            </div>
-            <div class="fp-foot">
-              <button class="btn block" type="button" @click="closeSheet">{{ t("bakini.n.ls.showResults", { one: "Show {n} result", other: "Show {n} results" }, { n: list.length }) }}</button>
+      <template v-if="kind === 'search' && ready && !base.length">
+        <div class="wrap sh-empty">
+          <div class="empty">
+            <span class="ec"><nx-icon name="search" /></span>
+            <h3>{{ t("mikio.ls.noMatchT", "Nothing matches “{q}”", { q: search }) }}</h3>
+            <p>{{ noMatchLine }}</p>
+            <div class="acts">
+              <router-link v-for="c in noir.cats" :key="c.id" :to="catTo(c)" class="chip"><bdi>{{ catTitle(c) }}</bdi></router-link>
             </div>
           </div>
-        </aside>
+        </div>
+        <nx-row id="sr-best" :items="loved" :sub="t('mikio.home.bestSub', 'The pieces ordered most often.')" :title="t('mikio.home.bestH', 'Best sellers')" />
+        <mk-bands more />
+      </template>
 
-        <div class="lt-main">
-          <div class="lt-bar">
-            <button class="btn quiet sm lt-fbtn" type="button" @click="openSheet">
+      <template v-else>
+        <!-- The bar: breadcrumb, Filter, Sort -->
+        <div class="wrap lt-bar">
+          <nav :aria-label="t('bakini.n.ls.crumbs', 'Breadcrumb')" class="crumbs">
+            <router-link :to="{ path: '/' }">{{ t("bakini.n.ls.home", "Home") }}</router-link><span aria-hidden="true" class="sep">/</span><span aria-current="page"><bdi>{{ crumb }}</bdi></span>
+          </nav>
+          <div class="lt-tools">
+            <button :aria-expanded="isOpen('fpanel') ? 'true' : 'false'" aria-controls="fpanel" class="tool" type="button" @click="openPanel($event)">
               <nx-icon name="filter" />{{ t("bakini.n.ls.filter", "Filter") }}<span v-if="active.length" class="fcount">{{ active.length }}</span>
             </button>
-            <div class="lt-active">
-              <button v-for="a in active" :key="a.id" aria-pressed="true" class="chip on" type="button" @click="a.clear()">{{ a.label }}<nx-icon name="close" /></button>
-            </div>
             <div ref="sortw" class="sortw">
-              <button :aria-expanded="sortOpen ? 'true' : 'false'" aria-haspopup="listbox" class="btn quiet sm" type="button" @click="sortOpen = !sortOpen">
-                <nx-icon name="sort" /><span>{{ t("bakini.n.ls.sortBy", "Sort:") }}{{ " " }}<b>{{ sortLabel }}</b></span>
+              <button :aria-expanded="sortOpen ? 'true' : 'false'" aria-haspopup="listbox" class="tool" type="button" @click="sortOpen = !sortOpen">
+                <span>{{ t("bakini.n.ls.sortBy", "Sort:") }}{{ " " }}<b>{{ sortLabel }}</b></span><nx-icon name="down" />
               </button>
               <div :aria-label="t('bakini.n.ls.sort', 'Sort')" :class="['sortmenu', { open: sortOpen }]" role="listbox">
                 <button v-for="s in sorts" :key="s[0]" :aria-selected="s[0] === sort ? 'true' : 'false'" role="option" type="button" @click="setSort(s[0])">
@@ -184,36 +98,99 @@
               </div>
             </div>
           </div>
-          <div aria-live="polite" class="upd-slot">
-            <span v-if="busy" class="updating"><span class="spin"></span>{{ t("bakini.n.ls.updating", "Updating results…") }}</span>
-          </div>
-          <div :class="['grid5', 'lt-grid', { dim: busy }]">
+        </div>
+        <div v-if="kind !== 'category' && tabCats.length > 1" :aria-label="t('mikio.ls.collections', 'Collections')" class="wrap lt-tabs" role="group">
+          <button :aria-pressed="tab === 'all' ? 'true' : 'false'" class="chip" type="button" @click="setTab('all')">{{ t("bakini.n.ls.all", "All") }}</button>
+          <button v-for="c in tabCats" :key="c.id" :aria-pressed="tab === c.id ? 'true' : 'false'" class="chip" type="button" @click="setTab(c.id)"><bdi>{{ catTitle(c) }}</bdi></button>
+        </div>
+        <div v-if="active.length" class="wrap lt-active">
+          <button v-for="a in active" :key="a.id" :aria-label="t('mikio.ls.removeFilter', 'Remove filter {name}', { name: a.label })" class="chip on" type="button" @click="a.clear()">{{ a.label }}<nx-icon name="close" /></button>
+        </div>
+        <div aria-live="polite" class="wrap upd-slot">
+          <span v-if="busy" class="updating"><span class="spin"></span>{{ t("bakini.n.ls.updating", "Updating results…") }}</span>
+        </div>
+
+        <!-- The grid -->
+        <div class="wrap lt-main">
+          <ul ref="grid" :class="['lg-grid', { dim: busy }]">
             <template v-if="ready">
-              <nx-card
-                v-for="(p, i) in shown"
-                :key="p.id + '-' + drawn"
-                :class="{ 'fade-up': animate && i < 12 }"
-                :product="p"
-                :style="animate && i < 12 ? { animationDelay: i * 25 + 'ms' } : null"
-                look
-              />
+              <template v-for="(p, i) in shown" :key="p.id + '-' + drawn">
+                <li v-if="band && i === bandAt" class="lg-tile">
+                  <p class="kick">{{ facts.gateway.name }}</p>
+                  <p class="lg-tile-h">{{ facts.gateway.cod ? t("mikio.ls.bandCod", "Pick a window. Pay when it arrives.") : t("mikio.ls.bandPay", "Pick a window. Pay your way.") }}</p>
+                  <a class="btn sm" href="#how" @click.prevent="toHow">{{ t("mikio.ls.howWorks", "How it works") }}</a>
+                </li>
+                <nx-card :class="{ 'fade-up': animate && i < 12 }" :product="p" :style="animate && i < 12 ? { animationDelay: i * 25 + 'ms' } : null" look tag="li" />
+              </template>
             </template>
             <template v-else>
-              <div v-for="n in 8" :key="n" aria-hidden="true" class="pc nx-skel"><div class="pc-plate"></div><div class="pc-body"><i></i><i></i><i></i></div></div>
+              <li v-for="n in 10" :key="n" aria-hidden="true" class="pc nx-skel"><div class="pc-img"></div><div class="pc-b"><i></i><i></i><i></i></div></li>
             </template>
-          </div>
-          <div v-if="ready && !shown.length">
-            <div class="empty">
-              <span class="ec"><nx-icon name="search" /></span>
-              <h3>{{ t("bakini.n.ls.noneT", "No pastries match these filters") }}</h3>
-              <p>{{ t("bakini.n.ls.noneP", "Loosen the price range or clear a filter to see more of the collection.") }}</p>
-              <div class="acts"><button class="btn" type="button" @click="reset">{{ t("bakini.n.ls.resetFilters", "Reset filters") }}</button></div>
-            </div>
+          </ul>
+          <div v-if="ready && !shown.length" class="empty">
+            <span class="ec"><nx-icon name="search" /></span>
+            <h3>{{ t("mikio.ls.noneT", "Nothing matches these filters") }}</h3>
+            <p>{{ t("mikio.ls.noneP", "Loosen the price range or clear a filter to see more pieces.") }}</p>
+            <div class="acts"><button class="btn" type="button" @click="reset">{{ t("bakini.n.ls.resetFilters", "Reset filters") }}</button></div>
           </div>
         </div>
-      </div>
-      <div v-if="sheet" class="nx-fscrim" @click="closeSheet"></div>
+
+        <mk-bands :except="cat ? cat.id : null" :how="kind !== 'search'" :more="kind !== 'deals'" :questions="kind !== 'search'" />
+      </template>
     </div>
+
+    <!-- The filter panel (every width), teleported so it sits above the page. -->
+    <teleport to="body">
+      <div class="nx nx-layers">
+        <aside id="fpanel" :aria-label="t('bakini.n.ls.filters', 'Filters')" :class="['panel', 'fpanel', { open: isOpen('fpanel') }]" aria-modal="true" role="dialog">
+          <div class="pn-hd">
+            <h2 class="pn-t">{{ t("bakini.n.ls.filter", "Filter") }}</h2>
+            <button :aria-label="t('mikio.ls.closeFilters', 'Close filters')" class="ibtn x" type="button" @click="closePanel"><nx-icon name="close" /></button>
+          </div>
+          <div class="fp-in">
+            <div v-if="hi > lo" class="fg fg-price">
+              <p class="fg-t">{{ t("bakini.n.ls.price", "Price") }}</p>
+              <div class="range">
+                <div class="range-track"><span :style="fillStyle" class="range-fill"></span></div>
+                <input :aria-label="t('bakini.n.ls.minPrice', 'Minimum price')" :max="hi" :min="lo" :value="min" step="0.25" type="range" @change="update" @input="onMin($event.target.value)" />
+                <input :aria-label="t('bakini.n.ls.maxPrice', 'Maximum price')" :max="hi" :min="lo" :value="max" step="0.25" type="range" @change="update" @input="onMax($event.target.value)" />
+              </div>
+              <div class="range-boxes">
+                <label
+                  ><span>{{ t("bakini.n.ls.min", "Min") }}</span
+                  ><span class="rb"
+                    >{{ sign }}<input :aria-label="t('bakini.n.ls.minPrice', 'Minimum price')" :max="hi" :min="lo" :value="min.toFixed(2)" inputmode="decimal" step="0.25" type="number" @change="boxMin($event.target.value)" /></span
+                ></label>
+                <span class="dash">–</span>
+                <label
+                  ><span>{{ t("bakini.n.ls.max", "Max") }}</span
+                  ><span class="rb"
+                    >{{ sign }}<input :aria-label="t('bakini.n.ls.maxPrice', 'Maximum price')" :max="hi" :min="lo" :value="max.toFixed(2)" inputmode="decimal" step="0.25" type="number" @change="boxMax($event.target.value)" /></span
+                ></label>
+              </div>
+            </div>
+            <div v-if="anyOffer" class="fg fg-offer">
+              <label class="switch"><input :checked="offer" type="checkbox" @change="setOffer($event.target.checked)" /><span class="tr"></span>{{ t("bakini.n.ls.onOffer", "On offer") }}</label>
+            </div>
+            <details v-for="f in facets" :key="f.key" class="fg" open>
+              <summary>{{ f.key }}<nx-icon name="down" /></summary>
+              <div class="fg-body">
+                <template v-for="(v, i) in f.values" :key="v">
+                  <button v-if="i < 12 || moreOpen[f.key]" :aria-pressed="picked(f.key, v) ? 'true' : 'false'" class="fchip" type="button" @click="toggle(f.key, v)">{{ v }}</button>
+                </template>
+                <button v-if="f.values.length > 12" :aria-expanded="moreOpen[f.key] ? 'true' : 'false'" class="fmore" type="button" @click="moreOpen[f.key] = !moreOpen[f.key]">
+                  <nx-icon name="down" />{{ moreOpen[f.key] ? t("bakini.n.ls.fewer", "Show fewer") : t("bakini.n.ls.more", "Show {n} more", { n: f.values.length - 12 }) }}
+                </button>
+              </div>
+            </details>
+          </div>
+          <div class="fp-foot">
+            <button class="btn ghost sm" type="button" @click="reset">{{ t("bakini.n.ls.reset", "Reset") }}</button>
+            <button class="btn sm" type="button" @click="closePanel">{{ t("mikio.ls.showResults", "Show results") }}</button>
+          </div>
+        </aside>
+      </div>
+    </teleport>
   </div>
 </template>
 
@@ -221,15 +198,18 @@
 import NxIcon from "../NxIcon.vue";
 import NxCard from "../NxCard.vue";
 import NxRow from "../NxRow.vue";
-import { bySells, catImage, catOf, catTitle, catTo, hueOf, inCat, loadNoir, money, noir, priceView, productImage, specGroups, specValue } from "../noir";
+import MkPhoto from "../../../mikio/MkPhoto.vue";
+import MkBands from "../../../mikio/MkBands.vue";
+import { heroFiles } from "../../../mikio/mikio-photos";
+import { bySells, catImage, catOf, catTitle, catTo, closeLayer, hueOf, inCat, layer, loadNoir, money, noir, openLayer, priceView, productImage, shopFacts, specGroups, specValue } from "../noir";
 import { currentCurrency, signOf } from "../../../region-switcher/region";
 import { t } from "../../../kalio/i18n/kalio-i18n";
 
 const MAX_VALUE = 28;
 
 export default {
-  name: "NxListing",
-  components: { NxIcon, NxCard, NxRow },
+  name: "NxListing", // Mikio Ticker's listing
+  components: { NxIcon, NxCard, NxRow, MkPhoto, MkBands },
   props: {
     categoryName: { type: String, default: null },
     search: { type: String, default: "" },
@@ -255,6 +235,8 @@ export default {
     drawn: 0,
     snapshot: null,
     moreOpen: {},
+    layer,
+    cols: 5,
   }),
 
   computed: {
@@ -394,6 +376,43 @@ export default {
     topSave() {
       return [...this.base].sort((a, b) => this.pv(b).save - this.pv(a).save || a.id - b.id)[0] || null;
     },
+    facts() {
+      return shopFacts(this.shop);
+    },
+    byBest() {
+      return bySells(this.base);
+    },
+    /* "From $2.21 · 25% off" (the collection's lowest price and its saving) */
+    fromKick() {
+      if (!this.base.length) return "";
+      const from = Math.min(...this.base.map((p) => this.pv(p).now));
+      const offs = this.base.map((p) => this.pv(p).off);
+      const every = offs.every((o) => o > 0 && o === offs[0]);
+      const max = Math.max(...offs);
+      return [t("mikio.home.fromCap", "From {price}", { price: money(from) }), every ? t("mikio.home.off", "{off}% off", { off: offs[0] }) : max > 0 ? t("mikio.hdr.offUpTo", "Up to {off}% off", { off: max }) : ""].filter(Boolean).join(" · ");
+    },
+    crumb() {
+      if (this.kind === "category") return catTitle(this.cat) || this.categoryName;
+      if (this.kind === "search") return t("bakini.n.ls.search", "Search");
+      return t("mikio.hdr.shopAll", "Shop all");
+    },
+    allHead() {
+      const offs = this.noir.products.map((p) => this.pv(p).off);
+      const every = offs.length > 0 && offs.every((o) => o > 0 && o === offs[0]);
+      if (every) return t("mikio.hdr.offEvery", "{off}% off every piece", { off: offs[0] });
+      return this.maxOff ? t("mikio.hdr.offUpTo", "Up to {off}% off", { off: this.maxOff }) : t("mikio.hdr.shopAll", "Shop all");
+    },
+    /* the dark band: after the first full row, only on the plain (unfiltered) list */
+    plain() {
+      const defSort = this.deals ? "saving" : "featured";
+      return this.sort === defSort && this.tab === "all" && !this.offer && !Object.keys(this.f).some((k) => this.f[k].length) && this.min <= this.lo && this.max >= this.hi;
+    },
+    band() {
+      return this.kind !== "search" && !!this.facts.gateway && this.plain && this.shown.length > this.cols;
+    },
+    bandAt() {
+      return this.cols;
+    },
     loved() {
       return bySells(this.noir.products).slice(0, 12);
     },
@@ -434,6 +453,14 @@ export default {
   },
 
   mounted() {
+    this.measure = () => {
+      const g = this.$refs.grid;
+      if (!g) return;
+      const n = (getComputedStyle(g).gridTemplateColumns || "").split(" ").filter(Boolean).length;
+      if (n && n !== this.cols) this.cols = n;
+    };
+    this.$nextTick(this.measure);
+    window.addEventListener("resize", this.measure, { passive: true });
     this.onDoc = (e) => {
       if (this.sortOpen && this.$refs.sortw && !this.$refs.sortw.contains(e.target)) this.sortOpen = false;
     };
@@ -449,6 +476,8 @@ export default {
   beforeUnmount() {
     document.removeEventListener("click", this.onDoc, true);
     document.removeEventListener("keydown", this.onKey);
+    window.removeEventListener("resize", this.measure);
+    if (this.layer.open === "fpanel") closeLayer(true);
     clearTimeout(this.timer);
     if (this.sheet) document.documentElement.style.overflow = "";
   },
@@ -574,6 +603,20 @@ export default {
     closeSheet() {
       this.sheet = false;
       document.documentElement.style.overflow = "";
+    },
+    heroFiles,
+    isOpen(id) {
+      return this.layer.open === id;
+    },
+    openPanel(e) {
+      openLayer("fpanel", e?.currentTarget || null);
+    },
+    closePanel() {
+      closeLayer();
+    },
+    toHow() {
+      const el = document.getElementById("how");
+      if (el) el.scrollIntoView({ behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ? "auto" : "smooth", block: "start" });
     },
     submitSearch() {
       const q = this.q.trim();
